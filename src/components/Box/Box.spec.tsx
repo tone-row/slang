@@ -1,5 +1,45 @@
+import React from 'react';
+import { render } from '../../test-utils';
+import Box from './Box';
+
 /**
  * It should not apply any style rules not passed
  * It should fallback to the correct amount of padding
  * It should fallback to the correct amount of margin
  */
+describe('<Box/>', () => {
+  it('should not apply any style rules not passed', () => {
+    const { container } = render(<Box pt="10px" />);
+    const {
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft
+    } = window.getComputedStyle(container.firstChild as HTMLElement);
+
+    expect(paddingTop).toBe('10px');
+    expect(paddingRight).toBe('');
+    expect(paddingBottom).toBe('');
+    expect(paddingLeft).toBe('');
+  });
+
+  it('should prefer side style to axis', () => {
+    const { container } = render(<Box my="10px" mb="20px" />);
+    const { marginTop, marginBottom } = window.getComputedStyle(
+      container.firstChild as HTMLElement
+    );
+
+    expect(marginTop).toBe('10px');
+    expect(marginBottom).toBe('20px');
+  });
+
+  it('should prefer axis style to global', () => {
+    const { container } = render(<Box my="10px" m="20px" />);
+    const { marginTop, marginLeft } = window.getComputedStyle(
+      container.firstChild as HTMLElement
+    );
+
+    expect(marginTop).toBe('10px');
+    expect(marginLeft).toBe('20px');
+  });
+});
