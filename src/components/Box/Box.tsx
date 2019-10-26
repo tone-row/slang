@@ -5,24 +5,6 @@ function xor(x?: string, or?: string) {
   return x === undefined ? or : x;
 }
 
-type BoxProps = {
-  p?: string;
-  px?: string;
-  py?: string;
-  pt?: string;
-  pr?: string;
-  pb?: string;
-  pl?: string;
-  m?: string;
-  mx?: string;
-  my?: string;
-  mt?: string;
-  mr?: string;
-  mb?: string;
-  /* This is my def */
-  ml?: string;
-};
-
 type StyledBoxProps = {
   paddingTop?: string;
   paddingRight?: string;
@@ -55,6 +37,25 @@ const StyledBox = styled.div`
     marginLeft
   })}
 `;
+
+type BoxProps = {
+  p?: string;
+  px?: string;
+  py?: string;
+  pt?: string;
+  pr?: string;
+  pb?: string;
+  pl?: string;
+  m?: string;
+  mx?: string;
+  my?: string;
+  mt?: string;
+  mr?: string;
+  mb?: string;
+  ml?: string;
+  as?: any;
+};
+
 /**
  * The box allows for margin or padding
  * @param param0 this does it
