@@ -4,10 +4,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var React__default = _interopDefault(React);
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
+var React = require('react');
+var React__default = _interopDefault(React);
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -52,71 +52,103 @@ function __makeTemplateObject(cooked, raw) {
     return cooked;
 }
 
+/**
+ * Common Prop Expansion Functions
+ */
+
 function xor(x, or) {
   return x === undefined ? or : x;
 }
 
-var StyledBox = styled__default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ", "\n"])), function (_a) {
-  var paddingTop = _a.paddingTop,
-      paddingRight = _a.paddingRight,
-      paddingBottom = _a.paddingBottom,
-      paddingLeft = _a.paddingLeft,
-      marginTop = _a.marginTop,
-      marginRight = _a.marginRight,
-      marginBottom = _a.marginBottom,
-      marginLeft = _a.marginLeft;
-  return {
-    paddingTop: paddingTop,
-    paddingRight: paddingRight,
-    paddingBottom: paddingBottom,
-    paddingLeft: paddingLeft,
-    marginTop: marginTop,
-    marginRight: marginRight,
-    marginBottom: marginBottom,
-    marginLeft: marginLeft
-  };
-});
-/**
- * The box allows for margin or padding
- * @param param0 this does it
- */
+function mergeBool(props, o) {
+  return Object.keys(o).reduce(function (acc, key) {
+    if (key in props && props[key]) {
+      return __assign(__assign({}, acc), o[key]);
+    }
 
-var Box = function Box(_a) {
+    return acc;
+  }, {});
+}
+
+function padding(_a) {
   var p = _a.p,
       px = _a.px,
       py = _a.py,
       pt = _a.pt,
       pr = _a.pr,
       pb = _a.pb,
-      pl = _a.pl,
-      m = _a.m,
+      pl = _a.pl;
+  var paddingTop = xor(pt, xor(py, p));
+  var paddingRight = xor(pr, xor(px, p));
+  var paddingBottom = xor(pb, xor(py, p));
+  var paddingLeft = xor(pl, xor(px, p));
+  return {
+    paddingTop: paddingTop,
+    paddingRight: paddingRight,
+    paddingBottom: paddingBottom,
+    paddingLeft: paddingLeft
+  };
+}
+function margin(_a) {
+  var m = _a.m,
       mx = _a.mx,
       my = _a.my,
       mt = _a.mt,
       mr = _a.mr,
       mb = _a.mb,
-      ml = _a.ml,
-      props = __rest(_a, ["p", "px", "py", "pt", "pr", "pb", "pl", "m", "mx", "my", "mt", "mr", "mb", "ml"]);
-
-  var paddingTop = xor(pt, xor(py, p));
-  var paddingRight = xor(pr, xor(px, p));
-  var paddingBottom = xor(pb, xor(py, p));
-  var paddingLeft = xor(pl, xor(px, p));
+      ml = _a.ml;
   var marginTop = xor(mt, xor(my, m));
   var marginRight = xor(mr, xor(mx, m));
   var marginBottom = xor(mb, xor(my, m));
   var marginLeft = xor(ml, xor(mx, m));
-  return React__default.createElement(StyledBox, __assign({
-    paddingTop: paddingTop,
-    paddingRight: paddingRight,
-    paddingBottom: paddingBottom,
-    paddingLeft: paddingLeft,
+  return {
     marginTop: marginTop,
     marginRight: marginRight,
     marginBottom: marginBottom,
     marginLeft: marginLeft
-  }, props));
-};
+  };
+}
+function content(props) {
+  return mergeBool(props, {
+    scroll: {
+      overflow: 'scroll'
+    },
+    hidden: {
+      overflow: 'hidden'
+    },
+    nowrap: {
+      whiteSpace: 'nowrap'
+    }
+  });
+}
+function mainAxis(props) {
+  return mergeBool(props, {
+    between: {
+      justifyContent: 'space-between'
+    },
+    around: {
+      justifyContent: 'space-around'
+    },
+    evenly: {
+      justifyContent: 'space-evenly'
+    }
+  });
+}
+function crossAxis(props) {
+  return mergeBool(props, {
+    center: {
+      alignItems: 'center'
+    },
+    start: {
+      alignItems: 'flex-start'
+    },
+    end: {
+      alignItems: 'flex-end'
+    }
+  });
+}
+
+var Box = styled__default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  ", "\n  ", "\n  ", "\n"], ["\n  ", "\n  ", "\n  ", "\n"])), padding, margin, content);
 var templateObject_1;
 
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -132,53 +164,44 @@ var buttonReset = styled.css(templateObject_2 || (templateObject_2 = __makeTempl
 var Reset = styled.createGlobalStyle(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n\t", "\n\t", "\n\t", "\n"], ["\n\t", "\n\t", "\n\t", "\n"])), ericMeyerReset, buttonReset, boxSizing);
 var templateObject_1$2, templateObject_2, templateObject_3;
 
-var ColumnsItem = styled__default(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  grid-row: 1;\n"], ["\n  grid-row: 1;\n"])));
-var StyledColumns = styled__default('div')(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  display: grid;\n  grid-template-columns: auto;\n  ", "\n"], ["\n  display: grid;\n  grid-template-columns: auto;\n  ", "\n"])), function (_a) {
-  var gutter = _a.gutter;
-  return gutter && "grid-gap: " + gutter + ";";
+var Row = styled__default(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
+var templateObject_1$3;
+
+var Column = styled__default.div(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  ", "\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n"], ["\n  ", "\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n"])), padding);
+var Grow = styled__default(Box)(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  flex: 1;\n"], ["\n  flex: 1;\n"])));
+var templateObject_1$4, templateObject_2$1;
+
+var GroupWrapper = styled__default(Box)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"], ["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
+  var gap = _a.gap;
+  return gap && "\n\t\t& > " + Box + " {\n\t\t\tmargin-right: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-right: 0;\n\t\t\t}\n\t\t}\n\t";
 });
 
-var Columns = function Columns(_a) {
-  var gutter = _a.gutter,
-      _b = _a.itemProps,
-      itemProps = _b === void 0 ? {} : _b,
-      children = _a.children;
-  return React__default.createElement(StyledColumns, {
-    gutter: gutter
-  }, React.Children.toArray(children).filter(function (child) {
+var Group = function Group(_a) {
+  var children = _a.children,
+      each = _a.each,
+      props = __rest(_a, ["children", "each"]);
+
+  if (!children) return null;
+  return React__default.createElement(GroupWrapper, __assign({}, props), React.Children.toArray(children).filter(function (child) {
     return child;
   }).map(function (child) {
-    return React__default.createElement(ColumnsItem, __assign({
+    return React__default.createElement(Box, __assign({
       key: child.key
-    }, itemProps), child);
+    }, each), child);
   }));
 };
-var templateObject_1$3, templateObject_2$1;
+var templateObject_1$5;
 
-var RowsItem = styled__default(Box)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  grid-column: 1;\n"], ["\n  grid-column: 1;\n"])));
-var StyledRows = styled__default('div')(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: grid;\n  grid-template-rows: auto;\n  ", "\n"], ["\n  display: grid;\n  grid-template-rows: auto;\n  ", "\n"])), function (_a) {
-  var gutter = _a.gutter;
-  return gutter && "grid-gap: " + gutter + ";";
+var Container = styled__default(Box)(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"], ["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"])), function (_a) {
+  var w = _a.w;
+  return w;
 });
-
-var Rows = function Rows(_a) {
-  var gutter = _a.gutter,
-      _b = _a.itemProps,
-      itemProps = _b === void 0 ? {} : _b,
-      children = _a.children;
-  return React__default.createElement(StyledRows, {
-    gutter: gutter
-  }, React.Children.toArray(children).filter(function (child) {
-    return child;
-  }).map(function (child) {
-    return React__default.createElement(RowsItem, __assign({
-      key: child.key
-    }, itemProps), child);
-  }));
-};
-var templateObject_1$4, templateObject_2$2;
+var templateObject_1$6;
 
 exports.Box = Box;
-exports.Columns = Columns;
+exports.Column = Column;
+exports.Container = Container;
+exports.Group = Group;
+exports.Grow = Grow;
 exports.Reset = Reset;
-exports.Rows = Rows;
+exports.Row = Row;

@@ -1,23 +1,5 @@
-import React from 'react';
-declare type BoxProps = {
-    p?: string;
-    px?: string;
-    py?: string;
-    pt?: string;
-    pr?: string;
-    pb?: string;
-    pl?: string;
-    m?: string;
-    mx?: string;
-    my?: string;
-    mt?: string;
-    mr?: string;
-    mb?: string;
-    ml?: string;
-};
-/**
- * The box allows for margin or padding
- * @param param0 this does it
- */
-declare const Box: React.FC<BoxProps>;
+import { BaseComponent, PaddingProps, MarginProps, ContentProps } from '../../utils/types';
+export interface BoxProps extends BaseComponent, PaddingProps, MarginProps, ContentProps {
+}
+declare const Box: import("styled-components").StyledComponent<"div", any, BoxProps, never>;
 export default Box;
