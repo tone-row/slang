@@ -11,6 +11,11 @@ export type MarginProps = {
   [key in TMarginShorthand]?: string;
 };
 
+export type LayoutProps = {
+  tall?: boolean;
+  sticky?: boolean;
+};
+
 export type ContentProps = {
   scroll?: boolean;
   hidden?: boolean;

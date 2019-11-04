@@ -3,7 +3,8 @@ import {
   MarginProps,
   ContentProps,
   MainAxisProps,
-  CrossAxisProps
+  CrossAxisProps,
+  LayoutProps
 } from './types';
 /**
  * Common Prop Expansion Functions
@@ -36,6 +37,13 @@ export function margin({ m, mx, my, mt, mr, mb, ml }: MarginProps) {
   let marginBottom = xor(mb, xor(my, m));
   let marginLeft = xor(ml, xor(mx, m));
   return { marginTop, marginRight, marginBottom, marginLeft };
+}
+
+export function layout(props: LayoutProps) {
+  return mergeBool<LayoutProps>(props, {
+    tall: { height: '100%' },
+    sticky: { position: 'sticky', top: 0 }
+  });
 }
 
 export function content(props: ContentProps) {

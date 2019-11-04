@@ -52,6 +52,19 @@ function __makeTemplateObject(cooked, raw) {
     return cooked;
 }
 
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+var ericMeyerReset = styled.css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  html,\n  body,\n  div,\n  span,\n  applet,\n  object,\n  iframe,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6,\n  p,\n  blockquote,\n  pre,\n  a,\n  abbr,\n  acronym,\n  address,\n  big,\n  cite,\n  code,\n  del,\n  dfn,\n  em,\n  img,\n  ins,\n  kbd,\n  q,\n  s,\n  samp,\n  small,\n  strike,\n  strong,\n  sub,\n  sup,\n  tt,\n  var,\n  b,\n  u,\n  i,\n  center,\n  dl,\n  dt,\n  dd,\n  ol,\n  ul,\n  li,\n  fieldset,\n  form,\n  label,\n  legend,\n  table,\n  caption,\n  tbody,\n  tfoot,\n  thead,\n  tr,\n  th,\n  td,\n  article,\n  aside,\n  canvas,\n  details,\n  embed,\n  figure,\n  figcaption,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  output,\n  ruby,\n  section,\n  summary,\n  time,\n  mark,\n  audio,\n  video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    font: inherit;\n    vertical-align: baseline;\n  }\n  article,\n  aside,\n  details,\n  figcaption,\n  figure,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  ol,\n  ul {\n    list-style: none;\n  }\n  blockquote,\n  q {\n    quotes: none;\n  }\n  blockquote:before,\n  blockquote:after,\n  q:before,\n  q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n"], ["\n  html,\n  body,\n  div,\n  span,\n  applet,\n  object,\n  iframe,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6,\n  p,\n  blockquote,\n  pre,\n  a,\n  abbr,\n  acronym,\n  address,\n  big,\n  cite,\n  code,\n  del,\n  dfn,\n  em,\n  img,\n  ins,\n  kbd,\n  q,\n  s,\n  samp,\n  small,\n  strike,\n  strong,\n  sub,\n  sup,\n  tt,\n  var,\n  b,\n  u,\n  i,\n  center,\n  dl,\n  dt,\n  dd,\n  ol,\n  ul,\n  li,\n  fieldset,\n  form,\n  label,\n  legend,\n  table,\n  caption,\n  tbody,\n  tfoot,\n  thead,\n  tr,\n  th,\n  td,\n  article,\n  aside,\n  canvas,\n  details,\n  embed,\n  figure,\n  figcaption,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  output,\n  ruby,\n  section,\n  summary,\n  time,\n  mark,\n  audio,\n  video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    font: inherit;\n    vertical-align: baseline;\n  }\n  article,\n  aside,\n  details,\n  figcaption,\n  figure,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  ol,\n  ul {\n    list-style: none;\n  }\n  blockquote,\n  q {\n    quotes: none;\n  }\n  blockquote:before,\n  blockquote:after,\n  q:before,\n  q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n"])));
+var templateObject_1;
+
+var boxSizing = styled.css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n"], ["\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n"])));
+var buttonReset = styled.css(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  button {\n    border: none;\n    margin: 0;\n    padding: 0;\n    width: auto;\n    overflow: visible;\n\n    background: transparent;\n\n    /* inherit font & color from ancestor */\n    color: inherit;\n    font: inherit;\n    line-height: normal;\n    text-align: inherit;\n    -webkit-font-smoothing: inherit;\n    -moz-osx-font-smoothing: inherit;\n    -webkit-appearance: none;\n    cursor: pointer;\n  }\n"], ["\n  button {\n    border: none;\n    margin: 0;\n    padding: 0;\n    width: auto;\n    overflow: visible;\n\n    background: transparent;\n\n    /* inherit font & color from ancestor */\n    color: inherit;\n    font: inherit;\n    line-height: normal;\n    text-align: inherit;\n    -webkit-font-smoothing: inherit;\n    -moz-osx-font-smoothing: inherit;\n    -webkit-appearance: none;\n    cursor: pointer;\n  }\n"])));
+var Reset = styled.createGlobalStyle(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n\t", "\n\t", "\n\t", "\n"], ["\n\t", "\n\t", "\n\t", "\n"])), ericMeyerReset, buttonReset, boxSizing);
+var templateObject_1$1, templateObject_2, templateObject_3;
+
 /**
  * Common Prop Expansion Functions
  */
@@ -108,6 +121,17 @@ function margin(_a) {
     marginLeft: marginLeft
   };
 }
+function layout(props) {
+  return mergeBool(props, {
+    tall: {
+      height: '100%'
+    },
+    sticky: {
+      position: 'sticky',
+      top: 0
+    }
+  });
+}
 function content(props) {
   return mergeBool(props, {
     scroll: {
@@ -148,60 +172,75 @@ function crossAxis(props) {
   });
 }
 
-var Box = styled__default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  ", "\n  ", "\n  ", "\n"], ["\n  ", "\n  ", "\n  ", "\n"])), padding, margin, content);
-var templateObject_1;
+var Box = styled__default.div(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  ", "\n  ", "\n  ", "\n  ", "\n"], ["\n  ", "\n  ", "\n  ", "\n  ", "\n"])), padding, margin, layout, content);
+Box.displayName = 'Box';
+var templateObject_1$2;
 
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-var ericMeyerReset = styled.css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  html,\n  body,\n  div,\n  span,\n  applet,\n  object,\n  iframe,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6,\n  p,\n  blockquote,\n  pre,\n  a,\n  abbr,\n  acronym,\n  address,\n  big,\n  cite,\n  code,\n  del,\n  dfn,\n  em,\n  img,\n  ins,\n  kbd,\n  q,\n  s,\n  samp,\n  small,\n  strike,\n  strong,\n  sub,\n  sup,\n  tt,\n  var,\n  b,\n  u,\n  i,\n  center,\n  dl,\n  dt,\n  dd,\n  ol,\n  ul,\n  li,\n  fieldset,\n  form,\n  label,\n  legend,\n  table,\n  caption,\n  tbody,\n  tfoot,\n  thead,\n  tr,\n  th,\n  td,\n  article,\n  aside,\n  canvas,\n  details,\n  embed,\n  figure,\n  figcaption,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  output,\n  ruby,\n  section,\n  summary,\n  time,\n  mark,\n  audio,\n  video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    font: inherit;\n    vertical-align: baseline;\n  }\n  article,\n  aside,\n  details,\n  figcaption,\n  figure,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  ol,\n  ul {\n    list-style: none;\n  }\n  blockquote,\n  q {\n    quotes: none;\n  }\n  blockquote:before,\n  blockquote:after,\n  q:before,\n  q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n"], ["\n  html,\n  body,\n  div,\n  span,\n  applet,\n  object,\n  iframe,\n  h1,\n  h2,\n  h3,\n  h4,\n  h5,\n  h6,\n  p,\n  blockquote,\n  pre,\n  a,\n  abbr,\n  acronym,\n  address,\n  big,\n  cite,\n  code,\n  del,\n  dfn,\n  em,\n  img,\n  ins,\n  kbd,\n  q,\n  s,\n  samp,\n  small,\n  strike,\n  strong,\n  sub,\n  sup,\n  tt,\n  var,\n  b,\n  u,\n  i,\n  center,\n  dl,\n  dt,\n  dd,\n  ol,\n  ul,\n  li,\n  fieldset,\n  form,\n  label,\n  legend,\n  table,\n  caption,\n  tbody,\n  tfoot,\n  thead,\n  tr,\n  th,\n  td,\n  article,\n  aside,\n  canvas,\n  details,\n  embed,\n  figure,\n  figcaption,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  output,\n  ruby,\n  section,\n  summary,\n  time,\n  mark,\n  audio,\n  video {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-size: 100%;\n    font: inherit;\n    vertical-align: baseline;\n  }\n  article,\n  aside,\n  details,\n  figcaption,\n  figure,\n  footer,\n  header,\n  hgroup,\n  menu,\n  nav,\n  section {\n    display: block;\n  }\n  body {\n    line-height: 1;\n  }\n  ol,\n  ul {\n    list-style: none;\n  }\n  blockquote,\n  q {\n    quotes: none;\n  }\n  blockquote:before,\n  blockquote:after,\n  q:before,\n  q:after {\n    content: '';\n    content: none;\n  }\n  table {\n    border-collapse: collapse;\n    border-spacing: 0;\n  }\n"])));
-var templateObject_1$1;
-
-var boxSizing = styled.css(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n"], ["\n  *,\n  *:before,\n  *:after {\n    box-sizing: border-box;\n  }\n"])));
-var buttonReset = styled.css(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  button {\n    border: none;\n    margin: 0;\n    padding: 0;\n    width: auto;\n    overflow: visible;\n\n    background: transparent;\n\n    /* inherit font & color from ancestor */\n    color: inherit;\n    font: inherit;\n    line-height: normal;\n    text-align: inherit;\n    -webkit-font-smoothing: inherit;\n    -moz-osx-font-smoothing: inherit;\n    -webkit-appearance: none;\n    cursor: pointer;\n  }\n"], ["\n  button {\n    border: none;\n    margin: 0;\n    padding: 0;\n    width: auto;\n    overflow: visible;\n\n    background: transparent;\n\n    /* inherit font & color from ancestor */\n    color: inherit;\n    font: inherit;\n    line-height: normal;\n    text-align: inherit;\n    -webkit-font-smoothing: inherit;\n    -moz-osx-font-smoothing: inherit;\n    -webkit-appearance: none;\n    cursor: pointer;\n  }\n"])));
-var Reset = styled.createGlobalStyle(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n\t", "\n\t", "\n\t", "\n"], ["\n\t", "\n\t", "\n\t", "\n"])), ericMeyerReset, buttonReset, boxSizing);
-var templateObject_1$2, templateObject_2, templateObject_3;
-
-var Row = styled__default(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
+var Grow = styled__default(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  flex: 1;\n"], ["\n  flex: 1;\n"])));
+Grow.displayName = 'Grow';
 var templateObject_1$3;
 
-var Column = styled__default.div(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  ", "\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n"], ["\n  ", "\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n"])), padding);
-var Grow = styled__default(Box)(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  flex: 1;\n"], ["\n  flex: 1;\n"])));
-var templateObject_1$4, templateObject_2$1;
-
-var GroupWrapper = styled__default(Box)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"], ["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
-  var gap = _a.gap;
-  return gap && "\n\t\t& > " + Box + " {\n\t\t\tmargin-right: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-right: 0;\n\t\t\t}\n\t\t}\n\t";
+var Container = styled__default(Box)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"], ["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"])), function (_a) {
+  var w = _a.w;
+  return w;
 });
+var templateObject_1$4;
 
-var Group = function Group(_a) {
+var doNotWrap = ['Box', 'Grow'];
+
+var Collection = function Collection(_a) {
   var children = _a.children,
       each = _a.each,
-      props = __rest(_a, ["children", "each"]);
+      _b = _a.collectionWrapper,
+      CollectionWrapper = _b === void 0 ? Box : _b,
+      _c = _a.wrapper,
+      Wrapper = _c === void 0 ? Box : _c,
+      props = __rest(_a, ["children", "each", "collectionWrapper", "wrapper"]);
 
   if (!children) return null;
-  return React__default.createElement(GroupWrapper, __assign({}, props), React.Children.toArray(children).filter(function (child) {
+  return React__default.createElement(CollectionWrapper, __assign({}, props), React.Children.toArray(children).filter(function (child) {
     return child;
   }).map(function (child) {
-    return React__default.createElement(Box, __assign({
+    // Don't wrap if matches known collection child type
+    if (doNotWrap.includes(child.type && child.type.displayName || false)) {
+      return React.cloneElement(child, each);
+    }
+
+    return React__default.createElement(Wrapper, __assign({
       key: child.key
     }, each), child);
   }));
 };
+
+var ListWrapper = styled__default(Box)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"], ["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
+  var gap = _a.gap;
+  return gap && "\n\t\t& > " + Box + ", & > " + Grow + " {\n\t\t\tmargin-bottom: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-bottom: 0;\n\t\t\t}\n\t\t}\n\t";
+});
+ListWrapper.displayName = 'ListWrapper';
+
+var List = function List(props) {
+  return React__default.createElement(Collection, __assign({
+    collectionWrapper: ListWrapper
+  }, props));
+};
 var templateObject_1$5;
 
-var Container = styled__default(Box)(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"], ["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"])), function (_a) {
-  var w = _a.w;
-  return w;
+var GroupWrapper = styled__default(Box)(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"], ["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
+  var gap = _a.gap;
+  return gap && "\n\t\t& > " + Box + ", & > " + Grow + " {\n\t\t\tmargin-right: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-right: 0;\n\t\t\t}\n\t\t}\n\t";
 });
+GroupWrapper.displayName = 'GroupWrapper';
+
+var Group = function Group(props) {
+  return React__default.createElement(Collection, __assign({
+    collectionWrapper: GroupWrapper
+  }, props));
+};
 var templateObject_1$6;
 
 exports.Box = Box;
-exports.Column = Column;
 exports.Container = Container;
 exports.Group = Group;
 exports.Grow = Grow;
+exports.List = List;
 exports.Reset = Reset;
-exports.Row = Row;

@@ -1,16 +1,30 @@
 import React from 'react';
-import { CollectionProps } from '../../utils/types';
+import {
+  CollectionProps,
+  MainAxisProps,
+  CrossAxisProps
+} from '../../utils/types';
 import Box, { BoxProps } from '../Box/Box';
 import styled from 'styled-components';
 import Collection from '../Collection/Collection';
+import Grow from '../Grow/Grow';
+import { mainAxis, crossAxis } from '../../utils/props';
 
-interface ListProps extends BoxProps, CollectionProps {}
+interface ListProps
+  extends BoxProps,
+    CollectionProps,
+    MainAxisProps,
+    CrossAxisProps {}
 
 const ListWrapper = styled(Box)<ListProps>`
+	display: flex;
+  flex-direction: column;
+	${mainAxis}
+	${crossAxis}
   ${({ gap }) =>
     gap &&
     `
-		& > ${Box} {
+		& > ${Box}, & > ${Grow} {
 			margin-bottom: ${gap};
 			&:last-child {
 				margin-bottom: 0;

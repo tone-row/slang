@@ -7,6 +7,10 @@ export declare type PaddingProps = {
 export declare type MarginProps = {
     [key in TMarginShorthand]?: string;
 };
+export declare type LayoutProps = {
+    tall?: boolean;
+    sticky?: boolean;
+};
 export declare type ContentProps = {
     scroll?: boolean;
     hidden?: boolean;
@@ -25,6 +29,7 @@ export declare type MainAxisProps = {
 export declare type CollectionProps = {
     gap?: string;
     each?: object;
+    wrapper?: never;
 };
 export interface BaseComponent {
     className?: string;
