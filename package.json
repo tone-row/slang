@@ -12,6 +12,12 @@
     "prepublish": "npm run build",
     "preyalc": "npm run build"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "scripts/pre-commit.sh"
+    }
+  },
   "author": "Tone Row",
   "license": "ISC",
   "devDependencies": {
@@ -21,8 +27,11 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@testing-library/react": "^9.3.0",
     "babel-jest": "^24.9.0",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

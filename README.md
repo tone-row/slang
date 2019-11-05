@@ -20,3 +20,7 @@
 > If I can't find a way to measure the efficacy of this then it will definitely become tangled no matter how much care and attention is given to prop names or which components are built.
 
 Idea for measurement. Come up with the step-through methodology for layout building, and if there is any step that can't be satisfied with one of the components or techniques then there needs to be another... something that effect.
+
+# More on where you fit into the environment
+
+- building a design system and using it... fast!
