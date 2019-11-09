@@ -7,7 +7,7 @@ interface LocalCollectionProps extends CollectionProps {
 }
 
 // Items not to wrap in a Box
-const doNotWrap = ['Box', 'Grow'];
+const doNotWrap = ['Box'];
 
 const Collection: React.FC<LocalCollectionProps> = ({
   children,

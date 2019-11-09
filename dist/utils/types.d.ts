@@ -1,4 +1,8 @@
 /// <reference types="react" />
+export interface BaseComponent {
+    className?: string;
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+}
 export declare type TPaddingShorthand = 'p' | 'px' | 'py' | 'pt' | 'pr' | 'pb' | 'pl';
 export declare type TMarginShorthand = 'm' | 'mx' | 'my' | 'mt' | 'mr' | 'mb' | 'ml';
 export declare type PaddingProps = {
@@ -31,7 +35,6 @@ export declare type CollectionProps = {
     each?: object;
     wrapper?: React.ComponentType;
 };
-export interface BaseComponent {
-    className?: string;
-    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-}
+export declare type CollectionItemProps = {
+    grow?: boolean;
+};

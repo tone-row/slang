@@ -1,4 +1,4 @@
-import { PaddingProps, MarginProps, ContentProps, MainAxisProps, CrossAxisProps, LayoutProps } from './types';
+import { PaddingProps, MarginProps, ContentProps, MainAxisProps, CrossAxisProps, LayoutProps, CollectionItemProps } from './types';
 export declare function padding({ p, px, py, pt, pr, pb, pl }: PaddingProps): {
     paddingTop: string | undefined;
     paddingRight: string | undefined;
@@ -15,3 +15,4 @@ export declare function layout(props: LayoutProps): {};
 export declare function content(props: ContentProps): {};
 export declare function mainAxis(props: MainAxisProps): {};
 export declare function crossAxis(props: CrossAxisProps): {};
+export declare function collectionItem(props: CollectionItemProps): {};

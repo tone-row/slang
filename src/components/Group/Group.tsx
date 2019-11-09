@@ -4,7 +4,6 @@ import { CollectionProps, MainAxisProps, CrossAxisProps } from '../../utils/type
 import Box, { BoxProps } from '../Box/Box';
 import styled from 'styled-components';
 import { mainAxis, crossAxis } from '../../utils/props';
-import Grow from '../Grow/Grow';
 
 interface GroupProps extends BoxProps, CollectionProps, MainAxisProps, CrossAxisProps {}
 
@@ -15,7 +14,7 @@ const GroupWrapper = styled(Box)<GroupProps>`
   ${({ gap }) =>
     gap &&
     `
-		& > ${Box}, & > ${Grow} {
+		& > ${Box} {
 			margin-right: ${gap};
 			&:last-child {
 				margin-right: 0;
