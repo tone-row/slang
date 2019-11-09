@@ -6,7 +6,7 @@ interface ContainerProps extends BoxProps {
 }
 
 const Container = styled(Box)<ContainerProps>`
-  max-width: ${({ w }) => w};
+  max-width: ${({ w }): string => w};
   margin-left: auto;
   margin-right: auto;
 `;

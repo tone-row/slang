@@ -1,20 +1,12 @@
 import React from 'react';
 import Collection from '../Collection/Collection';
-import {
-  CollectionProps,
-  MainAxisProps,
-  CrossAxisProps
-} from '../../utils/types';
+import { CollectionProps, MainAxisProps, CrossAxisProps } from '../../utils/types';
 import Box, { BoxProps } from '../Box/Box';
 import styled from 'styled-components';
 import { mainAxis, crossAxis } from '../../utils/props';
 import Grow from '../Grow/Grow';
 
-interface GroupProps
-  extends BoxProps,
-    CollectionProps,
-    MainAxisProps,
-    CrossAxisProps {}
+interface GroupProps extends BoxProps, CollectionProps, MainAxisProps, CrossAxisProps {}
 
 const GroupWrapper = styled(Box)<GroupProps>`
   display: flex;
@@ -34,8 +26,6 @@ const GroupWrapper = styled(Box)<GroupProps>`
 
 GroupWrapper.displayName = 'GroupWrapper';
 
-const Group: React.FC<GroupProps> = props => (
-  <Collection collectionWrapper={GroupWrapper} {...props} />
-);
+const Group: React.FC<GroupProps> = props => <Collection collectionWrapper={GroupWrapper} {...props} />;
 
 export default Group;

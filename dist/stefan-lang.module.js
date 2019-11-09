@@ -178,6 +178,20 @@ var Container = styled(Box)(templateObject_1$4 || (templateObject_1$4 = __makeTe
 });
 var templateObject_1$4;
 
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
 var doNotWrap = ['Box', 'Grow'];
 
 var Collection = function Collection(_a) {
@@ -190,17 +204,21 @@ var Collection = function Collection(_a) {
       props = __rest(_a, ["children", "each", "collectionWrapper", "wrapper"]);
 
   if (!children) return null;
-  return React.createElement(CollectionWrapper, __assign({}, props), Children.toArray(children).filter(function (child) {
-    return child;
-  }).map(function (child) {
-    // Don't wrap if matches known collection child type
-    if (doNotWrap.includes(child.type && child.type.displayName || false)) {
+  return React.createElement(CollectionWrapper, __assign({}, props), Children.toArray(children).map(function (child) {
+    if (!child) return null; // Don't wrap if matches known collection child type
+
+    if (_typeof(child) === 'object' && 'type' in child && _typeof(child.type) === 'object' && 'displayName' in child.type && doNotWrap.includes(child.type && child.type.displayName)) {
       return cloneElement(child, each);
     }
 
-    return React.createElement(Wrapper, __assign({
-      key: child.key
-    }, each), child);
+    return (// <Wrapper key={child.key} {...each}>
+      // TODO: fix key
+      React.createElement(Wrapper, __assign({
+        key: 'anykey'
+      }, each), child)
+    );
+  }).filter(function (child) {
+    return child;
   }));
 };
 

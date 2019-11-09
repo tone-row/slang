@@ -29,7 +29,7 @@ export declare type MainAxisProps = {
 export declare type CollectionProps = {
     gap?: string;
     each?: object;
-    wrapper?: never;
+    wrapper?: React.ComponentType;
 };
 export interface BaseComponent {
     className?: string;

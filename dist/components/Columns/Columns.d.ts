@@ -1,9 +1,9 @@
 import React from 'react';
 declare type StyledColumnsProps = {
-    gutter?: string;
+  gutter?: string;
 };
 interface ColumnsProps extends StyledColumnsProps {
-    itemProps?: any;
+  itemProps?: any;
 }
 declare const Columns: React.FC<ColumnsProps>;
 export default Columns;
