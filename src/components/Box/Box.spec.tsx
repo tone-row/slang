@@ -2,11 +2,6 @@ import React from 'react';
 import { render } from '../../test-utils';
 import Box from './Box';
 
-/**
- * It should not apply any style rules not passed
- * It should fallback to the correct amount of padding
- * It should fallback to the correct amount of margin
- */
 describe('<Box/>', () => {
   it('should not apply any style rules not passed', () => {
     const { container } = render(<Box pt="10px" />);

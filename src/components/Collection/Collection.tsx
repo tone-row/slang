@@ -1,13 +1,27 @@
-import React, { Children, cloneElement } from 'react';
-import { CollectionProps } from '../../utils/types';
+import React, { Children, cloneElement, Attributes } from 'react';
+import { CollectionProps, BaseComponent } from '../../utils/types';
 import Box from '../Box/Box';
+import merge, { Options } from 'deepmerge';
+import mergeable from 'is-mergeable-object';
 
-interface LocalCollectionProps extends CollectionProps {
-  collectionWrapper: React.ComponentType;
+interface LocalCollectionProps extends BaseComponent, CollectionProps {
+  collectionWrapper?: React.ComponentType;
 }
 
 // Items not to wrap in a Box
 const doNotWrap = ['Box'];
+
+// Options for merging child props and each prop
+const customMerge = {
+  className: (classNameA: string, classNameB: string) => [classNameA, classNameB].join(' '),
+};
+
+const mergeOptions: Options = {
+  isMergeableObject: value => mergeable(value) || typeof value === 'string',
+  customMerge: (key: string) =>
+    key in customMerge ? customMerge[key as keyof typeof customMerge] : (x, y) => merge(x, y),
+  clone: false,
+};
 
 const Collection: React.FC<LocalCollectionProps> = ({
   children,
@@ -16,8 +30,6 @@ const Collection: React.FC<LocalCollectionProps> = ({
   wrapper: Wrapper = Box,
   ...props
 }) => {
-  if (!children) return null;
-
   return (
     <CollectionWrapper {...props}>
       {Children.toArray(children)
@@ -31,7 +43,12 @@ const Collection: React.FC<LocalCollectionProps> = ({
             'displayName' in child.type &&
             doNotWrap.includes(child.type && (child.type as { displayName: string }).displayName)
           ) {
-            return cloneElement(child, each);
+            const args: [React.ReactElement, (Partial<any> & Attributes)?] = [child];
+            if (each) {
+              const childProps: Partial<any> & Attributes = merge(each, child.props, mergeOptions);
+              args[1] = childProps;
+            }
+            return cloneElement(...args);
           }
 
           return (
