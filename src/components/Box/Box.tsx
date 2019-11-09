@@ -1,26 +1,28 @@
-import React from 'react';
 import styled from 'styled-components';
 import {
   BaseComponent,
   PaddingProps,
   MarginProps,
   ContentProps,
-  LayoutProps
+  LayoutProps,
+  CollectionItemProps,
 } from '../../utils/types';
-import { padding, margin, content, layout } from '../../utils/props';
+import { padding, margin, content, layout, collectionItem } from '../../utils/props';
 
 export interface BoxProps
   extends BaseComponent,
     PaddingProps,
     MarginProps,
     LayoutProps,
-    ContentProps {}
+    ContentProps,
+    CollectionItemProps {}
 
 const Box = styled.div<BoxProps>`
   ${padding}
   ${margin}
   ${layout}
   ${content}
+  ${collectionItem}
 `;
 
 Box.displayName = 'Box';

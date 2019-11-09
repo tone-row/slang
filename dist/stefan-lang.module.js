@@ -163,22 +163,39 @@ function crossAxis(props) {
     }
   });
 }
+function collectionItem(props) {
+  return mergeBool(props, {
+    grow: {
+      flex: 1
+    }
+  });
+}
 
-var Box = styled.div(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  ", "\n  ", "\n  ", "\n  ", "\n"], ["\n  ", "\n  ", "\n  ", "\n  ", "\n"])), padding, margin, layout, content);
+var Box = styled.div(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"], ["\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"])), padding, margin, layout, content, collectionItem);
 Box.displayName = 'Box';
 var templateObject_1$2;
 
-var Grow = styled(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  flex: 1;\n"], ["\n  flex: 1;\n"])));
-Grow.displayName = 'Grow';
-var templateObject_1$3;
-
-var Container = styled(Box)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"], ["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"])), function (_a) {
+var Container = styled(Box)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"], ["\n  max-width: ", ";\n  margin-left: auto;\n  margin-right: auto;\n"])), function (_a) {
   var w = _a.w;
   return w;
 });
-var templateObject_1$4;
+var templateObject_1$3;
 
-var doNotWrap = ['Box', 'Grow'];
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+var doNotWrap = ['Box'];
 
 var Collection = function Collection(_a) {
   var children = _a.children,
@@ -190,23 +207,27 @@ var Collection = function Collection(_a) {
       props = __rest(_a, ["children", "each", "collectionWrapper", "wrapper"]);
 
   if (!children) return null;
-  return React.createElement(CollectionWrapper, __assign({}, props), Children.toArray(children).filter(function (child) {
-    return child;
-  }).map(function (child) {
-    // Don't wrap if matches known collection child type
-    if (doNotWrap.includes(child.type && child.type.displayName || false)) {
+  return React.createElement(CollectionWrapper, __assign({}, props), Children.toArray(children).map(function (child) {
+    if (!child) return null; // Don't wrap if matches known collection child type
+
+    if (_typeof(child) === 'object' && 'type' in child && _typeof(child.type) === 'object' && 'displayName' in child.type && doNotWrap.includes(child.type && child.type.displayName)) {
       return cloneElement(child, each);
     }
 
-    return React.createElement(Wrapper, __assign({
-      key: child.key
-    }, each), child);
+    return (// <Wrapper key={child.key} {...each}>
+      // TODO: fix key
+      React.createElement(Wrapper, __assign({
+        key: 'anykey'
+      }, each), child)
+    );
+  }).filter(function (child) {
+    return child;
   }));
 };
 
-var ListWrapper = styled(Box)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"], ["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
+var ListWrapper = styled(Box)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"], ["\n\tdisplay: flex;\n  flex-direction: column;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
   var gap = _a.gap;
-  return gap && "\n\t\t& > " + Box + ", & > " + Grow + " {\n\t\t\tmargin-bottom: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-bottom: 0;\n\t\t\t}\n\t\t}\n\t";
+  return gap && "\n\t\t& > " + Box + " {\n\t\t\tmargin-bottom: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-bottom: 0;\n\t\t\t}\n\t\t}\n\t";
 });
 ListWrapper.displayName = 'ListWrapper';
 
@@ -215,11 +236,11 @@ var List = function List(props) {
     collectionWrapper: ListWrapper
   }, props));
 };
-var templateObject_1$5;
+var templateObject_1$4;
 
-var GroupWrapper = styled(Box)(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"], ["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
+var GroupWrapper = styled(Box)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"], ["\n  display: flex;\n\t", "\n\t", "\n  ", "\n"])), mainAxis, crossAxis, function (_a) {
   var gap = _a.gap;
-  return gap && "\n\t\t& > " + Box + ", & > " + Grow + " {\n\t\t\tmargin-right: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-right: 0;\n\t\t\t}\n\t\t}\n\t";
+  return gap && "\n\t\t& > " + Box + " {\n\t\t\tmargin-right: " + gap + ";\n\t\t\t&:last-child {\n\t\t\t\tmargin-right: 0;\n\t\t\t}\n\t\t}\n\t";
 });
 GroupWrapper.displayName = 'GroupWrapper';
 
@@ -228,6 +249,6 @@ var Group = function Group(props) {
     collectionWrapper: GroupWrapper
   }, props));
 };
-var templateObject_1$6;
+var templateObject_1$5;
 
-export { Box, Container, Group, Grow, List, Reset };
+export { Box, Container, Group, List, Reset };

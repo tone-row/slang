@@ -1,4 +1,7 @@
-import { JSXElement } from '@babel/types';
+export interface BaseComponent {
+  className?: string;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+}
 
 export type TPaddingShorthand = 'p' | 'px' | 'py' | 'pt' | 'pr' | 'pb' | 'pl';
 export type TMarginShorthand = 'm' | 'mx' | 'my' | 'mt' | 'mr' | 'mb' | 'ml';
@@ -36,10 +39,9 @@ export type MainAxisProps = {
 export type CollectionProps = {
   gap?: string;
   each?: object;
-  wrapper?: never;
+  wrapper?: React.ComponentType;
 };
 
-export interface BaseComponent {
-  className?: string;
-  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-}
+export type CollectionItemProps = {
+  grow?: boolean;
+};
