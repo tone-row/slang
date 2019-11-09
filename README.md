@@ -14,6 +14,7 @@
 - have really helpful error messages. As an example, if you add the grow prop to Box when it's not a direct child of a Collection type
 - publish on github package registry for (possibly private?) use
 - find a way to manage tickets and moving forward that isn't in the rad
+- add pull request template
 
 # Measurement
 
