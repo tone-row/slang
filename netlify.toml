@@ -1,0 +1,3 @@
+[build]
+	publish = "examples/build"
+	command = "cd examples && npm i && npm run build"

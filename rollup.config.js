@@ -6,16 +6,16 @@ import pkg from './package.json';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
-// const globals = {
-//   react: 'React',
-//   'react-dom': 'ReactDOM',
-//   'styled-components': 'styled',
-// };
+const globals = {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'styled-components': 'styled',
+};
 
 export default {
   input: 'src/index.tsx',
   external: Object.keys(pkg.peerDependencies || {}),
-  output: [{ file: pkg.main, format: 'cjs' }, { file: pkg.module, format: 'esm' }],
+  output: [{ file: pkg.main, format: 'cjs', globals }, { file: pkg.module, format: 'esm', globals }],
   plugins: [
     resolve({ extensions }),
     commonjs(),

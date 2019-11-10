@@ -1,68 +1,70 @@
 {
-    "name": "stefan-lang",
-    "version": "0.0.1",
-    "description": "A react component library",
-    "main": "dist/stefan-lang.js",
-    "module": "dist/stefan-lang.module.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "rollup -c",
-        "dev": "rollup -c -w",
-        "test": "jest",
-        "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
-        "preyalc": "npm run build"
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "scripts/pre-commit.sh",
-            "pre-push": "npm run lint"
-        }
-    },
-    "author": "Tone Row",
-    "license": "ISC",
-    "devDependencies": {
-        "@babel/core": "^7.6.4",
-        "@babel/plugin-proposal-class-properties": "^7.5.5",
-        "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
-        "@babel/preset-env": "^7.6.3",
-        "@babel/preset-react": "^7.6.3",
-        "@babel/preset-typescript": "^7.6.0",
-        "@commitlint/cli": "^8.2.0",
-        "@commitlint/config-conventional": "^8.2.0",
-        "@testing-library/react": "^9.3.0",
-        "@typescript-eslint/eslint-plugin": "^2.6.1",
-        "@typescript-eslint/parser": "^2.6.1",
-        "babel-jest": "^24.9.0",
-        "eslint": "^6.6.0",
-        "eslint-config-prettier": "^6.5.0",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-prettier": "^3.1.1",
-        "eslint-plugin-react": "^7.16.0",
-        "husky": "^3.0.9",
-        "jest": "^24.9.0",
-        "prettier": "^1.18.2",
-        "react": "^16.11.0",
-        "react-dom": "^16.11.0",
-        "rollup": "^1.25.1",
-        "rollup-plugin-babel": "^4.3.3",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-node-resolve": "^5.2.0",
-        "rollup-plugin-typescript2": "^0.24.3",
-        "styled-components": "^4.4.0",
-        "typescript": "^3.6.4"
-    },
-    "dependencies": {
-        "@types/jest": "^24.0.20",
-        "@types/react": "^16.9.9",
-        "@types/react-dom": "^16.9.2",
-        "@types/styled-components": "^4.1.19",
-        "deepmerge": "^4.2.2",
-        "is-mergeable-object": "^1.1.1"
-    },
-    "peerDependencies": {
-        "react": "^16.11.0",
-        "react-dom": "^16.11.0",
-        "styled-components": "^4.4.0"
+  "name": "@tone-row/slang",
+  "version": "0.0.1",
+  "description": "A react component library",
+  "main": "dist/slang.js",
+  "module": "dist/slang.module.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "jest",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "examples:start": "cd examples && npm run start",
+    "dev": "concurrently --kill-others \"npm run watch\" \"npm run examples:start\""
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "scripts/pre-commit.sh",
+      "pre-push": "npm run lint"
     }
+  },
+  "author": "Tone Row",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@testing-library/react": "^9.3.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "babel-jest": "^24.9.0",
+    "concurrently": "^5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "rollup": "^1.25.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "styled-components": "^4.4.0",
+    "typescript": "^3.6.4",
+    "@types/jest": "^24.0.20",
+    "@types/react": "^16.9.9",
+    "@types/react-dom": "^16.9.2",
+    "@types/styled-components": "^4.1.19"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "is-mergeable-object": "^1.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "styled-components": "^4.4.0"
+  }
 }
