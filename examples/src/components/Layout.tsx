@@ -7,6 +7,7 @@ import BoxExamples from '../examples/BoxExamples';
 import ContainerExamples from '../examples/ContainerExamples';
 import GroupExamples from '../examples/GroupExamples';
 import ListExamples from '../examples/ListExamples';
+import ShapeExamples from '../examples/ShapeExamples';
 import Button from './Button';
 
 const Sidebar = styled(Box)`
@@ -36,7 +37,7 @@ const Layout: React.FC = () => (
     <Sidebar p={spacing.small}>
       <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
         <List gap={spacing.small}>
-          {['Box', 'Container', 'Group', 'List'].map(x => (
+          {['Box', 'Container', 'Group', 'List', 'Shape'].map(x => (
             <SectionButton title={x} />
           ))}
         </List>
@@ -66,6 +67,11 @@ const Layout: React.FC = () => (
             title="List"
             examples={ListExamples}
             description={`A list can be thought of as the vertical version of a \`<Group>\`. It displays groups of items vertically, like a list on a sheet of paper.`}
+          />
+          <Section
+            title="Shape"
+            examples={ShapeExamples}
+            description={`The shape is useful for creating component which maintain an aspect ratio no matter what width they are.`}
           />
         </List>
       </Container>
