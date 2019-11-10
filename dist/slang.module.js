@@ -1,5 +1,5 @@
 import styled, { css, createGlobalStyle } from 'styled-components';
-import React, { Children, cloneElement } from 'react';
+import React, { Children } from 'react';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -352,8 +352,6 @@ function isReactElement$1(value) {
 	return value.$$typeof === REACT_ELEMENT_TYPE$1
 }
 
-var doNotWrap = ['Box']; // Options for merging child props and each prop
-
 var _customMerge = {
   className: function className(classNameA, classNameB) {
     return [classNameA, classNameB].join(' ');
@@ -370,6 +368,30 @@ var mergeOptions = {
   },
   clone: false
 };
+function wrapChildIf(child, testChild, Wrapper, each) {
+  if (each === void 0) {
+    each = {};
+  }
+
+  if (testChild(child)) {
+    return React.createElement(Wrapper, __assign({
+      key: 'anykey'
+    }, each), child);
+  }
+
+  var cloneArgs = [child];
+
+  if (each) {
+    var childProps = cjs(each, child.props, mergeOptions);
+    cloneArgs[1] = childProps;
+  }
+
+  return React.cloneElement.apply(React, cloneArgs);
+}
+var doNotWrap = ['Box'];
+var childIsNotBox = function childIsNotBox(child) {
+  return !(child && _typeof(child) === 'object' && 'type' in child && _typeof(child.type) === 'object' && 'displayName' in child.type && doNotWrap.includes(child.type && child.type.displayName));
+};
 
 var Collection = function Collection(_a) {
   var children = _a.children,
@@ -381,25 +403,8 @@ var Collection = function Collection(_a) {
       props = __rest(_a, ["children", "each", "collectionWrapper", "wrapper"]);
 
   return React.createElement(CollectionWrapper, __assign({}, props), Children.toArray(children).map(function (child) {
-    if (!child) return null; // Don't wrap if matches known collection child type
-
-    if (_typeof(child) === 'object' && 'type' in child && _typeof(child.type) === 'object' && 'displayName' in child.type && doNotWrap.includes(child.type && child.type.displayName)) {
-      var args = [child];
-
-      if (each) {
-        var childProps = cjs(each, child.props, mergeOptions);
-        args[1] = childProps;
-      }
-
-      return cloneElement.apply(void 0, args);
-    }
-
-    return (// <Wrapper key={child.key} {...each}>
-      // TODO: fix key
-      React.createElement(Wrapper, __assign({
-        key: 'anykey'
-      }, each), child)
-    );
+    if (!child) return null;
+    return wrapChildIf(child, childIsNotBox, Wrapper, each);
   }).filter(function (child) {
     return child;
   }));
@@ -431,4 +436,30 @@ var Group = function Group(props) {
 };
 var templateObject_1$5;
 
-export { Box, Container, Group, List, Reset };
+var ShapeWrapper = styled.div(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  position: relative;\n  &:before {\n    content: ' ';\n    display: block;\n    padding-bottom: calc(100% * ", ");\n  }\n\n  & > ", " {\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n  }\n"], ["\n  position: relative;\n  &:before {\n    content: ' ';\n    display: block;\n    padding-bottom: calc(100% * ", ");\n  }\n\n  & > ", " {\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n  }\n"])), function (_a) {
+  var _b = _a.ratio,
+      ratio = _b === void 0 ? 1 : _b;
+  return ratio;
+}, Box);
+ShapeWrapper.displayName = 'ShapeWrapper';
+
+var Shape = function Shape(_a) {
+  var children = _a.children,
+      props = __rest(_a, ["children"]);
+
+  var childrenArray = React.Children.toArray(children);
+
+  if (childrenArray.length > 1) {
+    throw new Error("<Shape> can only have one child.");
+  }
+
+  return React.createElement(ShapeWrapper, __assign({}, props), React.Children.toArray(children).map(function (child) {
+    if (!child) return null;
+    return wrapChildIf(child, childIsNotBox, Box);
+  }).filter(function (child) {
+    return child;
+  }));
+};
+var templateObject_1$6;
+
+export { Box, Container, Group, List, Reset, Shape };
