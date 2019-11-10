@@ -16,6 +16,9 @@
 - Shape is a bad name for aspect ratio component
 - child.key are not working for collections
 - find out why cursor is sometimes off by one character in the react-live playground
+- add a license
+- add a how to contribute note
+- figure out how to handle a changelog and semantic versioning
 
 ## Broad Questions
 
