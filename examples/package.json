@@ -1,7 +1,7 @@
 {
   "name": "slang-examples",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.0-development",
+  "private": false,
   "dependencies": {
     "@types/jest": "24.0.20",
     "@types/node": "12.11.7",
