@@ -1,6 +1,6 @@
 {
   "name": "@tone-row/slang",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A react component library",
   "main": "dist/slang.js",
   "module": "dist/slang.module.js",
@@ -21,7 +21,7 @@
     }
   },
   "author": "Tone Row",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
