@@ -8,6 +8,10 @@
   "author": "Tone Row",
   "license": "MIT",
   "private": false,
+  "files": [
+    "README.md",
+    "dist/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tone-row/slang.git"
