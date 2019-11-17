@@ -2,7 +2,6 @@ language: node_js
 
 node_js:
   - 12
-  - 10
 
 jobs:
   include:
@@ -15,4 +14,5 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
+          - npm run build
           - npx semantic-release
