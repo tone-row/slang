@@ -7,7 +7,11 @@ jobs:
   include:
     - stage: build
       node_js: lts/*
-      script: npm run build
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npm run build
     - stage: release
       node_js: lts/*
       # Advanced: optionally overwrite your default `script` step to skip the tests
