@@ -5,7 +5,6 @@ import { border, color, spacing } from '../utils/theme';
 
 const HEIGHT = 200;
 const WIDTH = (4 / 3) * HEIGHT;
-// scales per-second speed
 
 const RotatorWrapper = styled.div`
   background: ${color.lowContrast};
