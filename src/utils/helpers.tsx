@@ -20,8 +20,9 @@ export function wrapChildIf(
   each = {},
 ) {
   if (testChild(child)) {
+    const key = typeof child.key === 'string' && child.key.slice(2);
     return (
-      <Wrapper key={'anykey'} {...each}>
+      <Wrapper key={key || undefined} {...each}>
         {child}
       </Wrapper>
     );

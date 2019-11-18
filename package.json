@@ -63,6 +63,10 @@
             {
               "type": "test",
               "release": "patch"
+            },
+            {
+              "type": "feat",
+              "release": "patch"
             }
           ],
           "parserOpts": {

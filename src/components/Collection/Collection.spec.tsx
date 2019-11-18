@@ -4,6 +4,13 @@ import Collection from './Collection';
 import { Box } from '..';
 
 describe('<Collection />', () => {
+  beforeEach(() => {
+    global.console.log = jest.fn();
+    global.console.warn = jest.fn();
+    global.console.debug = jest.fn();
+    global.console.error = jest.fn();
+  });
+
   it('should wrap every child in a Box', () => {
     const { getByTestId } = render(<Collection data-testid="collection">{['hello', 'world']}</Collection>);
     expect(getByTestId('collection').querySelectorAll(':scope > div')).toHaveLength(2);
@@ -17,6 +24,16 @@ describe('<Collection />', () => {
       </Collection>,
     );
     expect(container.querySelectorAll(`.parent > .child`)).toHaveLength(1);
+  });
+
+  it('should move child keys to the parent box', () => {
+    render(
+      <Collection className="parent">
+        <div key="test1">Hello World</div>
+        <div key="test2">Hello World</div>
+      </Collection>,
+    );
+    expect(global.console.error).toHaveBeenCalledTimes(0);
   });
 
   describe('each', () => {
