@@ -28,10 +28,4 @@ const Button = styled(Box)<{ secondary?: boolean }>`
 
 Button.displayName = 'Button';
 
-// const LinkButton: React.FC = ({ children, ...props }) => (
-//   <Button>
-//     <Link {...props}>{children}</Link>
-//   </Button>
-// );
-
 export default Button;
