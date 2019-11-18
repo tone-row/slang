@@ -7,11 +7,9 @@ jobs:
   include:
     - stage: release
       node_js: lts/*
-      # Advanced: optionally overwrite your default `script` step to skip the tests
-      # script: skip
       deploy:
         provider: script
-        cleanup: false
+        skip_cleanup: true
         script:
           - npm run build
           - npx semantic-release
