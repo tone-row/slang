@@ -7,10 +7,12 @@
   "scripts": {
     "slang:build": "yarn workspace @tone-row/slang build",
     "slang:watch": "yarn workspace @tone-row/slang watch",
+    "slang:test": "yarn workspace @tone-row/slang test",
     "examples:start": "yarn workspace slang-examples start",
     "examples:build": "yarn workspace slang-examples build",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
-    "build": "slang:build && examples:build"
+    "build": "slang:build && examples:build",
+    "test": "slang:test"
   },
   "devDependencies": {
     "concurrently": "^5.0.0"
