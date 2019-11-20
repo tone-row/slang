@@ -9,12 +9,12 @@ interface GroupProps extends BoxProps, CollectionProps, MainAxisProps, CrossAxis
 
 const GroupWrapper = styled(Box)<GroupProps>`
   display: flex;
-	${mainAxis}
-	${crossAxis}
+  ${mainAxis}
+  ${crossAxis}
   ${({ gap }) =>
     gap &&
     `
-		& > ${Box} {
+		& > * {
 			margin-right: ${gap};
 			&:last-child {
 				margin-right: 0;

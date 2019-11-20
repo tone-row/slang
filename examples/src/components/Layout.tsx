@@ -26,7 +26,7 @@ const SectionButton: React.FC<{ title: string }> = ({ title }) => {
     }
   }, [title]);
   return (
-    <Button as="button" onClick={handleClick}>
+    <Button as={'button' as 'button'} onClick={handleClick}>
       {title}
     </Button>
   );
@@ -34,20 +34,21 @@ const SectionButton: React.FC<{ title: string }> = ({ title }) => {
 
 const Layout: React.FC = () => (
   <Group>
-    <Sidebar p={spacing.small}>
+    <Sidebar p={spacing.small} key="sidebar">
       <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
         <List gap={spacing.small}>
           {['Box', 'Container', 'Group', 'List', 'Shape'].map(x => (
-            <SectionButton title={x} />
+            <SectionButton key={`button-${x}`} title={x} />
           ))}
         </List>
       </Box>
     </Sidebar>
-    <Box grow>
+    <Box grow key="main-section">
       <Container w="1200px" px={spacing.default} py={spacing.large}>
         <List gap={spacing.headingHeight}>
           <Section
             title="Box"
+            key="Box"
             examples={BoxExamples}
             description={
               'The box is the basic building block for adding padding and margin. It renders a `<div>` unless passed the **as** prop.'
@@ -55,11 +56,13 @@ const Layout: React.FC = () => (
           />
           <Section
             title="Container"
+            key="Container"
             examples={ContainerExamples}
             description={`A container _"contains"_ elements within a certain maximum width.`}
           />
           <Section
             title="Group"
+            key="Group"
             examples={GroupExamples}
             description={`The group is for horizontal groups of items. If passed anything other than a \`<Box>\` or \`<Grow>\` element then the Group will automatically wrap it with a \`<Box>\`.`}
           />
@@ -70,6 +73,7 @@ const Layout: React.FC = () => (
           />
           <Section
             title="Shape"
+            key="Shape"
             examples={ShapeExamples}
             description={`The shape is useful for creating component which maintain an aspect ratio no matter what width they are.`}
           />

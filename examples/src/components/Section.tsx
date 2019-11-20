@@ -45,7 +45,7 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastExample = useMemo(() => activeIndex === examples.length - 1, [examples, activeIndex]);
   return (
-    <Box as="section" id={title}>
+    <Box as={'section' as 'section'} id={title}>
       <ScrollPointer data-scroll-pointer={title} />
       <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
         <List gap={spacing.default}>
@@ -57,7 +57,7 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
               <Group gap={spacing.small} nowrap>
                 {examples.map((example, index) => (
                   <Button
-                    as="button"
+                    as={'button' as 'button'}
                     secondary={examples[activeIndex].title === example.title}
                     onClick={() => setActiveIndex(index)}
                   >
@@ -76,7 +76,7 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
 ${examples[activeIndex].description || ''}
             `}</Markdown>
                 {!isLastExample && (
-                  <Button as="button" onClick={() => setActiveIndex(activeIndex + 1)}>
+                  <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)}>
                     Next: {examples[activeIndex + 1].title}
                   </Button>
                 )}

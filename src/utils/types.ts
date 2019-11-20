@@ -1,6 +1,6 @@
 export interface BaseComponent {
   className?: string;
-  as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+  as?: any;
 }
 
 export type TPaddingShorthand = 'p' | 'px' | 'py' | 'pt' | 'pr' | 'pb' | 'pl';
