@@ -11,10 +11,10 @@ const App: React.FC = () => {
     <Router>
       <Reset />
       <AppWrapper className="App">
-        <Box sticky style={{ zIndex: 1 }}>
+        <Box sticky style={{ zIndex: 1 }} key="header">
           <Header />
         </Box>
-        <Switch>
+        <Switch key="page">
           <Route path="/" exact component={Home} />
           <Route path="/layout" component={Layout} />
         </Switch>
