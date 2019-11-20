@@ -1,1 +1,4 @@
-examples
+/examples
+/slang
+node_modules
+.vscode
