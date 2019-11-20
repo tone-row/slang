@@ -12,7 +12,7 @@
     "examples:build": "yarn workspace slang-examples build",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
     "build": "slang:build && examples:build",
-    "test": "slang:test"
+    "test": "yarn slang:test"
   },
   "devDependencies": {
     "concurrently": "^5.0.0"
