@@ -32,7 +32,9 @@ describe('<Box/>', () => {
   });
 
   it('should apply padding and margin if as prop passed', () => {
-    const { container, getByTestId } = render(<Box my="10px" m="20px" as="section" data-testid="Section" />);
+    const { container, getByTestId } = render(
+      <Box my="10px" m="20px" as={'section' as 'section'} data-testid="Section" />,
+    );
     const { marginTop, marginLeft } = window.getComputedStyle(container.firstChild as HTMLElement);
 
     expect(getByTestId('Section').nodeName).toBe('SECTION');
