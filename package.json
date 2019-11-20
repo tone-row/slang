@@ -11,7 +11,7 @@
     "examples:start": "yarn workspace slang-examples start",
     "examples:build": "yarn workspace slang-examples build",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
-    "build": "slang:build && examples:build",
+    "build": "yarn slang:build && yarn examples:build",
     "test": "yarn slang:test"
   },
   "devDependencies": {
