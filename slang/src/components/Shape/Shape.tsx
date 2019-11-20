@@ -1,15 +1,18 @@
 import React from 'react';
-import { BaseComponent } from '../../utils/types';
+import { BaseComponent, ContentProps } from '../../utils/types';
 import styled from 'styled-components';
 import Box from '../Box/Box';
 import { wrapChildIf, childIsNotBox } from '../../utils/helpers';
+import { content } from '../../utils/props';
 
-interface ShapeProps extends BaseComponent {
+interface ShapeProps extends BaseComponent, ContentProps {
   ratio?: number;
 }
 
 const ShapeWrapper = styled.div<ShapeProps>`
   position: relative;
+  ${content}
+
   &:before {
     content: ' ';
     display: block;

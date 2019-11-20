@@ -49,8 +49,8 @@ export function layout(props: LayoutProps) {
 
 export function content(props: ContentProps) {
   return mergeBool<ContentProps>(props, {
-    scroll: { overflow: 'scroll' },
-    hidden: { overflow: 'hidden' },
+    oScroll: { overflow: 'scroll' },
+    oHidden: { overflow: 'hidden' },
     nowrap: { whiteSpace: 'nowrap' },
   });
 }

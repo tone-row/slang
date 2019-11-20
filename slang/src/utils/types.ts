@@ -20,8 +20,8 @@ export type LayoutProps = {
 };
 
 export type ContentProps = {
-  scroll?: boolean;
-  hidden?: boolean;
+  oScroll?: boolean;
+  oHidden?: boolean;
   nowrap?: boolean;
 };
 
