@@ -13,14 +13,17 @@ const HeaderWrapper = styled(Group)`
 
 const Title = styled.h1`
   font-size: 2rem;
-  /* transform: skewX(20deg); */
-  /* font-weight: 900; */
   margin-left: 5px;
   a {
     text-decoration: none;
     color: black;
   }
 `;
+
+const links = [
+  { to: '/', text: 'Home' },
+  { to: '/layout', text: 'Components' },
+];
 
 const Header: React.FC = () => {
   const { pathname } = useLocation();
@@ -29,28 +32,15 @@ const Header: React.FC = () => {
   }, [pathname]);
   return (
     <HeaderWrapper center between p={spacing.small}>
-      <Title>
+      <Title key="title">
         <Link to="/">SLANG</Link>
       </Title>
-      <Group gap={spacing.small} center>
-        <Button secondary={pathname === '/'}>
-          <Link to="/">Home</Link>
-        </Button>
-        <Button secondary={pathname === '/layout'}>
-          <Link to="/layout">Walkthrough</Link>
-        </Button>
-        <Button secondary={pathname === '/typography'}>
-          <Link to="/layout">Typography</Link>
-        </Button>
-        <Button secondary={pathname === '/'}>
-          <Link to="/">Docs</Link>
-        </Button>
-        <Button secondary={pathname === '/'}>
-          <Link to="/">Tutorials</Link>
-        </Button>
-        <Button secondary={pathname === '/'}>
-          <Link to="/">Blog</Link>
-        </Button>
+      <Group gap={spacing.small} center key="links">
+        {links.map(({ to, text }) => (
+          <Button secondary={pathname === to} key={text}>
+            <Link to={to}>{text}</Link>
+          </Button>
+        ))}
       </Group>
     </HeaderWrapper>
   );

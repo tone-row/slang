@@ -68,6 +68,7 @@ const Layout: React.FC = () => (
           />
           <Section
             title="List"
+            key="List"
             examples={ListExamples}
             description={`A list can be thought of as the vertical version of a \`<Group>\`. It displays groups of items vertically, like a list on a sheet of paper.`}
           />

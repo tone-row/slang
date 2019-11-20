@@ -49,15 +49,16 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
       <ScrollPointer data-scroll-pointer={title} />
       <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
         <List gap={spacing.default}>
-          <Group gap={spacing.large} center>
-            <Box style={{ flex: 2 }}>
+          <Group gap={spacing.large} center key="left">
+            <Box style={{ flex: 2 }} key="title">
               <Title>{title}</Title>
             </Box>
-            <Box style={{ flex: 3 }}>
+            <Box style={{ flex: 3 }} key="details">
               <Group gap={spacing.small} nowrap>
                 {examples.map((example, index) => (
                   <Button
                     as={'button' as 'button'}
+                    key={example.title}
                     secondary={examples[activeIndex].title === example.title}
                     onClick={() => setActiveIndex(index)}
                   >
@@ -67,16 +68,16 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
               </Group>
             </Box>
           </Group>
-          <Group gap={spacing.large}>
+          <Group gap={spacing.large} key="right">
             <Box style={{ flex: 2 }}>
               <List gap={spacing.default}>
-                <Markdown>{`
+                <Markdown key="description">{`
 ##### ${description || ''}
 #### ${examples[activeIndex].title}
 ${examples[activeIndex].description || ''}
             `}</Markdown>
                 {!isLastExample && (
-                  <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)}>
+                  <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)} key="next button">
                     Next: {examples[activeIndex + 1].title}
                   </Button>
                 )}
@@ -84,11 +85,11 @@ ${examples[activeIndex].description || ''}
             </Box>
             <Box style={{ flex: 3 }}>
               <List gap={spacing.default}>
-                <Box>
+                <Box key="editor box">
                   <LivePreviewRotator />
                   <Editor />
                 </Box>
-                <LiveError />
+                <LiveError key="error box" />
               </List>
             </Box>
           </Group>

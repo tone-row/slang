@@ -17,6 +17,8 @@ const RotatorWrapper = styled.div`
   border-radius: ${border.defaultRadius} ${border.defaultRadius} 0 0;
 `;
 
+RotatorWrapper.displayName = 'RotatorWrapper';
+
 const RotatorBox = styled.div`
   width: ${WIDTH}px;
   height: ${HEIGHT}px;
@@ -25,6 +27,8 @@ const RotatorBox = styled.div`
   box-shadow: 10px 10px 20px darkgrey;
   transition: width 100ms ease-out, height 100ms ease-out;
 `;
+
+RotatorBox.displayName = 'RotatorBox';
 
 const Rotator: React.FC = ({ children }) => {
   const box = useRef<HTMLDivElement>(null);
@@ -76,6 +80,14 @@ const Rotator: React.FC = ({ children }) => {
 
 export default Rotator;
 
-export const LivePreviewRotator = withLive(({ live: { element: Element } }: any) => {
-  return <Rotator>{Element && <Element />}</Rotator>;
-});
+const withLiveRender = ({ live: { element: Element } }: any) => {
+  return (
+    <Rotator>
+      <Element />
+    </Rotator>
+  );
+};
+
+export const LivePreviewRotator = withLive(withLiveRender);
+
+LivePreviewRotator.displayName = 'LivePreviewRotator';
