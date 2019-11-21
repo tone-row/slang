@@ -12,3 +12,10 @@ jobs:
         skip_cleanup: true
         script:
           - cd slang && yarn build && npx semantic-release
+    - stage: percy
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - yarn ci:test:visual
