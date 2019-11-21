@@ -5,10 +5,12 @@ node_js:
 
 jobs:
   include:
+    - stage: test
+      node_js: lts/*
+      script: yarn test
+    - stage: percy
+      node_js: lts/*
+      script: yarn ci:test:visual
     - stage: release
       node_js: lts/*
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - cd slang && yarn build && npx semantic-release
+      script: cd slang && yarn build && npx semantic-release

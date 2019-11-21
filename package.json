@@ -12,9 +12,13 @@
     "examples:build": "yarn workspace slang-examples build",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
     "build": "yarn slang:build && yarn examples:build",
-    "test": "yarn slang:test"
+    "test": "yarn slang:test",
+    "setup-test-visual": "yarn slang:build && yarn examples:start",
+    "test:visual": "wait-on http://localhost:3000/ && npx percy exec -- node scripts/snapshots.js",
+    "ci:test:visual": "concurrently --kill-others --success first \"yarn test:visual\" \"yarn setup-test-visual\""
   },
   "devDependencies": {
-    "concurrently": "^5.0.0"
+    "concurrently": "^5.0.0",
+    "wait-on": "^3.3.0"
   }
 }
