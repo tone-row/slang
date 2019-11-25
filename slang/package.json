@@ -27,6 +27,10 @@
   },
   "sideEffects": false,
   "release": {
+    "branches": [
+      "master",
+      "next"
+    ],
     "plugins": [
       [
         "@semantic-release/commit-analyzer",
