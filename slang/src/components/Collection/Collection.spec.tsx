@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '../../test-utils';
 import Collection from './Collection';
-import { Box } from '..';
+import Item from '../Item/Item';
 
 describe('<Collection />', () => {
   beforeEach(() => {
@@ -11,16 +11,16 @@ describe('<Collection />', () => {
     global.console.error = jest.fn();
   });
 
-  it('should wrap every child in a Box', () => {
+  it('should wrap every child in an Item', () => {
     const { getByTestId } = render(<Collection data-testid="collection">{['hello', 'world']}</Collection>);
     expect(getByTestId('collection').querySelectorAll(':scope > div')).toHaveLength(2);
   });
 
-  it('should not wrap a Box in Box', () => {
+  it('should not wrap a Item in Item', () => {
     const { container } = render(
       <Collection className="parent">
         {`Hello`}
-        <Box className="child">World</Box>
+        <Item className="child">World</Item>
       </Collection>,
     );
     expect(container.querySelectorAll(`.parent > .child`)).toHaveLength(1);
@@ -45,7 +45,7 @@ describe('<Collection />', () => {
     it('should merge className correctly', () => {
       const { container } = render(
         <Collection each={{ className: 'a' }}>
-          <Box className="b" />
+          <Item className="b" />
         </Collection>,
       );
       expect(container.querySelectorAll('.a.b')).toHaveLength(1);
@@ -54,7 +54,7 @@ describe('<Collection />', () => {
     it('should merge style correctly, defaulting to child', () => {
       const { getByTestId } = render(
         <Collection each={{ style: { color: 'blue' } }}>
-          <Box data-testid="box" style={{ color: 'green' }} />
+          <Item data-testid="box" style={{ color: 'green' }} />
         </Collection>,
       );
       const { color } = window.getComputedStyle(getByTestId('box'));

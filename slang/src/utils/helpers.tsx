@@ -35,9 +35,9 @@ export function wrapChildIf(
   return React.cloneElement(...cloneArgs);
 }
 
-const doNotWrap = ['Box'];
+const doNotWrap = ['Item'];
 
-export const childIsNotBox = (child: React.ReactNode) =>
+export const childIsNotItem = (child: React.ReactNode) =>
   !(
     child &&
     typeof child === 'object' &&

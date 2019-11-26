@@ -1,22 +1,13 @@
 import React, { useCallback } from 'react';
 import Section from './Section';
-import { Group, Container, Box, List } from '@tone-row/slang';
+import { Group, Container, Box, List, Item } from '@tone-row/slang';
 import { spacing, border } from '../utils/theme';
-import styled from 'styled-components';
 import BoxExamples from '../examples/BoxExamples';
 import ContainerExamples from '../examples/ContainerExamples';
 import GroupExamples from '../examples/GroupExamples';
 import ListExamples from '../examples/ListExamples';
 import ShapeExamples from '../examples/ShapeExamples';
 import Button from './Button';
-
-const Sidebar = styled(Box)`
-  border-right: ${border.default};
-  min-width: 200px;
-`;
-
-// Cheap way to tell it *not* to wrap this element
-Sidebar.displayName = 'Box';
 
 const SectionButton: React.FC<{ title: string }> = ({ title }) => {
   const handleClick = useCallback(() => {
@@ -34,7 +25,7 @@ const SectionButton: React.FC<{ title: string }> = ({ title }) => {
 
 const Layout: React.FC = () => (
   <Group>
-    <Sidebar p={spacing.small} key="sidebar">
+    <Item style={{ borderRight: border.default, minWidth: '200px' }} p={spacing.small} key="sidebar">
       <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
         <List gap={spacing.small}>
           {['Box', 'Container', 'Group', 'List', 'Shape'].map(x => (
@@ -42,8 +33,8 @@ const Layout: React.FC = () => (
           ))}
         </List>
       </Box>
-    </Sidebar>
-    <Box grow key="main-section">
+    </Item>
+    <Item grow key="main-section">
       <Container w="1200px" px={spacing.default} py={spacing.large}>
         <List gap={spacing.headingHeight}>
           <Section
@@ -80,7 +71,7 @@ const Layout: React.FC = () => (
           />
         </List>
       </Container>
-    </Box>
+    </Item>
   </Group>
 );
 

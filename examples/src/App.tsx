@@ -1,5 +1,5 @@
 import React from 'react';
-import { Reset, Box } from '@tone-row/slang';
+import { Reset, Item } from '@tone-row/slang';
 import { AppWrapper } from './styled';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -11,9 +11,9 @@ const App: React.FC = () => {
     <Router>
       <Reset />
       <AppWrapper className="App">
-        <Box sticky style={{ zIndex: 1 }} key="header">
+        <Item sticky style={{ zIndex: 1 }} key="header">
           <Header />
-        </Box>
+        </Item>
         <Switch key="page">
           <Route path="/" exact component={Home} />
           <Route path="/layout" component={Layout} />
