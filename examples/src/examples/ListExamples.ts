@@ -12,7 +12,7 @@ const basic = {
 
 const gap = {
   title: 'Gap & Each',
-  code: `<List gap="1rem" each={{p: "1rem", style: {background: "palegreen"}}}>
+  code: `<List gap="1rem" each={{p: "1rem", style: {background: "var(--accent)"}}}>
   <div key="1">1</div>
   <div key="2">2</div>
   <div key="3">3</div>
@@ -23,7 +23,7 @@ const gap = {
 
 const spreadOut = {
   title: 'How to Spread Out',
-  code: `<List each={{p: "1rem", style: {background: "palegreen"}}} tall between>
+  code: `<List each={{p: "1rem", style: {background: "var(--accent)"}}} tall between>
   <div key="1">1</div>
   <div key="2">2</div>
   <div key="3">3</div>
@@ -35,17 +35,17 @@ const spreadOut = {
 const threeSpreads = {
   title: 'All Three',
   code: `<Group tall>
-  <List each={{p: "1rem", style: {background: "palegreen"}}} tall between key="between">
+  <List each={{p: "1rem", style: {background: "var(--accent)"}}} tall between key="between">
     <div key="1">1</div>
     <div key="2">2</div>
     <div key="3">3</div>
   </List>
-  <List each={{p: "1rem", style: {background: "palegreen"}}} tall around key="around">
+  <List each={{p: "1rem", style: {background: "var(--accent)"}}} tall around key="around">
     <div key="1">1</div>
     <div key="2">2</div>
     <div key="3">3</div>
   </List>
-  <List each={{p: "1rem", style: {background: "palegreen"}}} tall evenly key="evenly">
+  <List each={{p: "1rem", style: {background: "var(--accent)"}}} tall evenly key="evenly">
     <div key="1">1</div>
     <div key="2">2</div>
     <div key="3">3</div>

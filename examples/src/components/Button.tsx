@@ -22,7 +22,7 @@ const Button = styled(Box)<{ secondary?: boolean }>`
 	`}
 
   &:focus {
-    outline: palegreen 2px auto;
+    outline: var(--accent) 2px auto;
   }
 `;
 

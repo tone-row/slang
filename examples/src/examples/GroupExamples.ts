@@ -35,7 +35,7 @@ const gap = {
 
 const each = {
   title: 'Each',
-  code: `<Group each={{p: "1rem", style: {background: 'palegreen'}}}>
+  code: `<Group each={{p: "1rem", style: {background: 'var(--accent)'}}}>
   <div key="1">1</div>
   <div key="2">2</div>
   <div key="3">3</div>
@@ -77,28 +77,28 @@ const fullWidth = {
 const verticalPlacement = {
   title: 'Vertical Alignment',
   code: `<>
-  <Group each={{style: {background: 'palegreen'}}} between>
+  <Group each={{style: {background: 'var(--accent)'}}} between>
     <div key="1">1</div>
     <div key="2">
       <span style={{fontSize: '3rem'}}>2</span>
     </div>
     <div key="3">3</div>
   </Group>
-  <Group each={{style: {background: 'palegreen'}}} between start>
+  <Group each={{style: {background: 'var(--accent)'}}} between start>
     <div key="1">1</div>
     <div key="2">
       <span style={{fontSize: '3rem'}}>2</span>
     </div>
     <div key="3">3</div>
   </Group>
-  <Group each={{style: {background: 'palegreen'}}} between center>
+  <Group each={{style: {background: 'var(--accent)'}}} between center>
     <div key="1">1</div>
     <div key="2">
       <span style={{fontSize: '3rem'}}>2</span>
     </div>
     <div key="3">3</div>
   </Group>
-  <Group each={{style: {background: 'palegreen'}}} between end>
+  <Group each={{style: {background: 'var(--accent)'}}} between end>
     <div key="1">1</div>
     <div key="2">
       <span style={{fontSize: '3rem'}}>2</span>
