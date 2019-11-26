@@ -4,7 +4,7 @@ import { spacing, border } from '../utils/theme';
 import styled from 'styled-components';
 
 const StyledMarkdown = styled.div`
-  line-height: 1.33;
+  line-height: 1.25;
 
   .markdown > * {
     margin-bottom: ${spacing.default};
@@ -53,7 +53,7 @@ const StyledMarkdown = styled.div`
   }
 
   a {
-    color: palegreen;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 700;
   }

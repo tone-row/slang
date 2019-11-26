@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import { List } from '@tone-row/slang';
 
 export const AppWrapper = styled(List)`
-  /* font-family: Chivo, sans-serif;
-  font-family: Inter UI;
-  font-family: GT America Trial; */
-  font-family: Gotham;
-  line-height: 1.3;
-  --accent: lightgrey;
+  // font-family: Gotham;
+  font-family: sans-serif;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --accent: #44cc88;
 `;

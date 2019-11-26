@@ -8,7 +8,7 @@ export const spacing = {
 export const color = {
   background: 'white',
   lowContrast: 'lightgrey',
-  accent: 'palegreen'
+  accent: 'var(--accent)'
 };
 
 export const border = {

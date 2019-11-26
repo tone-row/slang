@@ -14,6 +14,7 @@ const HeaderWrapper = styled(Group)`
 const Title = styled.h1`
   font-size: 2rem;
   margin-left: 5px;
+  font-weight: 700;
   a {
     text-decoration: none;
     color: black;
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
   return (
     <HeaderWrapper center between p={spacing.small}>
       <Title key="title">
-        <Link to="/">SLANG</Link>
+        <Link to="/">Slang</Link>
       </Title>
       <Group gap={spacing.small} center key="links">
         {links.map(({ to, text }) => (
