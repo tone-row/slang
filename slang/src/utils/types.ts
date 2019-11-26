@@ -44,4 +44,8 @@ export type CollectionProps = {
 
 export type CollectionItemProps = {
   grow?: boolean;
+  top?: boolean;
+  right?: boolean;
+  bottom?: boolean;
+  left?: boolean;
 };

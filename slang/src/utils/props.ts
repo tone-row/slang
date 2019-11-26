@@ -74,5 +74,9 @@ export function crossAxis(props: CrossAxisProps) {
 export function collectionItem(props: CollectionItemProps) {
   return mergeBool<CollectionItemProps>(props, {
     grow: { flex: 1 },
+    top: { marginBottom: 'auto' },
+    right: { marginLeft: 'auto' },
+    bottom: { marginTop: 'auto' },
+    left: { marginRight: 'auto' },
   });
 }

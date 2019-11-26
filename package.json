@@ -2,7 +2,8 @@
   "private": true,
   "workspaces": [
     "./slang",
-    "./examples"
+    "./examples",
+    "./research-workspace"
   ],
   "scripts": {
     "slang:build": "yarn workspace @tone-row/slang build",
@@ -11,11 +12,15 @@
     "examples:start": "yarn workspace slang-examples start",
     "examples:build": "yarn workspace slang-examples build",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
+    "start:research": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\" \"yarn research:start\"",
     "build": "yarn slang:build && yarn examples:build",
     "test": "yarn slang:test",
     "setup-test-visual": "yarn slang:build && yarn examples:start",
     "test:visual": "wait-on http://localhost:3000/ && npx percy exec -- node scripts/snapshots.js",
-    "ci:test:visual": "concurrently --kill-others --success first \"yarn test:visual\" \"yarn setup-test-visual\""
+    "ci:test:visual": "concurrently --kill-others --success first \"yarn test:visual\" \"yarn setup-test-visual\"",
+    "research:start": "PORT=3100 yarn workspace research-workspace start",
+    "research:setup": "npx create-react-app research-workspace --typescript && cd research-workspace && yarn add styled-components @tone-row/slang @types/styled-components",
+    "research:cleanup": "rm -rf research-workspace && rm yarn.lock && yarn"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

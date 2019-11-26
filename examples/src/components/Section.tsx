@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { LivePreviewRotator } from './Rotator';
 import { LiveProvider, LiveEditor, LiveError } from 'react-live';
 import * as slang from '@tone-row/slang';
-import { Box, List, Group } from '@tone-row/slang';
+import { Box, List, Group, Item } from '@tone-row/slang';
 import { spacing, border } from '../utils/theme';
 import editorTheme from '../utils/editorTheme';
 import Button from './Button';
@@ -50,10 +50,10 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
       <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
         <List gap={spacing.default}>
           <Group gap={spacing.large} center key="left">
-            <Box style={{ flex: 2 }} key="title">
+            <Item style={{ flex: 2 }} key="title">
               <Title>{title}</Title>
-            </Box>
-            <Box style={{ flex: 3 }} key="details">
+            </Item>
+            <Item style={{ flex: 3 }} key="details">
               <Group gap={spacing.small} nowrap>
                 {examples.map((example, index) => (
                   <Button
@@ -66,10 +66,10 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
                   </Button>
                 ))}
               </Group>
-            </Box>
+            </Item>
           </Group>
           <Group gap={spacing.large} key="right">
-            <Box style={{ flex: 2 }}>
+            <Item style={{ flex: 2 }}>
               <List gap={spacing.default}>
                 <Markdown key="description">{`
 ##### ${description || ''}
@@ -82,16 +82,16 @@ ${examples[activeIndex].description || ''}
                   </Button>
                 )}
               </List>
-            </Box>
-            <Box style={{ flex: 3 }}>
+            </Item>
+            <Item style={{ flex: 3 }}>
               <List gap={spacing.default}>
-                <Box key="editor box">
+                <Item key="editor box">
                   <LivePreviewRotator />
                   <Editor />
-                </Box>
+                </Item>
                 <LiveError key="error box" />
               </List>
-            </Box>
+            </Item>
           </Group>
         </List>
       </LiveProvider>

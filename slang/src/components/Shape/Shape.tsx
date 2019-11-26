@@ -2,7 +2,8 @@ import React from 'react';
 import { BaseComponent, ContentProps } from '../../utils/types';
 import styled from 'styled-components';
 import Box from '../Box/Box';
-import { wrapChildIf, childIsNotBox } from '../../utils/helpers';
+import Item from '../Item/Item';
+import { wrapChildIf, childIsNotItem } from '../../utils/helpers';
 import { content } from '../../utils/props';
 
 interface ShapeProps extends BaseComponent, ContentProps {
@@ -19,7 +20,7 @@ const ShapeWrapper = styled.div<ShapeProps>`
     padding-bottom: calc(100% * ${({ ratio = 1 }) => ratio});
   }
 
-  & > ${Box} {
+  & > ${Item} {
     display: block;
     position: absolute;
     top: 0;
@@ -41,7 +42,7 @@ const Shape: React.FC<ShapeProps> = ({ children, ...props }) => {
       {React.Children.toArray(children)
         .map((child: React.ReactNode) => {
           if (!child) return null;
-          return wrapChildIf(child as React.ReactElement, childIsNotBox, Box);
+          return wrapChildIf(child as React.ReactElement, childIsNotItem, Box);
         })
         .filter(child => child)}
     </ShapeWrapper>

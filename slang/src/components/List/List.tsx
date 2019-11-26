@@ -4,6 +4,7 @@ import Box, { BoxProps } from '../Box/Box';
 import styled from 'styled-components';
 import Collection from '../Collection/Collection';
 import { mainAxis, crossAxis } from '../../utils/props';
+import Item from '../Item/Item';
 
 interface ListProps extends BoxProps, CollectionProps, MainAxisProps, CrossAxisProps {}
 
@@ -15,7 +16,7 @@ const ListWrapper = styled(Box)<ListProps>`
   ${({ gap }) =>
     gap &&
     `
-		& > ${Box} {
+		& > ${Item} {
 			margin-bottom: ${gap};
 			&:last-child {
 				margin-bottom: 0;
