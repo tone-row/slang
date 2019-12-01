@@ -45,41 +45,27 @@ const ScrollPointer = styled.div`
 const SectionGrid = styled.div`
   display: grid;
   grid-gap: ${spacing.small};
-  @media(min-width: 1000px) {
+  @media (min-width: 1000px) {
     grid-gap: ${spacing.large};
     grid-template-columns: 350px [left] 1fr [right];
     align-items: start;
   }
-`
-
-// const Mobile = styled.div`
-//   display: block;
-//   @media(min-width: 1000px) {
-//     display: none;    
-//   }
-// `
-
-// const Desktop = styled.div`
-//   display: none;    
-//   @media(min-width: 1000px) {
-//     display: block;
-//   }
-// `
+`;
 
 export function useBreakpoint(size: string) {
-  const breakpoint = useRef(matchMedia(`(min-width: ${size})`))
+  const breakpoint = useRef(matchMedia(`(min-width: ${size})`));
   const [matches, setMatches] = useState(breakpoint.current.matches);
   useEffect(() => {
     const c = breakpoint.current;
     c.onchange = () => {
       setMatches(c.matches);
-    }
-    return () => {c.onchange = null};
-  }, [])
+    };
+    return () => {
+      c.onchange = null;
+    };
+  }, []);
   return matches;
 }
-
-
 
 const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -91,20 +77,24 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
       <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
         <SectionGrid>
           <Title>{title}</Title>
-          {!isDesktop && <Markdown>{`
-##### ${description || ''}`}</Markdown>}
-          {isDesktop && <Group gap={spacing.small} nowrap>
-            {examples.map((example, index) => (
-              <Button
-                as={'button' as 'button'}
-                key={example.title}
-                secondary={examples[activeIndex].title === example.title}
-                onClick={() => setActiveIndex(index)}
-              >
-                {example.title}
-              </Button>
-            ))}
-          </Group>}
+          {!isDesktop && (
+            <Markdown>{`
+##### ${description || ''}`}</Markdown>
+          )}
+          {isDesktop && (
+            <Group gap={spacing.small} nowrap>
+              {examples.map((example, index) => (
+                <Button
+                  as={'button' as 'button'}
+                  key={example.title}
+                  secondary={examples[activeIndex].title === example.title}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {example.title}
+                </Button>
+              ))}
+            </Group>
+          )}
           <List gap={spacing.default}>
             {isDesktop && <Markdown key="description">{`##### ${description || ''}`}</Markdown>}
             <Markdown key="examples">{`#### ${examples[activeIndex].title}
