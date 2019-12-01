@@ -7,9 +7,13 @@ const StyledMarkdown = styled.div`
   line-height: 1.25;
 
   .markdown > * {
-    margin-bottom: ${spacing.default};
+    margin-bottom: ${spacing.small};
     &:last-child {
       margin-bottom: 0;
+    }
+    
+    @media(min-width: 1000px) {
+      margin-bottom: ${spacing.default};
     }
   }
 
@@ -57,16 +61,36 @@ const StyledMarkdown = styled.div`
     text-decoration: none;
     font-weight: 700;
   }
+
+  &.home {
+    h3 {
+      font-size: 2rem;
+    }
+  
+    h4 {
+      font-size: 1.5rem;
+    }
+  
+    h5 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    h3,h4 {
+      text-align: center;
+    }
+    font-size: 1.25rem;
+  }
 `;
 
 StyledMarkdown.displayName = 'StyledMarkdown';
 
 type MarkdownProps = {
   children?: string;
+  className?: string;
 };
 
-const Markdown: React.FC<MarkdownProps> = ({ children }) => (
-  <StyledMarkdown>
+const Markdown: React.FC<MarkdownProps> = ({ children, className = '' }) => (
+  <StyledMarkdown className={className}>
     <ReactMarkdown source={children} className="markdown" />
   </StyledMarkdown>
 );

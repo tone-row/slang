@@ -5,7 +5,7 @@ import {
   MainAxisProps,
   CrossAxisProps,
   LayoutProps,
-  CollectionItemProps,
+  CollectionItemProps
 } from './types';
 /**
  * Common Prop Expansion Functions
@@ -43,7 +43,7 @@ export function margin({ m, mx, my, mt, mr, mb, ml }: MarginProps) {
 export function layout(props: LayoutProps) {
   return mergeBool<LayoutProps>(props, {
     tall: { height: '100%' },
-    sticky: { position: 'sticky', top: 0 },
+    sticky: { position: 'sticky', top: 0 }
   });
 }
 
@@ -51,7 +51,7 @@ export function content(props: ContentProps) {
   return mergeBool<ContentProps>(props, {
     oScroll: { overflow: 'scroll' },
     oHidden: { overflow: 'hidden' },
-    nowrap: { whiteSpace: 'nowrap' },
+    nowrap: { whiteSpace: 'nowrap' }
   });
 }
 
@@ -59,7 +59,7 @@ export function mainAxis(props: MainAxisProps) {
   return mergeBool<MainAxisProps>(props, {
     between: { justifyContent: 'space-between' },
     around: { justifyContent: 'space-around' },
-    evenly: { justifyContent: 'space-evenly' },
+    evenly: { justifyContent: 'space-evenly' }
   });
 }
 
@@ -67,7 +67,7 @@ export function crossAxis(props: CrossAxisProps) {
   return mergeBool<CrossAxisProps>(props, {
     center: { alignItems: 'center' },
     start: { alignItems: 'flex-start' },
-    end: { alignItems: 'flex-end' },
+    end: { alignItems: 'flex-end' }
   });
 }
 
@@ -77,6 +77,6 @@ export function collectionItem(props: CollectionItemProps) {
     top: { marginBottom: 'auto' },
     right: { marginLeft: 'auto' },
     bottom: { marginTop: 'auto' },
-    left: { marginRight: 'auto' },
+    left: { marginRight: 'auto' }
   });
 }

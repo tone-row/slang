@@ -12,7 +12,9 @@ describe('<Collection />', () => {
   });
 
   it('should wrap every child in an Item', () => {
-    const { getByTestId } = render(<Collection data-testid="collection">{['hello', 'world']}</Collection>);
+    const { getByTestId } = render(
+      <Collection data-testid="collection">{['hello', 'world']}</Collection>
+    );
     expect(getByTestId('collection').querySelectorAll(':scope > div')).toHaveLength(2);
   });
 
@@ -21,7 +23,7 @@ describe('<Collection />', () => {
       <Collection className="parent">
         {`Hello`}
         <Item className="child">World</Item>
-      </Collection>,
+      </Collection>
     );
     expect(container.querySelectorAll(`.parent > .child`)).toHaveLength(1);
   });
@@ -31,14 +33,16 @@ describe('<Collection />', () => {
       <Collection className="parent">
         <div key="test1">Hello World</div>
         <div key="test2">Hello World</div>
-      </Collection>,
+      </Collection>
     );
     expect(global.console.error).toHaveBeenCalledTimes(0);
   });
 
   describe('each', () => {
     it('should apply to all children', () => {
-      const { container } = render(<Collection each={{ className: 'test' }}>{['hello', 'world']}</Collection>);
+      const { container } = render(
+        <Collection each={{ className: 'test' }}>{['hello', 'world']}</Collection>
+      );
       expect(container.querySelectorAll('.test')).toHaveLength(2);
     });
 
@@ -46,7 +50,7 @@ describe('<Collection />', () => {
       const { container } = render(
         <Collection each={{ className: 'a' }}>
           <Item className="b" />
-        </Collection>,
+        </Collection>
       );
       expect(container.querySelectorAll('.a.b')).toHaveLength(1);
     });
@@ -55,7 +59,7 @@ describe('<Collection />', () => {
       const { getByTestId } = render(
         <Collection each={{ style: { color: 'blue' } }}>
           <Item data-testid="box" style={{ color: 'green' }} />
-        </Collection>,
+        </Collection>
       );
       const { color } = window.getComputedStyle(getByTestId('box'));
       expect(color).toEqual('green');

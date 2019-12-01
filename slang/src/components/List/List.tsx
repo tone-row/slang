@@ -27,6 +27,8 @@ const ListWrapper = styled(Box)<ListProps>`
 
 ListWrapper.displayName = 'ListWrapper';
 
-const List: React.FC<ListProps> = props => <Collection collectionWrapper={ListWrapper} {...props} />;
+const List: React.FC<ListProps> = props => (
+  <Collection collectionWrapper={ListWrapper} {...props} />
+);
 
 export default List;

@@ -3,21 +3,21 @@ import merge, { Options } from 'deepmerge';
 import mergeable from 'is-mergeable-object';
 
 const customMerge = {
-  className: (classNameA: string, classNameB: string) => [classNameA, classNameB].join(' '),
+  className: (classNameA: string, classNameB: string) => [classNameA, classNameB].join(' ')
 };
 
 const mergeOptions: Options = {
   isMergeableObject: value => mergeable(value) || typeof value === 'string',
   customMerge: (key: string) =>
     key in customMerge ? customMerge[key as keyof typeof customMerge] : (x, y) => merge(x, y),
-  clone: false,
+  clone: false
 };
 
 export function wrapChildIf(
   child: React.ReactElement,
   testChild: (child: React.ReactNode) => boolean,
   Wrapper: React.ComponentType,
-  each = {},
+  each = {}
 ) {
   if (testChild(child)) {
     const key = typeof child.key === 'string' && child.key.slice(2);

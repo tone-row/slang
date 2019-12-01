@@ -9,8 +9,13 @@
     "slang:build": "yarn workspace @tone-row/slang build",
     "slang:watch": "yarn workspace @tone-row/slang watch",
     "slang:test": "yarn workspace @tone-row/slang test",
+    "slang:format": "yarn workspace @tone-row/slang prettier --config .prettierrc --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\"",
+    "slang:lint:fix": "yarn workspace @tone-row/slang eslint --fix .",
     "examples:start": "yarn workspace slang-examples start",
     "examples:build": "yarn workspace slang-examples build",
+    "examples:format": "yarn workspace slang-examples prettier --config ../slang/.prettierrc \"src/**/*.tsx\"",
+    "lint": "yarn slang:lint:fix",
+    "format": "yarn slang:format",
     "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
     "start:research": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\" \"yarn research:start\"",
     "build": "yarn slang:build && yarn examples:build",
@@ -24,6 +29,22 @@
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "wait-on": "^3.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "scripts/pre-commit.sh && yarn lint && yarn format",
+      "pre-push": "yarn format"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)": [
+      "yarn lint",
+      "yarn format",
+      "git add"
+    ]
   }
 }
