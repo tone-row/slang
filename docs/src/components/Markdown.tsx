@@ -11,8 +11,8 @@ const StyledMarkdown = styled.div`
     &:last-child {
       margin-bottom: 0;
     }
-    
-    @media(min-width: 1000px) {
+
+    @media (min-width: 1000px) {
       margin-bottom: ${spacing.default};
     }
   }
@@ -66,16 +66,17 @@ const StyledMarkdown = styled.div`
     h3 {
       font-size: 2rem;
     }
-  
+
     h4 {
       font-size: 1.5rem;
     }
-  
+
     h5 {
       font-size: 1.25rem;
       font-weight: 700;
     }
-    h3,h4 {
+    h3,
+    h4 {
       text-align: center;
     }
     font-size: 1.25rem;

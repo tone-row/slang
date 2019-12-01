@@ -1,4 +1,4 @@
-import React, { useCallback, memo, useState } from 'react';
+import React, { useCallback, memo } from 'react';
 import Section, { useMedia } from './Section';
 import { Group, Container, Box, List, Item } from '@tone-row/slang';
 import { spacing, border } from '../utils/theme';
@@ -23,7 +23,7 @@ const SectionButton: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC = memo(() => {
   return (
     <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
       <List gap={spacing.small}>
@@ -33,14 +33,20 @@ const Sidebar: React.FC = () => {
       </List>
     </Box>
   );
-};
+});
+
+Sidebar.displayName = 'Sidebar';
 
 const Docs: React.FC<{}> = memo(() => {
   const isDesktop = useMedia([`(min-width: 1000px)`], [true], false);
   return (
     <Group>
       {isDesktop && (
-        <Item style={{ borderRight: border.default, minWidth: '200px' }} p={spacing.small} key="sidebar">
+        <Item
+          style={{ borderRight: border.default, minWidth: '200px' }}
+          p={spacing.small}
+          key="sidebar"
+        >
           <Sidebar />
         </Item>
       )}
@@ -85,5 +91,7 @@ const Docs: React.FC<{}> = memo(() => {
     </Group>
   );
 });
+
+Docs.displayName = 'Docs';
 
 export default Docs;

@@ -23,7 +23,7 @@ const Title = styled.h1`
 
 const links = [
   { to: '/', text: 'Home' },
-  { to: '/docs', text: 'Docs' },
+  { to: '/docs', text: 'Docs' }
 ];
 
 const Header: React.FC = () => {

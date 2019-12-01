@@ -79,7 +79,7 @@ export function useMedia(queries: string[], values: any[], defaultValue: any) {
       // Remove listeners on cleanup
       return () => mediaQueryLists.forEach(mql => mql.removeListener(handler));
     },
-    [], // Empty array ensures effect is only run on mount and unmount
+    [] // Empty array ensures effect is only run on mount and unmount
   );
 
   return value;
@@ -119,7 +119,11 @@ const Section: React.FC<SectionProps> = memo(({ title, description, examples }) 
 ${examples[activeIndex].description || ''}
             `}</Markdown>
             {!isLastExample && (
-              <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)} key="next button">
+              <Button
+                as={'button' as 'button'}
+                onClick={() => setActiveIndex(activeIndex + 1)}
+                key="next button"
+              >
                 Next: {examples[activeIndex + 1].title}
               </Button>
             )}
@@ -136,5 +140,7 @@ ${examples[activeIndex].description || ''}
     </Box>
   );
 });
+
+Section.displayName = 'Section';
 
 export default Section;
