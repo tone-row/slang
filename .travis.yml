@@ -11,6 +11,7 @@ jobs:
     - stage: percy
       node_js: lts/*
       script: yarn ci:test:visual
+      if: NOT (branch = master)
     - stage: release
       node_js: lts/*
       script: cd slang && yarn build && npx semantic-release
