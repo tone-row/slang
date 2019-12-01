@@ -2,30 +2,31 @@
   "private": true,
   "workspaces": [
     "./slang",
-    "./examples",
+    "./docs",
     "./research-workspace"
   ],
   "scripts": {
     "slang:build": "yarn workspace @tone-row/slang build",
-    "slang:watch": "yarn workspace @tone-row/slang watch",
+    "slang:start": "yarn workspace @tone-row/slang watch",
     "slang:test": "yarn workspace @tone-row/slang test",
     "slang:format": "yarn workspace @tone-row/slang prettier --config .prettierrc --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\"",
-    "slang:lint:fix": "yarn workspace @tone-row/slang eslint --fix .",
-    "examples:start": "yarn workspace slang-examples start",
-    "examples:build": "yarn workspace slang-examples build",
-    "examples:format": "yarn workspace slang-examples prettier --config ../slang/.prettierrc \"src/**/*.tsx\"",
-    "lint": "yarn slang:lint:fix",
-    "format": "yarn slang:format",
-    "start": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\"",
-    "start:research": "concurrently --kill-others \"yarn slang:watch\" \"yarn examples:start\" \"yarn research:start\"",
-    "build": "yarn slang:build && yarn examples:build",
-    "test": "yarn slang:test",
-    "setup-test-visual": "yarn slang:build && yarn examples:start",
-    "test:visual": "wait-on http://localhost:3000/ && npx percy exec -- node scripts/snapshots.js",
-    "ci:test:visual": "concurrently --kill-others --success first \"yarn test:visual\" \"yarn setup-test-visual\"",
-    "research:start": "PORT=3100 yarn workspace research-workspace start",
+    "slang:lint": "yarn workspace @tone-row/slang eslint --fix .",
+    "docs:build": "yarn workspace docs build",
+    "docs:start": "yarn workspace docs start",
+    "docs:format": "yarn workspace docs prettier --config .prettierrc --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\"",
+    "docs:lint": "yarn workspace docs eslint --fix \"src/**/*.+(js|jsx|ts|tsx)\"",
     "research:setup": "npx create-react-app research-workspace --typescript && cd research-workspace && yarn add styled-components @tone-row/slang @types/styled-components",
-    "research:cleanup": "rm -rf research-workspace && rm yarn.lock && yarn"
+    "research:start": "PORT=3100 yarn workspace research-workspace start",
+    "research:cleanup": "rm -rf research-workspace && rm yarn.lock && yarn",
+    "lint": "yarn slang:lint && yarn docs:lint",
+    "format": "yarn slang:format && yarn docs:format",
+    "start": "concurrently --kill-others \"yarn slang:start\" \"yarn docs:start\"",
+    "start:research": "concurrently --kill-others \"yarn slang:start\" \"yarn docs:start\" \"yarn research:start\"",
+    "build": "yarn slang:build && yarn docs:build",
+    "test": "yarn slang:test",
+    "setup-test-visual": "yarn slang:build && yarn docs:start",
+    "test:visual": "wait-on http://localhost:3000/ && npx percy exec -- node scripts/snapshots.js",
+    "ci:test:visual": "concurrently --kill-others --success first \"yarn test:visual\" \"yarn setup-test-visual\""
   },
   "devDependencies": {
     "concurrently": "^5.0.0",
@@ -36,8 +37,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "scripts/pre-commit.sh && yarn lint && yarn format",
-      "pre-push": "yarn format"
+      "pre-commit": "scripts/pre-commit.sh && yarn lint && yarn format"
     }
   },
   "lint-staged": {

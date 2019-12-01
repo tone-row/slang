@@ -3,7 +3,7 @@ import { Reset, Item } from '@tone-row/slang';
 import { AppWrapper } from './styled';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Layout from './components/Layout';
+import Docs from './components/Docs';
 import Header from './components/Header';
 
 const App: React.FC = () => {
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         </Item>
         <Switch key="page">
           <Route path="/" exact component={Home} />
-          <Route path="/layout" component={Layout} />
+          <Route path="/docs" component={Docs} />
         </Switch>
       </AppWrapper>
     </Router>

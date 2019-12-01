@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import styled from 'styled-components';
 import { LivePreviewRotator } from './Rotator';
 import { LiveProvider, LiveEditor, LiveError } from 'react-live';
@@ -52,25 +52,43 @@ const SectionGrid = styled.div`
   }
 `;
 
-export function useBreakpoint(size: string) {
-  const breakpoint = useRef(matchMedia(`(min-width: ${size})`));
-  const [matches, setMatches] = useState(breakpoint.current.matches);
-  useEffect(() => {
-    const c = breakpoint.current;
-    c.onchange = () => {
-      setMatches(c.matches);
-    };
-    return () => {
-      c.onchange = null;
-    };
-  }, []);
-  return matches;
+// Hook
+export function useMedia(queries: string[], values: any[], defaultValue: any) {
+  // Array containing a media query list for each query
+  const mediaQueryLists = queries.map(q => window.matchMedia(q));
+
+  // Function that gets value based on matching media query
+  const getValue = () => {
+    // Get index of first media query that matches
+    const index = mediaQueryLists.findIndex(mql => mql.matches);
+    // Return related value or defaultValue if none
+    return typeof values[index] !== 'undefined' ? values[index] : defaultValue;
+  };
+
+  // State and setter for matched value
+  const [value, setValue] = useState(getValue);
+
+  React.useEffect(
+    () => {
+      // Event listener callback
+      // Note: By defining getValue outside of useEffect we ensure that it has ...
+      // ... current values of hook args (as this hook callback is created once on mount).
+      const handler = () => setValue(getValue);
+      // Set a listener for each media query with above handler as callback.
+      mediaQueryLists.forEach(mql => mql.addListener(handler));
+      // Remove listeners on cleanup
+      return () => mediaQueryLists.forEach(mql => mql.removeListener(handler));
+    },
+    [] // Empty array ensures effect is only run on mount and unmount
+  );
+
+  return value;
 }
 
-const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
+const Section: React.FC<SectionProps> = memo(({ title, description, examples }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastExample = useMemo(() => activeIndex === examples.length - 1, [examples, activeIndex]);
-  const isDesktop = useBreakpoint('1000px');
+  const isDesktop = useMedia([`(min-width: 1000px)`], [true], false);
   return (
     <Box as={'section' as 'section'} id={title}>
       <ScrollPointer data-scroll-pointer={title} />
@@ -101,7 +119,11 @@ const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
 ${examples[activeIndex].description || ''}
             `}</Markdown>
             {!isLastExample && (
-              <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)} key="next button">
+              <Button
+                as={'button' as 'button'}
+                onClick={() => setActiveIndex(activeIndex + 1)}
+                key="next button"
+              >
                 Next: {examples[activeIndex + 1].title}
               </Button>
             )}
@@ -117,6 +139,8 @@ ${examples[activeIndex].description || ''}
       </LiveProvider>
     </Box>
   );
-};
+});
+
+Section.displayName = 'Section';
 
 export default Section;

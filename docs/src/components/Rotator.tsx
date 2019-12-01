@@ -47,16 +47,16 @@ const Rotator: React.FC = ({ children }) => {
         currentBox.style.height = `${y}px`;
       }
     }
-    function onMouseOut(e: MouseEvent) {
+    function onMouseOut() {
       if (currentBox) {
         currentBox.style.width = `${WIDTH}px`;
         currentBox.style.height = `${HEIGHT}px`;
       }
     }
-    function onMouseEnter(e: MouseEvent) {
+    function onMouseEnter() {
       currentWrapper && currentWrapper.addEventListener('mousemove', onMouseMove);
     }
-    function onClick(e: MouseEvent) {
+    function onClick() {
       currentWrapper && currentWrapper.removeEventListener('mousemove', onMouseMove);
     }
     if (currentWrapper) {
