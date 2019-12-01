@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import Section, { useBreakpoint } from './Section';
+import React, { useCallback, memo, useState } from 'react';
+import Section, { useMedia } from './Section';
 import { Group, Container, Box, List, Item } from '@tone-row/slang';
 import { spacing, border } from '../utils/theme';
 import BoxExamples from '../examples/BoxExamples';
@@ -23,19 +23,27 @@ const SectionButton: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-const Layout: React.FC = () => {
-  const isDesktop = useBreakpoint('1000px');
+const Sidebar: React.FC = () => {
+  return (
+    <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
+      <List gap={spacing.small}>
+        {['Box', 'Container', 'Group', 'List', 'Shape'].map(x => (
+          <SectionButton key={`button-${x}`} title={x} />
+        ))}
+      </List>
+    </Box>
+  );
+};
+
+const Docs: React.FC<{}> = memo(() => {
+  const isDesktop = useMedia([`(min-width: 1000px)`], [true], false);
   return (
     <Group>
-      {isDesktop && <Item style={{ borderRight: border.default, minWidth: '200px' }} p={spacing.small} key="sidebar">
-        <Box sticky style={{ top: `calc(${spacing.headingHeight} + ${spacing.small})` }}>
-          <List gap={spacing.small}>
-            {['Box', 'Container', 'Group', 'List', 'Shape'].map(x => (
-              <SectionButton key={`button-${x}`} title={x} />
-            ))}
-          </List>
-        </Box>
-      </Item>}
+      {isDesktop && (
+        <Item style={{ borderRight: border.default, minWidth: '200px' }} p={spacing.small} key="sidebar">
+          <Sidebar />
+        </Item>
+      )}
       <Item grow key="main-section">
         <Container w="1200px" px={spacing.default} py={spacing.large}>
           <List gap={spacing.headingHeight}>
@@ -75,7 +83,7 @@ const Layout: React.FC = () => {
         </Container>
       </Item>
     </Group>
-  )
-};
+  );
+});
 
-export default Layout;
+export default Docs;
