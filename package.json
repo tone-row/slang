@@ -30,6 +30,7 @@
   "devDependencies": {
     "concurrently": "^5.0.0",
     "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "wait-on": "^3.3.0"
   },
   "husky": {
@@ -38,5 +39,12 @@
       "pre-commit": "scripts/pre-commit.sh && yarn lint && yarn format",
       "pre-push": "yarn format"
     }
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)": [
+      "yarn lint",
+      "yarn format",
+      "git add"
+    ]
   }
 }
