@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { LivePreviewRotator } from './Rotator';
 import { LiveProvider, LiveEditor, LiveError } from 'react-live';
@@ -29,9 +29,10 @@ const Editor = styled(LiveEditor)`
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1;
   font-weight: 600;
+  align-self: center;
 `;
 
 const ScrollPointer = styled.div`
@@ -41,59 +42,88 @@ const ScrollPointer = styled.div`
   position: absolute;
 `;
 
+const SectionGrid = styled.div`
+  display: grid;
+  grid-gap: ${spacing.small};
+  @media(min-width: 1000px) {
+    grid-gap: ${spacing.large};
+    grid-template-columns: 350px [left] 1fr [right];
+    align-items: start;
+  }
+`
+
+// const Mobile = styled.div`
+//   display: block;
+//   @media(min-width: 1000px) {
+//     display: none;    
+//   }
+// `
+
+// const Desktop = styled.div`
+//   display: none;    
+//   @media(min-width: 1000px) {
+//     display: block;
+//   }
+// `
+
+export function useBreakpoint(size: string) {
+  const breakpoint = useRef(matchMedia(`(min-width: ${size})`))
+  const [matches, setMatches] = useState(breakpoint.current.matches);
+  useEffect(() => {
+    const c = breakpoint.current;
+    c.onchange = () => {
+      setMatches(c.matches);
+    }
+    return () => {c.onchange = null};
+  }, [])
+  return matches;
+}
+
+
+
 const Section: React.FC<SectionProps> = ({ title, description, examples }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastExample = useMemo(() => activeIndex === examples.length - 1, [examples, activeIndex]);
+  const isDesktop = useBreakpoint('1000px');
   return (
     <Box as={'section' as 'section'} id={title}>
       <ScrollPointer data-scroll-pointer={title} />
       <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
-        <List gap={spacing.default}>
-          <Group gap={spacing.large} center key="left">
-            <Item style={{ flex: 2 }} key="title">
-              <Title>{title}</Title>
-            </Item>
-            <Item style={{ flex: 3 }} key="details">
-              <Group gap={spacing.small} nowrap>
-                {examples.map((example, index) => (
-                  <Button
-                    as={'button' as 'button'}
-                    key={example.title}
-                    secondary={examples[activeIndex].title === example.title}
-                    onClick={() => setActiveIndex(index)}
-                  >
-                    {example.title}
-                  </Button>
-                ))}
-              </Group>
-            </Item>
-          </Group>
-          <Group gap={spacing.large} key="right">
-            <Item style={{ flex: 2 }}>
-              <List gap={spacing.default}>
-                <Markdown key="description">{`
-##### ${description || ''}
-#### ${examples[activeIndex].title}
+        <SectionGrid>
+          <Title>{title}</Title>
+          {!isDesktop && <Markdown>{`
+##### ${description || ''}`}</Markdown>}
+          {isDesktop && <Group gap={spacing.small} nowrap>
+            {examples.map((example, index) => (
+              <Button
+                as={'button' as 'button'}
+                key={example.title}
+                secondary={examples[activeIndex].title === example.title}
+                onClick={() => setActiveIndex(index)}
+              >
+                {example.title}
+              </Button>
+            ))}
+          </Group>}
+          <List gap={spacing.default}>
+            {isDesktop && <Markdown key="description">{`##### ${description || ''}`}</Markdown>}
+            <Markdown key="examples">{`#### ${examples[activeIndex].title}
 ${examples[activeIndex].description || ''}
             `}</Markdown>
-                {!isLastExample && (
-                  <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)} key="next button">
-                    Next: {examples[activeIndex + 1].title}
-                  </Button>
-                )}
-              </List>
+            {!isLastExample && (
+              <Button as={'button' as 'button'} onClick={() => setActiveIndex(activeIndex + 1)} key="next button">
+                Next: {examples[activeIndex + 1].title}
+              </Button>
+            )}
+          </List>
+          <List gap={spacing.default}>
+            <Item key="editor box">
+              <LivePreviewRotator />
+              <Editor />
             </Item>
-            <Item style={{ flex: 3 }}>
-              <List gap={spacing.default}>
-                <Item key="editor box">
-                  <LivePreviewRotator />
-                  <Editor />
-                </Item>
-                <LiveError key="error box" />
-              </List>
-            </Item>
-          </Group>
-        </List>
+            <LiveError key="error box" />
+          </List>
+        </SectionGrid>
       </LiveProvider>
     </Box>
   );

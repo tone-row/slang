@@ -9,7 +9,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
-  'styled-components': 'styled',
+  'styled-components': 'styled'
 };
 
 export default {
@@ -17,7 +17,7 @@ export default {
   external: Object.keys(pkg.peerDependencies || {}),
   output: [
     { dir: 'dist', entryFileNames: '[name].js', format: 'cjs', globals },
-    { dir: 'dist', entryFileNames: '[name].module.js', format: 'esm', globals },
+    { dir: 'dist', entryFileNames: '[name].module.js', format: 'esm', globals }
   ],
   plugins: [
     resolve({ extensions }),
@@ -25,7 +25,7 @@ export default {
     typescript(),
     babel({
       extensions,
-      include: ['src/**/*'],
-    }),
-  ],
+      include: ['src/**/*']
+    })
+  ]
 };

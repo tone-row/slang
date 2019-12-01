@@ -6,7 +6,7 @@ describe('<Box/>', () => {
   it('should not apply any style rules not passed', () => {
     const { container } = render(<Box pt="10px" />);
     const { paddingTop, paddingRight, paddingBottom, paddingLeft } = window.getComputedStyle(
-      container.firstChild as HTMLElement,
+      container.firstChild as HTMLElement
     );
 
     expect(paddingTop).toBe('10px');
@@ -17,7 +17,9 @@ describe('<Box/>', () => {
 
   it('should prefer side style to axis', () => {
     const { container } = render(<Box my="10px" mb="20px" />);
-    const { marginTop, marginBottom } = window.getComputedStyle(container.firstChild as HTMLElement);
+    const { marginTop, marginBottom } = window.getComputedStyle(
+      container.firstChild as HTMLElement
+    );
 
     expect(marginTop).toBe('10px');
     expect(marginBottom).toBe('20px');
@@ -33,7 +35,7 @@ describe('<Box/>', () => {
 
   it('should apply padding and margin if as prop passed', () => {
     const { container, getByTestId } = render(
-      <Box my="10px" m="20px" as={'section' as 'section'} data-testid="Section" />,
+      <Box my="10px" m="20px" as={'section' as 'section'} data-testid="Section" />
     );
     const { marginTop, marginLeft } = window.getComputedStyle(container.firstChild as HTMLElement);
 

@@ -24,7 +24,7 @@ const RotatorBox = styled.div`
   height: ${HEIGHT}px;
   position: relative;
   background: white;
-  box-shadow: 10px 10px 20px darkgrey;
+  box-shadow: 10px 10px 0 #ccc;
   transition: width 100ms ease-out, height 100ms ease-out;
 `;
 

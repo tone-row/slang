@@ -86,13 +86,6 @@
       "@semantic-release/npm"
     ]
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "scripts/pre-commit.sh",
-      "pre-push": "npm run lint"
-    }
-  },
   "dependencies": {
     "deepmerge": "^4.2.2",
     "is-mergeable-object": "^1.1.1"
@@ -129,7 +122,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
-    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",

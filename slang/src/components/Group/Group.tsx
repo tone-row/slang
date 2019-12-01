@@ -26,6 +26,8 @@ const GroupWrapper = styled(Box)<GroupProps>`
 
 GroupWrapper.displayName = 'GroupWrapper';
 
-const Group: React.FC<GroupProps> = props => <Collection collectionWrapper={GroupWrapper} {...props} />;
+const Group: React.FC<GroupProps> = props => (
+  <Collection collectionWrapper={GroupWrapper} {...props} />
+);
 
 export default Group;

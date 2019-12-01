@@ -1,6 +1,12 @@
 const basic = {
   title: 'Basic',
-  code: `<Container p="1rem" w="15rem" style={{background: 'var(--accent)'}}>Hello World</Container>`,
+  code: `<Container 
+  p="1rem" 
+  w="15rem" 
+  style={{background: 'var(--accent)'}}
+>
+  Hello World
+</Container>`,
   description: `The container accepts all the same props as a Box, but accepts one new prop **w** for a width. Then the container will become a maximum of that width but no more.`
 };
 

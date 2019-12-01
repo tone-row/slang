@@ -5,11 +5,17 @@ import {
   PaddingProps,
   MarginProps,
   LayoutProps,
-  ContentProps,
+  ContentProps
 } from '../../utils/types';
 import { collectionItem, padding, margin, layout, content } from '../../utils/props';
 
-interface ItemProps extends BaseComponent, PaddingProps, MarginProps, LayoutProps, ContentProps, CollectionItemProps {}
+interface ItemProps
+  extends BaseComponent,
+    PaddingProps,
+    MarginProps,
+    LayoutProps,
+    ContentProps,
+    CollectionItemProps {}
 
 const Item = styled.div<ItemProps>`
   ${padding}
