@@ -3,10 +3,10 @@ import Section, { useMedia } from './Section';
 import { Group, Container, Box, List, Item } from '@tone-row/slang';
 import { spacing, border } from '../utils/theme';
 import BoxExamples from '../examples/BoxExamples';
-import ContainerExamples from '../examples/ContainerExamples';
 import GroupExamples from '../examples/GroupExamples';
 import ListExamples from '../examples/ListExamples';
 import ShapeExamples from '../examples/ShapeExamples';
+import ContainerExamples from '../examples/ContainerExamples';
 import Button from './Button';
 
 const SectionButton: React.FC<{ title: string }> = ({ title }) => {
@@ -65,8 +65,14 @@ const Docs: React.FC<{}> = memo(() => {
               title="Container"
               key="Container"
               examples={ContainerExamples}
-              description={`A container _"contains"_ elements within a certain maximum width.`}
+              // description={`A container _"contains"_ elements within a certain maximum width.`}
             />
+            {/* <Section
+              title="Container"
+              key="Container Section"
+              examples={ContainerExamples}
+              description={`A container _"contains"_ elements within a certain maximum width.`}
+            /> */}
             <Section
               title="Group"
               key="Group"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseComponent, ContentProps } from '../../utils/types';
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 import Box from '../Box/Box';
 import Item from '../Item/Item';
 import { wrapChildIf, childIsNotItem } from '../../utils/helpers';
@@ -17,7 +17,7 @@ const ShapeWrapper = styled.div<ShapeProps>`
   &:before {
     content: ' ';
     display: block;
-    padding-bottom: calc(100% * ${({ ratio = 1 }) => ratio});
+    padding-bottom: calc(100% * ${({ ratio = 1 }: ShapeProps) => ratio});
   }
 
   & > ${Item} {
@@ -32,7 +32,7 @@ const ShapeWrapper = styled.div<ShapeProps>`
 
 ShapeWrapper.displayName = 'ShapeWrapper';
 
-const Shape: React.FC<ShapeProps> = ({ children, ...props }) => {
+const Shape: React.FC<any> = ({ children, ...props }: any) => {
   const childrenArray = React.Children.toArray(children);
   if (childrenArray.length > 1) {
     throw new Error(`<Shape> can only have one child.`);
