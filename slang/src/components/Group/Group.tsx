@@ -30,4 +30,6 @@ const Group: React.FC<GroupProps> = props => (
   <Collection collectionWrapper={GroupWrapper} {...props} />
 );
 
+Group.displayName = 'Group';
+
 export default Group;

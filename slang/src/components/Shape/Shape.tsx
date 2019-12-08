@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseComponent, ContentProps } from '../../utils/types';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import Box from '../Box/Box';
 import Item from '../Item/Item';
 import { wrapChildIf, childIsNotItem } from '../../utils/helpers';
@@ -10,7 +10,7 @@ interface ShapeProps extends BaseComponent, ContentProps {
   ratio?: number;
 }
 
-const ShapeWrapper = styled.div<ShapeProps>`
+const ShapeWrapper = styled(Box)<ShapeProps>`
   position: relative;
   ${content}
 
@@ -44,7 +44,7 @@ const Shape: React.FC<any> = ({ children, ...props }: any) => {
           if (!child) return null;
           return wrapChildIf(child as React.ReactElement, childIsNotItem, Box);
         })
-        .filter(child => child)}
+        .filter((child: any) => child)}
     </ShapeWrapper>
   );
 };
