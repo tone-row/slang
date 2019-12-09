@@ -8,10 +8,11 @@ import { spacing, border } from '../utils/theme';
 import editorTheme from '../utils/editorTheme';
 import Button from './Button';
 import Markdown from './Markdown';
+import reactElementToJSXString from 'react-element-to-jsx-string';
 
 export interface Example {
   title: string;
-  code: string;
+  code: any;
   description?: string;
 }
 
@@ -79,6 +80,7 @@ export function useMedia(queries: string[], values: any[], defaultValue: any) {
       // Remove listeners on cleanup
       return () => mediaQueryLists.forEach(mql => mql.removeListener(handler));
     },
+    // eslint-disable-next-line
     [] // Empty array ensures effect is only run on mount and unmount
   );
 
@@ -92,7 +94,11 @@ const Section: React.FC<SectionProps> = memo(({ title, description, examples }) 
   return (
     <Box as={'section' as 'section'} id={title}>
       <ScrollPointer data-scroll-pointer={title} />
-      <LiveProvider scope={{ ...slang }} code={examples[activeIndex].code} theme={editorTheme}>
+      <LiveProvider
+        scope={{ ...slang }}
+        code={reactElementToJSXString(examples[activeIndex].code)}
+        theme={editorTheme}
+      >
         <SectionGrid>
           <Title>{title}</Title>
           {!isDesktop && (

@@ -10,14 +10,14 @@ interface ShapeProps extends BaseComponent, ContentProps {
   ratio?: number;
 }
 
-const ShapeWrapper = styled.div<ShapeProps>`
+const ShapeWrapper = styled(Box)<ShapeProps>`
   position: relative;
   ${content}
 
   &:before {
     content: ' ';
     display: block;
-    padding-bottom: calc(100% * ${({ ratio = 1 }) => ratio});
+    padding-bottom: calc(100% * ${({ ratio = 1 }: ShapeProps) => ratio});
   }
 
   & > ${Item} {
@@ -32,7 +32,7 @@ const ShapeWrapper = styled.div<ShapeProps>`
 
 ShapeWrapper.displayName = 'ShapeWrapper';
 
-const Shape: React.FC<ShapeProps> = ({ children, ...props }) => {
+const Shape: React.FC<any> = ({ children, ...props }: any) => {
   const childrenArray = React.Children.toArray(children);
   if (childrenArray.length > 1) {
     throw new Error(`<Shape> can only have one child.`);
@@ -44,9 +44,11 @@ const Shape: React.FC<ShapeProps> = ({ children, ...props }) => {
           if (!child) return null;
           return wrapChildIf(child as React.ReactElement, childIsNotItem, Box);
         })
-        .filter(child => child)}
+        .filter((child: any) => child)}
     </ShapeWrapper>
   );
 };
+
+Shape.displayName = 'Shape';
 
 export default Shape;

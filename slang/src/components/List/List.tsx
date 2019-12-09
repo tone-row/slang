@@ -31,4 +31,6 @@ const List: React.FC<ListProps> = props => (
   <Collection collectionWrapper={ListWrapper} {...props} />
 );
 
+List.displayName = 'List';
+
 export default List;

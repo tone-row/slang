@@ -80,7 +80,8 @@ const Rotator: React.FC = ({ children }) => {
 
 export default Rotator;
 
-const withLiveRender = ({ live: { element: Element } }: any) => {
+const WithLiveRender = ({ live: { element: Element } }: any) => {
+  if (!Element) return null;
   return (
     <Rotator>
       <Element />
@@ -88,6 +89,6 @@ const withLiveRender = ({ live: { element: Element } }: any) => {
   );
 };
 
-export const LivePreviewRotator = withLive(withLiveRender);
+export const LivePreviewRotator = withLive(WithLiveRender);
 
 LivePreviewRotator.displayName = 'LivePreviewRotator';
