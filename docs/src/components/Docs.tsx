@@ -63,16 +63,10 @@ const Docs: React.FC<{}> = memo(() => {
             />
             <Section
               title="Container"
-              key="Container"
-              examples={ContainerExamples}
-              // description={`A container _"contains"_ elements within a certain maximum width.`}
-            />
-            {/* <Section
-              title="Container"
               key="Container Section"
               examples={ContainerExamples}
               description={`A container _"contains"_ elements within a certain maximum width.`}
-            /> */}
+            />
             <Section
               title="Group"
               key="Group"
