@@ -49,4 +49,6 @@ const Shape: React.FC<any> = ({ children, ...props }: any) => {
   );
 };
 
+Shape.displayName = 'Shape';
+
 export default Shape;
