@@ -45,9 +45,10 @@ const ScrollPointer = styled.div`
 
 const SectionGrid = styled.div`
   display: grid;
-  grid-gap: ${spacing.small};
+  grid-column-gap: ${spacing.small};
   @media (min-width: 1000px) {
     grid-gap: ${spacing.large};
+    grid-row-gap: ${spacing.small};
     grid-template-columns: 350px [left] 1fr [right];
     align-items: start;
   }
@@ -90,13 +91,14 @@ export function useMedia(queries: string[], values: any[], defaultValue: any) {
 const Section: React.FC<SectionProps> = memo(({ title, description, examples }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastExample = useMemo(() => activeIndex === examples.length - 1, [examples, activeIndex]);
+  const isFirstExample = useMemo(() => activeIndex === 0, [activeIndex]);
   const isDesktop = useMedia([`(min-width: 1000px)`], [true], false);
   return (
     <Box as={'section' as 'section'} id={title}>
       <ScrollPointer data-scroll-pointer={title} />
       <LiveProvider
         scope={{ ...slang }}
-        code={reactElementToJSXString(examples[activeIndex].code)}
+        code={reactElementToJSXString(examples[activeIndex].code, { showFunctions: true })}
         theme={editorTheme}
       >
         <SectionGrid>
@@ -124,15 +126,26 @@ const Section: React.FC<SectionProps> = memo(({ title, description, examples }) 
             <Markdown key="examples">{`#### ${examples[activeIndex].title}
 ${examples[activeIndex].description || ''}
             `}</Markdown>
-            {!isLastExample && (
-              <Button
-                as={'button' as 'button'}
-                onClick={() => setActiveIndex(activeIndex + 1)}
-                key="next button"
-              >
-                Next: {examples[activeIndex + 1].title}
-              </Button>
-            )}
+            <Group gap={spacing.small}>
+              {!isFirstExample && (
+                <Button
+                  as={'button' as 'button'}
+                  onClick={() => setActiveIndex(activeIndex - 1)}
+                  key="previous button"
+                >
+                  &larr; {examples[activeIndex - 1].title}
+                </Button>
+              )}
+              {!isLastExample && (
+                <Button
+                  as={'button' as 'button'}
+                  onClick={() => setActiveIndex(activeIndex + 1)}
+                  key="next button"
+                >
+                  {examples[activeIndex + 1].title} &rarr;
+                </Button>
+              )}
+            </Group>
           </List>
           <List gap={spacing.default}>
             <Item key="editor box">

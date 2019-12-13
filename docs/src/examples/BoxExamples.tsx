@@ -4,18 +4,22 @@ import { Box } from '@tone-row/slang';
 
 const basic: Example = {
   title: 'Basic',
-  code: <Box style={{ background: 'var(--accent)' }}>Hello World</Box>,
-  description: `It's just a div! We've added a background color so we can better see how the box model is affected.`
+  code: <Box>Hello World</Box>,
+  description: `By, default the **Box** is a div.`
 };
 
 const padding: Example = {
   title: 'Padding',
   code: (
-    <Box p="1rem" style={{ background: 'var(--accent)' }}>
-      Hello World
-    </Box>
+    <>
+      <Box p="1rem">A Div</Box>
+      <Box as={'button' as 'button'} p="1rem">
+        A Button
+      </Box>
+      <Box as={'input' as 'input'} p="1rem" placeholder="An Input" />
+    </>
   ),
-  description: `This example adds padding to all sides using the shorthand property __p__. 
+  description: `The advantage of using a **Box** is the shorthand properties available. The *p* property adds padding on all sides. This works no matter what element the **Box** is.
   
   Nearly all Slang component properties accept a string, that way we don't make any assumptions about the nature of your design tokens.`
 };

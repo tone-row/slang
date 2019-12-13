@@ -5,22 +5,13 @@ import { Group } from '@tone-row/slang';
 const basic: Example = {
   title: 'Basic',
   code: (
-    <>
-      <Group>
-        <div key="1">1</div>
-        <div key="2">2</div>
-        <div key="3">3</div>
-      </Group>
-      <Group>
-        <div key="A">A</div>
-        <div key="B">B</div>
-        <div key="C">C takes more room, because it has more content</div>
-      </Group>
-    </>
+    <Group>
+      <div key="A">A</div>
+      <div key="B">B</div>
+      <div key="C">C uses more room, because it has more content</div>
+    </Group>
   ),
-  description: `In this example we are using fragments, so each child will be wrapped with a \`<Box>\`. 
-
-  When no props are passed, \`<Group>\` children will... 
+  description: `When no props are passed, \`<Group>\` children will... 
 - take the minimum space they need
 - share space based on their content
 - expand to be the same height
