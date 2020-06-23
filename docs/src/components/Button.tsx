@@ -9,11 +9,13 @@ const Button = styled(Box)<{ secondary?: boolean }>`
   width: 100%;
   text-align: center;
   background: white;
+
   a {
     color: black;
     text-decoration: none;
     display: block;
   }
+
   ${({ secondary }) =>
     secondary &&
     `
@@ -22,7 +24,8 @@ const Button = styled(Box)<{ secondary?: boolean }>`
 	`}
 
   &:focus {
-    outline: var(--accent) 2px auto;
+    outline: none;
+    border-color: var(--accent-dark);
   }
 `;
 

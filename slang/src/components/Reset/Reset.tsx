@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle, css } from 'styled-components';
 import ericMeyerReset from './ericMeyerReset';
+import superFormReset from './superFormReset';
 
 const boxSizing = css`
   *,
@@ -33,9 +34,10 @@ const buttonReset = css`
 `;
 
 const Reset = createGlobalStyle`
+  ${superFormReset}
 	${ericMeyerReset}
 	${buttonReset}
-	${boxSizing}
+  ${boxSizing}
 `;
 
 export default Reset;

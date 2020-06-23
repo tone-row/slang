@@ -8,4 +8,5 @@ export const AppWrapper = styled(List)`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --accent: #44cc88;
+  --accent-dark: #22aa66;
 `;
