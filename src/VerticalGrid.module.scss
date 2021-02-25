@@ -1,0 +1,6 @@
+.VerticalGrid {
+  display: grid;
+  gap: calc(
+    var(--gap, var(--baseVerticalSpacingDivisor, 3)) * var(--space-v, 0)
+  );
+}

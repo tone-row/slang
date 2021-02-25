@@ -1,0 +1,167 @@
+:root {
+  // Font Size Desktop
+  --multiplier--3: calc(
+    var(--type-scale-base) / var(--type-scale-base) / var(--type-scale-base) /
+      var(--type-scale-base)
+  );
+  --multiplier--2: calc(
+    var(--type-scale-base) / var(--type-scale-base) / var(--type-scale-base)
+  );
+  --multiplier--1: calc(var(--type-scale-base) / var(--type-scale-base));
+  --multiplier-0: 1;
+  --multiplier-1: var(--type-scale-base);
+  --multiplier-2: calc(var(--type-scale-base) * var(--type-scale-base));
+  --multiplier-3: calc(
+    var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base)
+  );
+  --multiplier-4: calc(
+    var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base) *
+      var(--type-scale-base)
+  );
+  --multiplier-5: calc(
+    var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base) *
+      var(--type-scale-base) * var(--type-scale-base)
+  );
+  --multiplier-6: calc(
+    var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base) *
+      var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base)
+  );
+  --multiplier-7: calc(
+    var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base) *
+      var(--type-scale-base) * var(--type-scale-base) * var(--type-scale-base) *
+      var(--type-scale-base)
+  );
+
+  // Font Size Mobile
+  --mobile-multiplier--3: calc(
+    var(--type-scale-base-mobile) / var(--type-scale-base-mobile) /
+      var(--type-scale-base-mobile) / var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier--2: calc(
+    var(--type-scale-base-mobile) / var(--type-scale-base-mobile) /
+      var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier--1: calc(
+    var(--type-scale-base-mobile) / var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-0: 1;
+  --mobile-multiplier-1: var(--type-scale-base-mobile);
+  --mobile-multiplier-2: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-3: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-4: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-5: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-6: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile)
+  );
+  --mobile-multiplier-7: calc(
+    var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile) * var(--type-scale-base-mobile) *
+      var(--type-scale-base-mobile)
+  );
+
+  // Line Height Desktop
+  --lh-multiplier--3: calc(
+    var(--line-height-multiplier) / var(--line-height-multiplier) /
+      var(--line-height-multiplier) / var(--line-height-multiplier)
+  );
+  --lh-multiplier--2: calc(
+    var(--line-height-multiplier) / var(--line-height-multiplier) /
+      var(--line-height-multiplier)
+  );
+  --lh-multiplier--1: calc(
+    var(--line-height-multiplier) / var(--line-height-multiplier)
+  );
+  --lh-multiplier-0: 1;
+  --lh-multiplier-1: var(--line-height-multiplier);
+  --lh-multiplier-2: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier)
+  );
+  --lh-multiplier-3: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier)
+  );
+  --lh-multiplier-4: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier)
+  );
+  --lh-multiplier-5: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier)
+  );
+  --lh-multiplier-6: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier)
+  );
+  --lh-multiplier-7: calc(
+    var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier) * var(--line-height-multiplier) *
+      var(--line-height-multiplier)
+  );
+
+  // Line Height Mobile
+  --lh-mobile-multiplier--3: calc(
+    var(--line-height-multiplier-mobile) / var(--line-height-multiplier-mobile) /
+      var(--line-height-multiplier-mobile) /
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier--2: calc(
+    var(--line-height-multiplier-mobile) / var(--line-height-multiplier-mobile) /
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier--1: calc(
+    var(--line-height-multiplier-mobile) / var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-0: 1;
+  --lh-mobile-multiplier-1: var(--line-height-multiplier-mobile);
+  --lh-mobile-multiplier-2: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-3: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-4: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-5: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-6: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile)
+  );
+  --lh-mobile-multiplier-7: calc(
+    var(--line-height-multiplier-mobile) * var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile) *
+      var(--line-height-multiplier-mobile)
+  );
+}
