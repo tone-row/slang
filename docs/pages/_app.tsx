@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "@tone-row/slang/build/index.css";
 import DocsLayout from "../components/DocsLayout";
 
 function MyApp({ Component, pageProps }) {
