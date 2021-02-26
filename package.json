@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "dev": "concurrently -n 'slang,docs' 'yarn workspace @tone-row/slang dev' 'yarn workspace docs dev'",
+    "build": "yarn workspace @tone-row/slang build && yarn workspace docs build",
     "commit": "cz"
   },
   "devDependencies": {
