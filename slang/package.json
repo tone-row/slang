@@ -15,7 +15,8 @@
     "build": "rollup -c",
     "dev": "yarn build --watch",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "test": "jest"
+    "test": "jest",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
@@ -49,7 +50,8 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^26.5.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "semantic-release": "^17.4.0"
   },
   "peerDependencies": {
     "react": "^17.0.1",
