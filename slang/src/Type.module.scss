@@ -1,29 +1,30 @@
 .Type {
-  --min-screen-size: 375;
-  --min-screen-size-unit: calc(1px * var(--min-screen-size));
-  --max-screen-size: 1200;
   --multiplier: var(--multiplier-0);
   --mobile-multiplier: var(--mobile-multiplier-0);
   --lhMultiplier: var(--lh-multiplier-0);
   --lhMultiplierMobile: var(--lh-mobile-multiplier-0);
+  --errorTopMultiplier: var(--error-top-multiplier-0);
+  --errorBottomMultiplier: var(--error-bottom-multiplier-0);
 
   // should use mobile multiplier and DOES NOT
   --unitless-difference: calc(
-    var(--multiplier) * var(--font-base-size-no-unit) - var(--mobile-multiplier) *
-      var(--base-font-size-mobile-no-unit)
+    var(--multiplier) * var(--base-font-size) - var(--mobile-multiplier) *
+      var(--base-font-size-mobile)
   );
   // should use mobile multiplier and DOES NOT
-  --mobile-size: calc(var(--mobile-multiplier) * var(--base-font-size-mobile));
-  --msnu: calc(var(--mobile-multiplier) * var(--base-font-size-mobile-no-unit));
-  --desktop-size: calc(var(--multiplier) * var(--font-base-size));
-  --dsnu: calc(var(--multiplier) * var(--font-base-size-no-unit));
+  --mobile-size: calc(
+    var(--mobile-multiplier) * var(--base-font-size-mobile-px)
+  );
+  --msnu: calc(var(--mobile-multiplier) * var(--base-font-size-mobile));
+  --desktop-size: calc(var(--multiplier) * var(--base-font-size-px));
+  --dsnu: calc(var(--multiplier) * var(--base-font-size));
   --fluid-font-size: clamp(
     var(--mobile-size),
     calc(
       var(--mobile-size) + var(--unitless-difference) *
         (
-          (100vw - var(--min-screen-size-unit)) /
-            (var(--max-screen-size) - var(--min-screen-size))
+          (100vw - var(--fluid-min-screen-size-px)) /
+            (var(--fluid-max-screen-size) - var(--fluid-min-screen-size))
         )
     ),
     var(--desktop-size)
@@ -31,10 +32,10 @@
 
   //Line height
   --mobile-line-height: calc(
-    var(--lhMultiplierMobile) * var(--font-base-line-height-mobile)
+    var(--lhMultiplierMobile) * var(--base-font-line-height-mobile)
   );
   --desktop-line-height: calc(
-    var(--lhMultiplier) * var(--font-base-line-height)
+    var(--lhMultiplier) * var(--base-font-line-height)
   );
   // mobile line height no unit
   --mlhnu: calc(var(--mobile-line-height) * var(--msnu));
@@ -46,80 +47,111 @@
     calc(
       (var(--mlhnu) * 1px) +
         (
-          (100vw - var(--min-screen-size-unit)) * var(--line-height-difference) /
-            (var(--max-screen-size) - var(--min-screen-size))
+          (100vw - var(--fluid-min-screen-size-px)) *
+            var(--line-height-difference) /
+            (var(--fluid-max-screen-size) - var(--fluid-min-screen-size))
         )
     ),
     calc(var(--dlhnu) * 1px)
   );
 
+  font-family: var(--base-font-family);
   font-size: var(--fluid-font-size);
   line-height: var(--fluid-line-height);
+  // Box Correction
+  margin-top: calc(
+    var(--error-correction-top-px, 0) * var(--errorTopMultiplier, 1)
+  );
+  margin-bottom: calc(
+    var(--error-correction-bottom-px, 0) * var(--errorBottomMultiplier, 1)
+  );
 
   &[class*="size--3"] {
     --multiplier: var(--multiplier--3);
     --mobile-multiplier: var(--mobile-multiplier--3);
     --lhMultiplier: var(--lh-multiplier--3);
     --lhMultiplierMobile: var(--lh-mobile-multiplier--3);
+    --errorTopMultiplier: var(--error-top-multiplier--3);
+    --errorBottomMultiplier: var(--error-bottom-multiplier--3);
   }
   &[class*="size--2"] {
     --multiplier: var(--multiplier--2);
     --mobile-multiplier: var(--mobile-multiplier--2);
     --lhMultiplier: var(--lh-multiplier--2);
     --lhMultiplierMobile: var(--lh-mobile-multiplier--2);
+    --errorTopMultiplier: var(--error-top-multiplier--2);
+    --errorBottomMultiplier: var(--error-bottom-multiplier--2);
   }
   &[class*="size--1"] {
     --multiplier: var(--multiplier--1);
     --mobile-multiplier: var(--mobile-multiplier--1);
     --lhMultiplier: var(--lh-multiplier--1);
     --lhMultiplierMobile: var(--lh-mobile-multiplier--1);
+    --errorTopMultiplier: var(--error-top-multiplier--1);
+    --errorBottomMultiplier: var(--error-bottom-multiplier--1);
   }
   &[class*="size-0"] {
     --multiplier: var(--multiplier-0);
     --mobile-multiplier: var(--mobile-multiplier-0);
     --lhMultiplier: var(--lh-multiplier-0);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-0);
+    --errorTopMultiplier: var(--error-top-multiplier-0);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-0);
   }
   &[class*="size-1"] {
     --multiplier: var(--multiplier-1);
     --mobile-multiplier: var(--mobile-multiplier-1);
     --lhMultiplier: var(--lh-multiplier-1);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-1);
+    --errorTopMultiplier: var(--error-top-multiplier-1);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-1);
   }
   &[class*="size-2"] {
     --multiplier: var(--multiplier-2);
     --mobile-multiplier: var(--mobile-multiplier-2);
     --lhMultiplier: var(--lh-multiplier-2);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-2);
+    --errorTopMultiplier: var(--error-top-multiplier-2);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-2);
   }
   &[class*="size-3"] {
     --multiplier: var(--multiplier-3);
     --mobile-multiplier: var(--mobile-multiplier-3);
     --lhMultiplier: var(--lh-multiplier-3);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-3);
+    --errorTopMultiplier: var(--error-top-multiplier-3);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-3);
   }
   &[class*="size-4"] {
     --multiplier: var(--multiplier-4);
     --mobile-multiplier: var(--mobile-multiplier-4);
     --lhMultiplier: var(--lh-multiplier-4);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-4);
+    --errorTopMultiplier: var(--error-top-multiplier-4);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-4);
   }
   &[class*="size-5"] {
     --multiplier: var(--multiplier-5);
     --mobile-multiplier: var(--mobile-multiplier-5);
     --lhMultiplier: var(--lh-multiplier-5);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-5);
+    --errorTopMultiplier: var(--error-top-multiplier-5);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-5);
   }
   &[class*="size-6"] {
     --multiplier: var(--multiplier-6);
     --mobile-multiplier: var(--mobile-multiplier-6);
     --lhMultiplier: var(--lh-multiplier-6);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-6);
+    --errorTopMultiplier: var(--error-top-multiplier-6);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-6);
   }
   &[class*="size-7"] {
     --multiplier: var(--multiplier-7);
     --mobile-multiplier: var(--mobile-multiplier-7);
     --lhMultiplier: var(--lh-multiplier-7);
     --lhMultiplierMobile: var(--lh-mobile-multiplier-7);
+    --errorTopMultiplier: var(--error-top-multiplier-7);
+    --errorBottomMultiplier: var(--error-bottom-multiplier-7);
   }
 }

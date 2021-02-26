@@ -1,0 +1,6 @@
+.Box {
+  padding-top: calc(var(--pt, 0) * var(--space-v-px));
+  padding-bottom: calc(var(--pb, 0) * var(--space-v-px));
+  padding-left: calc(var(--pl, 0) * var(--space-h-px));
+  padding-right: calc(var(--pr, 0) * var(--space-h-px));
+}

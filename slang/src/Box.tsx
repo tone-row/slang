@@ -1,12 +1,8 @@
-import React, {
-  ComponentPropsWithRef,
-  ElementType,
-  CSSProperties,
-} from "react";
+import React, { CSSProperties, Ref } from "react";
 import styles from "./Box.module.scss";
+import { forwardRefWithAs, PropsWithAs } from "./utils";
 
-export type BoxSpecificProps<C extends ElementType> = {
-  as?: C;
+export interface BoxProps {
   p?: number;
   px?: number;
   py?: number;
@@ -14,15 +10,12 @@ export type BoxSpecificProps<C extends ElementType> = {
   pr?: number;
   pb?: number;
   pl?: number;
-};
+}
 
-export type BoxProps<C extends ElementType> = BoxSpecificProps<C> &
-  Omit<ComponentPropsWithRef<C>, keyof BoxSpecificProps<C>>;
-
-export default function Box<C extends ElementType>({
-  as,
-  ...props
-}: BoxProps<C>) {
+function BoxComponent(
+  { as, ...props }: PropsWithAs<BoxProps, "div">,
+  ref: Ref<HTMLDivElement>,
+) {
   const Component = as || "div";
 
   const style = {
@@ -35,8 +28,12 @@ export default function Box<C extends ElementType>({
   return (
     <Component
       {...props}
+      ref={ref}
       className={[props.className, styles.Box].join(" ")}
       style={{ ...props.style, ...style }}
     />
   );
 }
+
+const Box = forwardRefWithAs<BoxProps, "div">(BoxComponent);
+export default Box;
