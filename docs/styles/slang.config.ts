@@ -2,27 +2,27 @@ import { SlangConfig, defaultConfig } from "@tone-row/slang";
 
 const colorStore: SlangConfig["colorStore"] = defaultConfig.colorStore;
 colorStore.palette.white.push("#fafafa");
-colorStore.palette.white.push("#ccc");
+colorStore.palette.white.push("#dcdcdc");
 
 export const config: Partial<SlangConfig> = {
-  baseFontFamily: "gt america trial",
-  baseFontSizePx: 20,
-  baseFontSizeMobilePx: 15.62992125984252,
-  baseFontLineHeight: 1.4700787401574804,
-  baseFontLineHeightMobile: 1.3267716535433072,
-  baseContainerSizePx: 691.3385826771654,
-  baseSpacingPx: 20,
-  baseVerticalSpacingDivisor: 2,
-  baseHorizontalSpacingDivisor: 78,
+  baseFontFamily: "Neue Montreal",
+  baseFontSizePx: 19.25,
+  baseFontSizeMobilePx: 16.84,
+  baseFontLineHeight: 1.29,
+  baseFontLineHeightMobile: 1.26,
+  baseContainerSizePx: 654,
+  baseSpacingPx: 22.4,
+  baseVerticalSpacingDivisor: 3,
+  baseHorizontalSpacingDivisor: 90,
   baseSpacingScale: 1.1,
-  errorCorrectionTopPx: -2.14,
+  errorCorrectionTopPx: -1.32,
   errorCorrectionTopScale: 1.5,
-  errorCorrectionBottomPx: -0.16,
-  errorCorrectionBottomScale: 1.026,
-  typeScaleBase: 1.4094488188976377,
-  typeScaleBaseMobile: 1.2834645669291338,
+  errorCorrectionBottomPx: 1.67,
+  errorCorrectionBottomScale: 1.486,
+  typeScaleBase: 1.421,
+  typeScaleBaseMobile: 1.16,
   inverseTypeScaleLineHeight: 0.96,
-  inverseTypeScaleLineHeightMobile: 0.9350393700787402,
+  inverseTypeScaleLineHeightMobile: 0.969,
   mappingToUserAgentHeaders: 4,
   smallestBorderRadiusPx: 3,
   fluidMinScreenSizePx: 375,
