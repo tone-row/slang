@@ -1,25 +1,31 @@
-import { SlangConfig } from "@tone-row/slang";
+import { SlangConfig, defaultConfig } from "@tone-row/slang";
+
+const colorStore: SlangConfig["colorStore"] = defaultConfig.colorStore;
+colorStore.palette.white.push("#fafafa");
+colorStore.palette.white.push("#ccc");
+
 export const config: Partial<SlangConfig> = {
   baseFontFamily: "gt america trial",
-  baseFontSizePx: 19.354330708661415,
+  baseFontSizePx: 20,
   baseFontSizeMobilePx: 15.62992125984252,
   baseFontLineHeight: 1.4700787401574804,
   baseFontLineHeightMobile: 1.3267716535433072,
   baseContainerSizePx: 691.3385826771654,
-  baseSpacingPx: 25.984251968503933,
+  baseSpacingPx: 20,
   baseVerticalSpacingDivisor: 2,
   baseHorizontalSpacingDivisor: 78,
   baseSpacingScale: 1.1,
-  errorCorrectionTopPx: -4.881889763779528,
-  errorCorrectionTopScale: 1.312992125984252,
-  errorCorrectionBottomPx: -0.8661417322834648,
-  errorCorrectionBottomScale: 0.594488188976378,
+  errorCorrectionTopPx: -2.14,
+  errorCorrectionTopScale: 1.5,
+  errorCorrectionBottomPx: -0.16,
+  errorCorrectionBottomScale: 1.026,
   typeScaleBase: 1.4094488188976377,
   typeScaleBaseMobile: 1.2834645669291338,
-  inverseTypeScaleLineHeight: 0.9535433070866142,
+  inverseTypeScaleLineHeight: 0.96,
   inverseTypeScaleLineHeightMobile: 0.9350393700787402,
   mappingToUserAgentHeaders: 4,
   smallestBorderRadiusPx: 3,
   fluidMinScreenSizePx: 375,
   fluidMaxScreenSizePx: 1200,
+  colorStore,
 };

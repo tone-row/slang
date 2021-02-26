@@ -1,0 +1,14 @@
+.DocsLayout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  aside {
+    background-color: var(--palette-white-1);
+  }
+}
+
+.NavLink {
+  background-color: var(--palette-white-1);
+  &[aria-current="page"] {
+    background-color: var(--palette-white-2);
+  }
+}

@@ -1,13 +1,12 @@
-import React from "react";
 import { Type, VerticalGrid } from "@tone-row/slang";
 
-export default function BoxPage() {
+export default function TypePage() {
   return (
     <VerticalGrid>
       <Type as="h1" size={3}>
-        Box
+        Type
       </Type>
-      <Type>This is the box page.</Type>
+      <Type>This is the type page.</Type>
     </VerticalGrid>
   );
 }

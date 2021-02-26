@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./Global.scss";
+import "./Global.css";
 // Global is the way to write all necessary properties on the client
 // We should also be able to generate them with a command (maybe add .bin)
 // and that will generate a css file that we import

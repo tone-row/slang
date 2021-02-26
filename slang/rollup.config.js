@@ -23,7 +23,7 @@ export default {
     peerDepsExternal(),
     postcss({
       extract: false,
-      modules: true,
+      autoModules: true,
       use: ["sass"],
     }),
     resolve(),
