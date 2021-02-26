@@ -1,5 +1,5 @@
 {
-  "name": "slang",
+  "name": "@tone-row/slang",
   "version": "0.0.0-development",
   "main": "build/index.js",
   "module": "build/index.es.js",
