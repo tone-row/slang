@@ -5,9 +5,11 @@
     "docs"
   ],
   "scripts": {
-    "dev": "concurrently -n 'slang,docs' 'yarn workspace slang dev' 'yarn workspace docs dev'"
+    "dev": "concurrently -n 'slang,docs' 'yarn workspace slang dev' 'yarn workspace docs dev'",
+    "commit": "cz"
   },
   "devDependencies": {
+    "commitizen": "^4.2.3",
     "concurrently": "^6.0.0"
   }
 }
