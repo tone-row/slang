@@ -11,6 +11,6 @@
     "next": "10.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "slang": "0.0.0-development"
+    "@tone-row/slang": "0.0.0-development"
   }
 }

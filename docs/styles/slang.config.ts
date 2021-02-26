@@ -1,4 +1,4 @@
-import { SlangConfig } from "slang";
+import { SlangConfig } from "@tone-row/slang";
 export const config: Partial<SlangConfig> = {
   baseFontFamily: "gt america trial",
   baseFontSizePx: 19.354330708661415,

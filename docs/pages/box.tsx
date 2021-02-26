@@ -1,4 +1,4 @@
-import { Box, Type } from "slang";
+import { Box, Type } from "@tone-row/slang";
 
 export default function BoxPage() {
   return (

@@ -1,4 +1,4 @@
-import { Type, Container, VerticalGrid } from "slang";
+import { Type, Container, VerticalGrid } from "@tone-row/slang";
 
 export default function Home() {
   return (

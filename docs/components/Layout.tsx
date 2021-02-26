@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Global, Box, VerticalGrid } from "slang";
+import { Global, Box, VerticalGrid } from "@tone-row/slang";
 import Link from "next/link";
 import { config } from "../styles/slang.config";
 import styles from "./Layout.module.scss";
