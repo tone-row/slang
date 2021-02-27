@@ -23,7 +23,7 @@ export default [
     plugins: [
       peerDepsExternal(),
       postcss({
-        extract: false,
+        extract: true,
         autoModules: true,
         use: ["sass"],
       }),
