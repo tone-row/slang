@@ -8,4 +8,5 @@ export {
   SlangConfig,
   getPaletteColorName,
   defaultConfig,
+  getThemeCss,
 } from "./Global";

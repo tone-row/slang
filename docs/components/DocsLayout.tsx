@@ -1,14 +1,6 @@
 import React, { ReactNode } from "react";
-import {
-  Global,
-  Box,
-  VerticalGrid,
-  Layout,
-  Type,
-  Container,
-} from "@tone-row/slang";
+import { Box, VerticalGrid, Layout, Type, Container } from "@tone-row/slang";
 import Link from "next/link";
-import { config } from "../styles/slang.config";
 import styles from "./DocsLayout.module.scss";
 import { useRouter } from "next/router";
 
@@ -27,30 +19,27 @@ const boxSizes = {
 export default function DocsLayout({ children }: { children: ReactNode }) {
   const { pathname } = useRouter();
   return (
-    <>
-      <Global config={config} />
-      <Layout className={styles.DocsLayout}>
-        <Box as="aside" pt={6}>
-          <VerticalGrid gap={0}>
-            <Box {...boxSizes} pb={boxSizes.py} pt={0}>
-              <Type as="strong" size={1}>
-                Slang
-              </Type>
-            </Box>
-            {links.map((link) => (
-              <SidebarLink
-                key={link.href}
-                {...link}
-                active={pathname === link.href}
-              />
-            ))}
-          </VerticalGrid>
-        </Box>
-        <Box px={4} py={6}>
-          <Container>{children}</Container>
-        </Box>
-      </Layout>
-    </>
+    <Layout className={styles.DocsLayout}>
+      <Box as="aside" pt={6}>
+        <VerticalGrid gap={0}>
+          <Box {...boxSizes} pb={boxSizes.py} pt={0}>
+            <Type as="strong" size={1}>
+              Slang
+            </Type>
+          </Box>
+          {links.map((link) => (
+            <SidebarLink
+              key={link.href}
+              {...link}
+              active={pathname === link.href}
+            />
+          ))}
+        </VerticalGrid>
+      </Box>
+      <Box px={4} py={6}>
+        <Container>{children}</Container>
+      </Box>
+    </Layout>
   );
 }
 

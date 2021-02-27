@@ -1,12 +1,19 @@
 import "../styles/globals.css";
-import "@tone-row/slang/build/index.css";
 import DocsLayout from "../components/DocsLayout";
+import { config } from "../styles/slang.config";
+import { getThemeCss } from "@tone-row/slang";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <DocsLayout>
-      <Component {...pageProps} />
-    </DocsLayout>
+    <>
+      <Head>
+        <style>{getThemeCss(config)}</style>
+      </Head>
+      <DocsLayout>
+        <Component {...pageProps} />
+      </DocsLayout>
+    </>
   );
 }
 

@@ -153,19 +153,7 @@ export default function Global({
         element.setAttribute("id", ID);
         document.head.appendChild(element);
       }
-      const cssProperties = createProperties(config);
-      const derivedProperties = createDerivedProperties(config);
-      const colorProperties = createColorProperties(config);
-      element.innerHTML = [":root {"]
-        .concat(
-          Object.entries({
-            ...cssProperties,
-            ...derivedProperties,
-            ...colorProperties,
-          }).map((property) => `${property.join(":")};`),
-        )
-        .concat(" }")
-        .join("\n");
+      element.innerHTML = getThemeCss(config);
     }
   }, [config, update]);
   // I want to setup all the needed CSS custom properties
@@ -251,4 +239,20 @@ export function getPaletteColorName(args: {
   index: string;
 }) {
   return `--palette-${args.colorName}-${args.index}`;
+}
+
+export function getThemeCss(config?: Partial<SlangConfig>) {
+  const cssProperties = createProperties(config);
+  const derivedProperties = createDerivedProperties(config);
+  const colorProperties = createColorProperties(config);
+  return [":root {"]
+    .concat(
+      Object.entries({
+        ...cssProperties,
+        ...derivedProperties,
+        ...colorProperties,
+      }).map((property) => `${property.join(":")};`),
+    )
+    .concat(" }")
+    .join("\n");
 }
