@@ -3,6 +3,9 @@
   "version": "0.0.0-development",
   "main": "build/index.js",
   "module": "build/index.es.js",
+  "bin": {
+    "generateTheme": "build/generateTheme.js"
+  },
   "types": "build/index.d.ts",
   "repository": {
     "url": "https://github.com/tone-row/slang"

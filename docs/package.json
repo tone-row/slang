@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "theme": "generateTheme styles/slang.config.json styles/slang.css"
   },
   "dependencies": {
     "@tone-row/slang": "0.0.0-development",

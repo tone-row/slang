@@ -943,6 +943,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@tone-row/slang@^1.2.28":
+  version "1.2.28"
+  resolved "https://registry.yarnpkg.com/@tone-row/slang/-/slang-1.2.28.tgz#3e81b7b5c049eee8bee3dd413fe86ae1bb9f0cb1"
+  integrity sha512-CGp38kMc0KapppSOHwrMENC3pV4oLc+QAtnjyWQUcSEC67Cnc5lEMUmsJ90rNYMe6HPix0UCqoz2JUO1zGCfQA==
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
