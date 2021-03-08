@@ -1,19 +1,18 @@
 import React, { Ref } from "react";
-import Box, { BoxProps } from "./Box";
 import styles from "./Type.module.scss";
-import { forwardRefWithAs, PropsWithAs } from "./utils";
+import { PropsWithAs } from "./utils";
 
-export interface TypeProps extends BoxProps {
+export interface TypeProps {
   size?: number;
 }
 
-function TypeComponent(
+export default function TypeComponent(
   { size, className = "", as = "p", ...props }: PropsWithAs<TypeProps, "p">,
   ref: Ref<HTMLParagraphElement>,
 ) {
+  const Component = as || "div";
   return (
-    <Box
-      as={as}
+    <Component
       ref={ref}
       className={[
         className,
@@ -27,5 +26,5 @@ function TypeComponent(
   );
 }
 
-const Type = forwardRefWithAs<TypeProps, "p">(TypeComponent);
-export default Type;
+// const Type = forwardRefWithAs<TypeProps, "p">(TypeComponent);
+// export default Type;

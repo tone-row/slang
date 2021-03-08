@@ -29,6 +29,7 @@ export type SlangConfig = {
   colorStore: Colors;
   fluidMinScreenSizePx: number;
   fluidMaxScreenSizePx: number;
+  breakpoints: Record<string, number>;
 };
 
 export const defaultConfig: SlangConfig = {
@@ -63,6 +64,10 @@ export const defaultConfig: SlangConfig = {
       background: "var(--palette-white-0)",
       foreground: "var(--palette-black-0)",
     },
+  },
+  breakpoints: {
+    tablet: 768,
+    desktop: 1024,
   },
 };
 

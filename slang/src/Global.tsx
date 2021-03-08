@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { getThemeCss, SlangConfig } from "./config";
-import "./Global.css";
 
 // Global is the way to write all necessary properties on the client **at runtime**
 const ID = "__slang";

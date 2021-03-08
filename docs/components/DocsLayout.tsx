@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Box, VerticalGrid, Layout, Type, Container } from "@tone-row/slang";
+import { Type, Box } from "slang";
 import Link from "next/link";
 import styles from "./DocsLayout.module.scss";
 import { useRouter } from "next/router";
@@ -19,9 +19,9 @@ const boxSizes = {
 export default function DocsLayout({ children }: { children: ReactNode }) {
   const { pathname } = useRouter();
   return (
-    <Layout className={styles.DocsLayout}>
+    <Box className={styles.DocsLayout}>
       <Box as="aside" pt={6}>
-        <VerticalGrid gap={0}>
+        <Box gap={0} place="start stretch" flow="column">
           <Box {...boxSizes} pb={boxSizes.py} pt={0}>
             <Type as="strong" size={1}>
               Slang
@@ -34,12 +34,12 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
               active={pathname === link.href}
             />
           ))}
-        </VerticalGrid>
+        </Box>
       </Box>
       <Box px={4} py={6}>
-        <Container>{children}</Container>
+        <Box className={styles.tempContainer}>{children}</Box>
       </Box>
-    </Layout>
+    </Box>
   );
 }
 
