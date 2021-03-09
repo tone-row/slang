@@ -1,5 +1,6 @@
 import { BoxComponent, BoxProps, TypeComponent, TypeProps, forwardRefWithAs } from '@tone-row/slang';
-  
-const Box = forwardRefWithAs<BoxProps<"fun" | "cool">, "div">(BoxComponent);
+
+type Breakpoints = "tablet" | "desktop";
+const Box = forwardRefWithAs<BoxProps<Breakpoints>, "div">(BoxComponent);
 const Type = forwardRefWithAs<TypeProps, "div">(TypeComponent);
-export { Box, Type };
+export { Box, Type };  

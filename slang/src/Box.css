@@ -12,9 +12,9 @@
   padding: calc(var(--padding) * 10px);
   /* contain omitted */
   grid-template: var(--template);
-  place-content: var(--place);
+  /* place-content: var(--place); */
   gap: calc(var(--gap) * 10px);
-  grid-auto-flow: var(--flow);
+  /* grid-auto-flow: var(--flow); */
   overflow: var(--overflow);
 
   /* NEEDED THIS BUT FIND IT VERY ANNOYING */

@@ -40,9 +40,9 @@ body {
   padding: calc(var(--padding) * 10px);
   /* contain omitted */
   grid-template: var(--template);
-  place-content: var(--place);
+  /* place-content: var(--place); */
   gap: calc(var(--gap) * 10px);
-  grid-auto-flow: var(--flow);
+  /* grid-auto-flow: var(--flow); */
   overflow: var(--overflow);
 
   /* NEEDED THIS BUT FIND IT VERY ANNOYING */
@@ -303,3 +303,26 @@ body {
 	--color-background:var(--palette-white-0);
 	--color-foreground:var(--palette-black-0);
  }
+
+.slang-box.flow {
+grid-auto-flow: var(--flow);
+}
+.slang-box.place {
+place-content: var(--place);
+}
+@media(min-width: 768px) {
+.slang-box.flow-tablet {
+grid-auto-flow: var(--flow-tablet);
+}
+.slang-box.place-tablet {
+place-content: var(--place-tablet);
+}
+}
+@media(min-width: 1024px) {
+.slang-box.flow-desktop {
+grid-auto-flow: var(--flow-desktop);
+}
+.slang-box.place-desktop {
+place-content: var(--place-desktop);
+}
+}

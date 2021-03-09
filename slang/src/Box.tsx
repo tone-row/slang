@@ -72,12 +72,17 @@ function getCssProperties(
 ): [CSSProperties, string[]] {
   const [flowProps, flowClasses] = getIndividualChildCssProp({
     key: "flow",
-    node,
     defaultValue: "rows",
+    node,
   });
 
-  const classes = Array.from(new Set([...flowClasses]));
-  return [{ ...flowProps }, classes];
+  const [placeProps, placeClasses] = getIndividualChildCssProp({
+    key: "place",
+    node,
+  });
+
+  const classes = Array.from(new Set([...flowClasses, ...placeClasses]));
+  return [{ ...flowProps, ...placeProps }, classes];
   // return {
   //   // ...getIndividualChildCssProp({ key: "padding", node }),
   //   ...getIndividualChildCssProp({ key: "contain", node }),

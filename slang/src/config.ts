@@ -71,6 +71,10 @@ export const defaultConfig: SlangConfig = {
   },
 };
 
+export function mergeDefault(userConfig?: Partial<SlangConfig>) {
+  return { ...defaultConfig, ...userConfig };
+}
+
 const derivedProperties: Record<
   string,
   (config: SlangConfig) => string | number
@@ -121,6 +125,7 @@ export function getThemeCss(config?: Partial<SlangConfig>) {
   const cssProperties = createProperties(config);
   const derivedProperties = createDerivedProperties(config);
   const colorProperties = createColorProperties(config);
+  const responsiveCss = createResponsiveCss(config);
   return [":root {"]
     .concat(
       Object.entries({
@@ -129,7 +134,7 @@ export function getThemeCss(config?: Partial<SlangConfig>) {
         ...colorProperties,
       }).map((property) => `\t${property.join(":")};`),
     )
-    .concat(" }")
+    .concat([" }", responsiveCss])
     .join("\n");
 }
 
@@ -228,4 +233,36 @@ export function getPaletteColorName(args: {
   index: string;
 }) {
   return `--palette-${args.colorName}-${args.index}`;
+}
+
+const boxResponsiveProps = [
+  { key: "flow", cssProp: "grid-auto-flow" },
+  { key: "place", cssProp: "place-content" },
+];
+function createResponsiveCss(userConfig?: Partial<SlangConfig>): string {
+  let breakpoints: string[] = [""];
+  const config = { ...defaultConfig, ...userConfig };
+  for (const p of boxResponsiveProps) {
+    breakpoints = breakpoints.concat(
+      `.slang-box.${p.key} {`,
+      `${p.cssProp}: var(--${p.key});`,
+      `}`,
+    );
+  }
+  for (const [breakpoint, size] of Object.entries(config.breakpoints)) {
+    breakpoints = breakpoints.concat([
+      `@media(min-width: ${size}px) {`,
+      ...boxResponsiveProps.reduce<string[]>(
+        (acc, p) =>
+          acc.concat([
+            `.slang-box.${p.key}-${breakpoint} {`,
+            `${p.cssProp}: var(--${p.key}-${breakpoint});`,
+            `}`,
+          ]),
+        [],
+      ),
+      `}`,
+    ]);
+  }
+  return breakpoints.join("\n");
 }

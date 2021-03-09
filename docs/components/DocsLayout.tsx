@@ -21,7 +21,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <Box className={styles.DocsLayout}>
       <Box as="aside" pt={6}>
-        <Box gap={0} place="start stretch" flow="column">
+        <Box gap={0} place="start stretch" flow="row">
           <Box {...boxSizes} pb={boxSizes.py} pt={0}>
             <Type as="strong" size={1}>
               Slang

@@ -10,5 +10,6 @@ export {
   getPaletteColorName,
   defaultConfig,
   getThemeCss,
+  mergeDefault,
 } from "./config";
 export { forwardRefWithAs } from "./utils";
