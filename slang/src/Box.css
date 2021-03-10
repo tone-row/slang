@@ -13,12 +13,22 @@
   /* contain omitted */
   grid-template: var(--template);
   /* place-content: var(--place); */
-  gap: calc(var(--gap) * 10px);
+  /* gap: calc(var(--gap) * 10px); */
+
   /* grid-auto-flow: var(--flow); */
-  overflow: var(--overflow);
+  /* overflow: var(--overflow); */
 
   /* NEEDED THIS BUT FIND IT VERY ANNOYING */
-  height: 100%;
+  /* height: 100%; */
+}
+
+.slang-box.stretch {
+  height: 100vh;
+}
+@supports (-webkit-touch-callout: none) {
+  .slang-box.stretch {
+    height: -webkit-fill-available;
+  }
 }
 
 .slang-box.contain {

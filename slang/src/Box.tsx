@@ -1,18 +1,11 @@
 import React, { CSSProperties, Ref } from "react";
 import "./Box.css";
+import {
+  boxResponsiveProps,
+  ResponsiveProp,
+  ResponsiveProps,
+} from "./boxSettings";
 import { PropsWithAs } from "./utils";
-
-// These props can be changed over all supplied breakpoints
-interface ResponsiveProps {
-  display?: boolean | string;
-  // padding, needs to be converted to a responsive prop
-  contain?: string; // some need a class to enable!
-  template?: string;
-  place?: string;
-  gap?: number;
-  flow?: "column" | "row";
-  overflow?: string;
-}
 
 export type ResponsiveBoxProps<Breakpoint extends string> = {
   at?: Partial<Record<Breakpoint, ResponsiveProps>>;
@@ -20,8 +13,7 @@ export type ResponsiveBoxProps<Breakpoint extends string> = {
 
 export interface BoxProps<Breakpoint extends string = "tablet" | "desktop">
   extends ResponsiveBoxProps<Breakpoint> {
-  // Padding
-  p?: number;
+  // Rest of Padding
   px?: number;
   py?: number;
   pt?: number;
@@ -35,6 +27,9 @@ export interface BoxProps<Breakpoint extends string = "tablet" | "desktop">
   btrr?: number;
   bblr?: number;
   bbrr?: number;
+
+  // Stretch
+  stretch?: boolean;
 }
 
 export default function BoxComponent<Breakpoint extends string>(
@@ -59,10 +54,15 @@ export default function BoxComponent<Breakpoint extends string>(
     <Component
       {...props}
       ref={ref}
-      className={[props.className, "slang-box", ...dynamicClasses]
+      className={[
+        props.className,
+        "slang-box",
+        ...dynamicClasses,
+        props.stretch ? "stretch" : "",
+      ]
         .join(" ")
         .trim()}
-      style={{ ...props.style, ...cssProperties }}
+      style={{ ...cssProperties, ...props.style }}
     />
   );
 }
@@ -70,19 +70,19 @@ export default function BoxComponent<Breakpoint extends string>(
 function getCssProperties(
   node: PropsWithAs<BoxProps, "div">,
 ): [CSSProperties, string[]] {
-  const [flowProps, flowClasses] = getIndividualChildCssProp({
-    key: "flow",
-    defaultValue: "rows",
-    node,
-  });
+  const [props, classes] = boxResponsiveProps.reduce<
+    [Record<string, string>, string[]]
+  >(
+    (acc, prop) => {
+      const [p, c] = getIndividualChildCssProp({ ...prop, node });
+      acc[0] = { ...acc[0], ...p };
+      acc[1] = acc[1].concat(c);
+      return acc;
+    },
+    [{}, []],
+  );
 
-  const [placeProps, placeClasses] = getIndividualChildCssProp({
-    key: "place",
-    node,
-  });
-
-  const classes = Array.from(new Set([...flowClasses, ...placeClasses]));
-  return [{ ...flowProps, ...placeProps }, classes];
+  return [props, Array.from(new Set(classes))];
   // return {
   //   // ...getIndividualChildCssProp({ key: "padding", node }),
   //   ...getIndividualChildCssProp({ key: "contain", node }),
@@ -122,22 +122,23 @@ function getIndividualChildCssProp({
   node,
   defaultValue = "0",
   customParse = (x) => x,
-}: {
-  key: keyof ResponsiveProps;
+}: ResponsiveProp & {
   node: PropsWithAs<BoxProps, "div">;
-  defaultValue?: string;
-  customParse?: (x: any) => string;
 }): [Record<string, string>, string[]] {
+  // Setup
   const classes: string[] = [];
   const properties = {} as Record<string, string>;
-  const v = customParse(node?.[key])?.toString();
-  let last = v ?? defaultValue;
-  if (v) {
-    classes.push(key);
-  }
-  properties[`--${key}`] = last;
+  let last = defaultValue;
 
-  // need all breakpoints
+  // Setup default
+  const v = customParse(node?.[key])?.toString();
+  if (v) {
+    last = v;
+    classes.push(key);
+    properties[`--${key}`] = last;
+  }
+
+  // ~~need all breakpoints~~
   // no longer should need all breakpoints, because
   // going to use compiled classes, to make the breakpoints
   // take effect

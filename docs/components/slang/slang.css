@@ -46,7 +46,14 @@ body {
   overflow: var(--overflow);
 
   /* NEEDED THIS BUT FIND IT VERY ANNOYING */
+  /* height: 100%; */
+}
+
+.slang-box.h {
   height: 100%;
+}
+.slang-box.mh {
+  min-height: 100%;
 }
 
 .slang-box.contain {
@@ -310,12 +317,18 @@ grid-auto-flow: var(--flow);
 .slang-box.place {
 place-content: var(--place);
 }
+.slang-box.p {
+padding: calc(var(--p) * var(--space-h-px));
+}
 @media(min-width: 768px) {
 .slang-box.flow-tablet {
 grid-auto-flow: var(--flow-tablet);
 }
 .slang-box.place-tablet {
 place-content: var(--place-tablet);
+}
+.slang-box.p-tablet {
+padding: var(--p-tablet);
 }
 }
 @media(min-width: 1024px) {
@@ -324,5 +337,8 @@ grid-auto-flow: var(--flow-desktop);
 }
 .slang-box.place-desktop {
 place-content: var(--place-desktop);
+}
+.slang-box.p-desktop {
+padding: var(--p-desktop);
 }
 }

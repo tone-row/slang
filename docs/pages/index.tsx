@@ -16,7 +16,7 @@ export default function Home() {
       </Box>
       <Box>
         <Type as="h2" size={2}>
-          Why another?
+          Why?
         </Type>
         <Type>
           The idea driving Slang is that we can do a large part of what's needed
@@ -83,6 +83,21 @@ export default function Home() {
           "theme": "generateTheme src/components/slang/config.json styles",
           "theme:watch": "generateTheme src/components/slang/config.json styles -w"`}
         </Code>
+        <Type>
+          5. (Optional) If you want to feel jazzy and you're working in
+          typescript it can be cool to add the following to your{" "}
+          <Code inline>ts-config.json</Code>
+        </Type>
+        <Code>{`"compilerOptions": {
+  ...
+  "paths": {
+    "slang": ["./src/slang"]
+  }
+}`}</Code>
+        <Type>
+          The way you can predictable import components from "slang" instead of
+          the relative path from wherever you're working.
+        </Type>
       </Box>
     </Box>
   );

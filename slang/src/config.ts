@@ -1,3 +1,5 @@
+import { boxResponsiveProps } from "./boxSettings";
+
 export type Colors = {
   palette: Record<string, string[]>;
   colors: Record<string, string>;
@@ -235,17 +237,25 @@ export function getPaletteColorName(args: {
   return `--palette-${args.colorName}-${args.index}`;
 }
 
-const boxResponsiveProps = [
-  { key: "flow", cssProp: "grid-auto-flow" },
-  { key: "place", cssProp: "place-content" },
-];
+// const boxResponsiveProps = [
+//   { key: "flow", cssProp: "grid-auto-flow" },
+//   { key: "place", cssProp: "place-content" },
+//   {
+//     key: "p",
+//     cssProp: "padding",
+//     cssValue: "calc(var(--p) * var(--space-h-px))",
+//   },
+// ];
+
 function createResponsiveCss(userConfig?: Partial<SlangConfig>): string {
   let breakpoints: string[] = [""];
   const config = { ...defaultConfig, ...userConfig };
-  for (const p of boxResponsiveProps) {
+  for (const prop of boxResponsiveProps) {
     breakpoints = breakpoints.concat(
-      `.slang-box.${p.key} {`,
-      `${p.cssProp}: var(--${p.key});`,
+      `.slang-box.${prop.key} {`,
+      `${prop.cssProp}: ${
+        "cssValue" in prop ? prop.cssValue : `var(--${prop.key})`
+      };`,
       `}`,
     );
   }

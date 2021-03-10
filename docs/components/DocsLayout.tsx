@@ -10,19 +10,13 @@ const links = [
   { href: "/type", text: "Type" },
 ];
 
-const boxSizes = {
-  py: 2,
-  px: 3,
-  pr: 4,
-};
-
 export default function DocsLayout({ children }: { children: ReactNode }) {
   const { pathname } = useRouter();
   return (
     <Box className={styles.DocsLayout}>
-      <Box as="aside" pt={6}>
+      <Box as="aside">
         <Box gap={0} place="start stretch" flow="row">
-          <Box {...boxSizes} pb={boxSizes.py} pt={0}>
+          <Box p={2}>
             <Type as="strong" size={1}>
               Slang
             </Type>
@@ -56,8 +50,8 @@ function SidebarLink({
     <Link href={href} passHref>
       <Box
         as="a"
-        {...boxSizes}
         className={styles.NavLink}
+        p={2}
         {...(active ? { "aria-current": "page" } : {})}
       >
         <Type as="span">{text}</Type>
