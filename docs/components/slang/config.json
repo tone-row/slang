@@ -21,14 +21,12 @@
   "smallestBorderRadiusPx": 3,
   "fluidMinScreenSizePx": 375,
   "fluidMaxScreenSizePx": 1200,
-  "colorStore": {
-    "palette": {
-      "white": ["#ffffff", "#f3f2f2", "#dadada"],
-      "black": ["#000000"]
-    },
-    "colors": {
-      "background": "var(--palette-white-0)",
-      "foreground": "var(--palette-black-0)"
-    }
+  "palette": {
+    "white": ["#ffffff", "#f3f2f2", "#dadada"],
+    "black": ["#000000"]
+  },
+  "colors": {
+    "background": "var(--palette-white-0)",
+    "foreground": "var(--palette-black-0)"
   }
 }

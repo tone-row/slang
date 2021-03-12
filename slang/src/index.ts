@@ -1,15 +1,10 @@
+import "modern-normalize";
 import "./global.css";
-export { default as BoxComponent, BoxProps, ResponsiveBoxProps } from "./Box";
-export { default as TypeComponent, TypeProps } from "./Type";
+export { default as BoxComponent, BoxProps } from "./Box/Box";
+export { default as TypeComponent, TypeProps } from "./Type/Type";
+export { SlangConfig, defaultConfig, mergeDefault } from "./config";
+export { makeCSS as getThemeCss, getPaletteColorName } from "./makeCSS";
+export { forwardRefWithAs } from "./utils";
 
 // This will come in handy from quite-fast-design.systems
 // export { default as Global } from "./Global";
-
-export {
-  SlangConfig,
-  getPaletteColorName,
-  defaultConfig,
-  getThemeCss,
-  mergeDefault,
-} from "./config";
-export { forwardRefWithAs } from "./utils";

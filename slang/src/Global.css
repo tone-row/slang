@@ -1,8 +1,4 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* Modern Normalize does the box sizing... */
 
 * {
   margin: 0;
@@ -20,6 +16,7 @@ body,
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--base-font-family);
 }
 
 body {

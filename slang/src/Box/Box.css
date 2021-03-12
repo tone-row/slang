@@ -1,25 +1,14 @@
 .slang-box {
   /* Defaults are reset for each element */
   --display: grid;
-  --padding: 0;
   --contain: none;
   --template: none;
-  --place: normal;
+  --content: normal;
   --gap: 0;
   --flow: rows;
 
   display: var(--display);
-  padding: calc(var(--padding) * 10px);
-  /* contain omitted */
   grid-template: var(--template);
-  /* place-content: var(--place); */
-  /* gap: calc(var(--gap) * 10px); */
-
-  /* grid-auto-flow: var(--flow); */
-  /* overflow: var(--overflow); */
-
-  /* NEEDED THIS BUT FIND IT VERY ANNOYING */
-  /* height: 100%; */
 }
 
 .slang-box.stretch {

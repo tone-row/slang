@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { getThemeCss, mergeDefault, SlangConfig } from "./config";
+import { mergeDefault, SlangConfig } from "./config";
+import { makeCSS } from "./makeCSS";
 
 const globalCss = fs.readFileSync(path.join(__dirname, "index.css"), "utf-8");
 
@@ -21,7 +22,7 @@ function generateTheme() {
   const config = require(configPath);
 
   // CSS
-  const css = [globalCss, getThemeCss(config)].join("\n");
+  const css = [globalCss, makeCSS(config)].join("\n");
   let filepath = path.resolve(process.cwd(), targetFolder, "slang.css");
   fs.writeFileSync(filepath, css, "utf-8");
 
@@ -38,7 +39,11 @@ if (watch === "-w") {
   generateTheme();
   console.log("Watching config for changes 👀");
   fs.watchFile(configPath, { interval: 1000 }, () => {
-    generateTheme();
+    try {
+      generateTheme();
+    } catch (e) {
+      console.error(e);
+    }
   });
 } else {
   generateTheme();
@@ -52,7 +57,7 @@ type Breakpoints = ${Object.keys(config.breakpoints)
     .map((b) => `"${b}"`)
     .join(" | ")};
 const Box = forwardRefWithAs<BoxProps<Breakpoints>, "div">(BoxComponent);
-const Type = forwardRefWithAs<TypeProps, "div">(TypeComponent);
+const Type = forwardRefWithAs<TypeProps<Breakpoints>, "div">(TypeComponent);
 export { Box, Type };  
 `;
 }
