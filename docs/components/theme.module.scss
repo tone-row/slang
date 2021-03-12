@@ -1,12 +1,12 @@
 .Code {
-  background-color: var(--palette-white-1);
-  border: 1px solid var(--palette-white-2);
-  white-space: pre-line;
-  font-size: 1rem;
-  line-height: normal;
+  white-space: pre;
   font-family: Menlo, monospace;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: auto;
 }
 
 .inline {
   display: inline-block;
+  vertical-align: middle;
 }
