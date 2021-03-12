@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently -n 'next,theme' 'next dev' 'yarn theme:watch'",
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "theme": "generateTheme components/slang/config.json components/slang"
+    "theme": "slang components/slang",
+    "theme:watch": "slang components/slang -w"
   },
   "dependencies": {
     "@tone-row/slang": "0.0.0-development",
@@ -16,5 +17,7 @@
     "react-dom": "17.0.1",
     "sass": "^1.32.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  }
 }

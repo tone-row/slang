@@ -37,7 +37,7 @@ export default [
     output: [
       {
         banner: "#!/usr/bin/env node",
-        file: packageJson.bin.generateTheme,
+        file: packageJson.bin.slang,
         format: "cjs",
         sourcemap: true,
       },

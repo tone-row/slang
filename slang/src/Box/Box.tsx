@@ -1,4 +1,4 @@
-import React, { ReactNode, Ref } from "react";
+import React, { Ref } from "react";
 import {
   ResponsifyComponentProps,
   PropsWithAs,
@@ -7,36 +7,21 @@ import {
 import "./Box.css";
 import { boxConfig, ResponsiveProps } from "./props";
 
-export interface BoxProps<Breakpoint extends string = "tablet" | "desktop">
-  extends ResponsifyComponentProps<ResponsiveProps, Breakpoint> {
-  children?: ReactNode;
-
-  // Rest of Padding
-  px?: number;
-  py?: number;
-  pt?: number;
-  pr?: number;
-  pb?: number;
-  pl?: number;
-
-  // Border Radius
-  br?: number;
-  btlr?: number;
-  btrr?: number;
-  bblr?: number;
-  bbrr?: number;
-
+export interface BaseBoxProps<
+  Breakpoint extends string = "tablet" | "desktop",
+  Colors extends string = "foreground" | "background"
+> extends ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint> {
   // Stretch
   stretch?: boolean;
 }
 
 const getCssClasses = produceComponentClassesPropsGetter<
-  PropsWithAs<BoxProps, "div">,
+  BaseBoxProps,
   ResponsiveProps
 >(boxConfig);
 
 export default function BoxComponent<Breakpoint extends string>(
-  { as, ...props }: PropsWithAs<BoxProps<Breakpoint>, "div">,
+  { as, ...props }: PropsWithAs<BaseBoxProps<Breakpoint>>,
   ref: Ref<HTMLDivElement>,
 ) {
   const Component = as || "div";

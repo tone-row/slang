@@ -1,26 +1,12 @@
-.DocsLayout {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  height: auto;
-  min-height: 100%;
-  aside {
-    background-color: var(--palette-white-1);
-    position: sticky;
-    top: 0;
-    align-self: start;
-    height: 100vh;
-  }
+.Aside {
+  position: sticky;
+  top: 0;
+  align-self: start;
 }
 
 .NavLink {
-  background-color: var(--palette-white-1);
+  background-color: var(--palette-white-3);
   &[aria-current="page"] {
     background-color: var(--palette-white-2);
   }
-}
-
-.tempContainer {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }

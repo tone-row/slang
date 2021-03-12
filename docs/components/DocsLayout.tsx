@@ -5,7 +5,8 @@ import styles from "./DocsLayout.module.scss";
 import { useRouter } from "next/router";
 
 const links = [
-  { href: "/", text: "Getting Started" },
+  { href: "/", text: "Home" },
+  { href: "/getting-started", text: "Getting Started" },
   { href: "/box", text: "Box" },
   { href: "/type", text: "Type" },
 ];
@@ -13,13 +14,24 @@ const links = [
 export default function DocsLayout({ children }: { children: ReactNode }) {
   const { pathname } = useRouter();
   return (
-    <Box className={styles.DocsLayout}>
-      <Box as="aside">
-        <Box gap={0} content="start stretch" flow="row">
-          <Box p={2}>
-            <Type as="strong" size={1}>
-              Slang
-            </Type>
+    <Box
+      className={styles.DocsLayout}
+      at={{ tablet: { template: "none / auto minmax(0, 1fr)" } }}
+      h
+    >
+      <Box
+        as="aside"
+        background="palette-white-3"
+        display={false}
+        at={{ tablet: { display: true } }}
+      >
+        <Box className={styles.Aside} py={10}>
+          <Box px={4} pb={3}>
+            <Link href="/" passHref>
+              <Type as="a" weight="700" size={1}>
+                Slang
+              </Type>
+            </Link>
           </Box>
           {links.map((link) => (
             <SidebarLink
@@ -30,8 +42,8 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
           ))}
         </Box>
       </Box>
-      <Box px={4} py={6}>
-        <Box className={styles.tempContainer}>{children}</Box>
+      <Box px={6} py={6} contain={256} at={{ tablet: { py: 10 } }}>
+        {children}
       </Box>
     </Box>
   );
@@ -51,7 +63,9 @@ function SidebarLink({
       <Box
         as="a"
         className={styles.NavLink}
-        p={2}
+        py={3}
+        pl={4}
+        pr={8}
         {...(active ? { "aria-current": "page" } : {})}
       >
         <Type as="span">{text}</Type>

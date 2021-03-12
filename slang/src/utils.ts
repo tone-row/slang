@@ -137,7 +137,10 @@ function getIndividualChildCssProp<
   if (node.at) {
     for (const breakpoint of Object.keys(node.at)) {
       let v = last;
-      const value = propValueToCssValue(node.at[breakpoint]?.[key])?.toString();
+      const rawValue = node.at[breakpoint]?.[key];
+      // Don't put classes or properties on the element if not defined at a size
+      if (typeof rawValue === "undefined") continue;
+      const value = propValueToCssValue(rawValue);
       if (value) {
         classes.push(breakpoint);
         classes.push(`${key}-${breakpoint}`);
