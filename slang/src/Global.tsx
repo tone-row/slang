@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { getThemeCss, SlangConfig } from "./config";
-import "./Global.css";
+import { SlangConfig } from "./config";
+import { makeCSS } from "./makeCSS";
 
 // Global is the way to write all necessary properties on the client **at runtime**
 const ID = "__slang";
@@ -21,7 +21,7 @@ export default function Global({
         element.setAttribute("id", ID);
         document.head.appendChild(element);
       }
-      element.innerHTML = getThemeCss(config);
+      element.innerHTML = makeCSS(config);
     }
   }, [config, update]);
   return null;

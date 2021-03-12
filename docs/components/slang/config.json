@@ -1,10 +1,10 @@
 {
   "baseFontFamily": "Neue Montreal",
-  "baseFontSizePx": 19.25,
+  "baseFontSizePx": 20,
   "baseFontSizeMobilePx": 16.84,
-  "baseFontLineHeight": 1.29,
+  "baseFontLineHeight": 1.5,
   "baseFontLineHeightMobile": 1.26,
-  "baseContainerSizePx": 654,
+  "baseContainerSizePx": 700,
   "baseSpacingPx": 22.4,
   "baseVerticalSpacingDivisor": 3,
   "baseHorizontalSpacingDivisor": 90,
@@ -21,14 +21,12 @@
   "smallestBorderRadiusPx": 3,
   "fluidMinScreenSizePx": 375,
   "fluidMaxScreenSizePx": 1200,
-  "colorStore": {
-    "palette": {
-      "white": ["#ffffff", "#fafafa", "#dcdcdc"],
-      "black": ["#000000"]
-    },
-    "colors": {
-      "background": "var(--palette-white-0)",
-      "foreground": "var(--palette-black-0)"
-    }
+  "palette": {
+    "white": ["#ffffff", "#f3f2f2", "#dadada"],
+    "black": ["#000000"]
+  },
+  "colors": {
+    "background": "var(--palette-white-0)",
+    "foreground": "var(--palette-black-0)"
   }
 }

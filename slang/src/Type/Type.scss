@@ -1,4 +1,4 @@
-.Type {
+.slang-type {
   --multiplier: var(--multiplier-0);
   --mobile-multiplier: var(--mobile-multiplier-0);
   --lhMultiplier: var(--lh-multiplier-0);
@@ -66,7 +66,7 @@
     var(--error-correction-bottom-px, 0) * var(--errorBottomMultiplier, 1)
   );
 
-  &[class*="size--3"] {
+  &.size--3 {
     --multiplier: var(--multiplier--3);
     --mobile-multiplier: var(--mobile-multiplier--3);
     --lhMultiplier: var(--lh-multiplier--3);
@@ -74,7 +74,7 @@
     --errorTopMultiplier: var(--error-top-multiplier--3);
     --errorBottomMultiplier: var(--error-bottom-multiplier--3);
   }
-  &[class*="size--2"] {
+  &.size--2 {
     --multiplier: var(--multiplier--2);
     --mobile-multiplier: var(--mobile-multiplier--2);
     --lhMultiplier: var(--lh-multiplier--2);
@@ -82,7 +82,7 @@
     --errorTopMultiplier: var(--error-top-multiplier--2);
     --errorBottomMultiplier: var(--error-bottom-multiplier--2);
   }
-  &[class*="size--1"] {
+  &.size--1 {
     --multiplier: var(--multiplier--1);
     --mobile-multiplier: var(--mobile-multiplier--1);
     --lhMultiplier: var(--lh-multiplier--1);
@@ -90,7 +90,7 @@
     --errorTopMultiplier: var(--error-top-multiplier--1);
     --errorBottomMultiplier: var(--error-bottom-multiplier--1);
   }
-  &[class*="size-0"] {
+  &.size-0 {
     --multiplier: var(--multiplier-0);
     --mobile-multiplier: var(--mobile-multiplier-0);
     --lhMultiplier: var(--lh-multiplier-0);
@@ -98,7 +98,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-0);
     --errorBottomMultiplier: var(--error-bottom-multiplier-0);
   }
-  &[class*="size-1"] {
+  &.size-1 {
     --multiplier: var(--multiplier-1);
     --mobile-multiplier: var(--mobile-multiplier-1);
     --lhMultiplier: var(--lh-multiplier-1);
@@ -106,7 +106,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-1);
     --errorBottomMultiplier: var(--error-bottom-multiplier-1);
   }
-  &[class*="size-2"] {
+  &.size-2 {
     --multiplier: var(--multiplier-2);
     --mobile-multiplier: var(--mobile-multiplier-2);
     --lhMultiplier: var(--lh-multiplier-2);
@@ -114,7 +114,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-2);
     --errorBottomMultiplier: var(--error-bottom-multiplier-2);
   }
-  &[class*="size-3"] {
+  &.size-3 {
     --multiplier: var(--multiplier-3);
     --mobile-multiplier: var(--mobile-multiplier-3);
     --lhMultiplier: var(--lh-multiplier-3);
@@ -122,7 +122,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-3);
     --errorBottomMultiplier: var(--error-bottom-multiplier-3);
   }
-  &[class*="size-4"] {
+  &.size-4 {
     --multiplier: var(--multiplier-4);
     --mobile-multiplier: var(--mobile-multiplier-4);
     --lhMultiplier: var(--lh-multiplier-4);
@@ -130,7 +130,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-4);
     --errorBottomMultiplier: var(--error-bottom-multiplier-4);
   }
-  &[class*="size-5"] {
+  &.size-5 {
     --multiplier: var(--multiplier-5);
     --mobile-multiplier: var(--mobile-multiplier-5);
     --lhMultiplier: var(--lh-multiplier-5);
@@ -138,7 +138,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-5);
     --errorBottomMultiplier: var(--error-bottom-multiplier-5);
   }
-  &[class*="size-6"] {
+  &.size-6 {
     --multiplier: var(--multiplier-6);
     --mobile-multiplier: var(--mobile-multiplier-6);
     --lhMultiplier: var(--lh-multiplier-6);
@@ -146,7 +146,7 @@
     --errorTopMultiplier: var(--error-top-multiplier-6);
     --errorBottomMultiplier: var(--error-bottom-multiplier-6);
   }
-  &[class*="size-7"] {
+  &.size-7 {
     --multiplier: var(--multiplier-7);
     --mobile-multiplier: var(--mobile-multiplier-7);
     --lhMultiplier: var(--lh-multiplier-7);

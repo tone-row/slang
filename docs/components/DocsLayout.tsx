@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Box, VerticalGrid, Layout, Type, Container } from "@tone-row/slang";
+import { Type, Box } from "slang";
 import Link from "next/link";
 import styles from "./DocsLayout.module.scss";
 import { useRouter } from "next/router";
@@ -10,19 +10,13 @@ const links = [
   { href: "/type", text: "Type" },
 ];
 
-const boxSizes = {
-  py: 2,
-  px: 3,
-  pr: 4,
-};
-
 export default function DocsLayout({ children }: { children: ReactNode }) {
   const { pathname } = useRouter();
   return (
-    <Layout className={styles.DocsLayout}>
-      <Box as="aside" pt={6}>
-        <VerticalGrid gap={0}>
-          <Box {...boxSizes} pb={boxSizes.py} pt={0}>
+    <Box className={styles.DocsLayout}>
+      <Box as="aside">
+        <Box gap={0} place="start stretch" flow="row">
+          <Box p={2}>
             <Type as="strong" size={1}>
               Slang
             </Type>
@@ -34,12 +28,12 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
               active={pathname === link.href}
             />
           ))}
-        </VerticalGrid>
+        </Box>
       </Box>
       <Box px={4} py={6}>
-        <Container>{children}</Container>
+        <Box className={styles.tempContainer}>{children}</Box>
       </Box>
-    </Layout>
+    </Box>
   );
 }
 
@@ -56,8 +50,8 @@ function SidebarLink({
     <Link href={href} passHref>
       <Box
         as="a"
-        {...boxSizes}
         className={styles.NavLink}
+        p={2}
         {...(active ? { "aria-current": "page" } : {})}
       >
         <Type as="span">{text}</Type>

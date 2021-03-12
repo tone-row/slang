@@ -1,0 +1,28 @@
+.slang-box {
+  /* Defaults are reset for each element */
+  --display: grid;
+  --contain: none;
+  --template: none;
+  --content: normal;
+  --gap: 0;
+  --flow: rows;
+
+  display: var(--display);
+  grid-template: var(--template);
+}
+
+.slang-box.stretch {
+  height: 100vh;
+}
+@supports (-webkit-touch-callout: none) {
+  .slang-box.stretch {
+    height: -webkit-fill-available;
+  }
+}
+
+.slang-box.contain {
+  width: 100%;
+  max-width: var(--contain);
+  margin-left: auto;
+  margin-right: auto;
+}

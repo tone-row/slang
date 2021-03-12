@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "theme": "generateTheme styles/slang.config.json styles/slang.css"
+    "theme": "generateTheme components/slang/config.json components/slang"
   },
   "dependencies": {
     "@tone-row/slang": "0.0.0-development",

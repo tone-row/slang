@@ -33,7 +33,7 @@ export default [
     ],
   },
   {
-    input: "./src/generateTheme.ts",
+    input: "./src/generate.ts",
     output: [
       {
         banner: "#!/usr/bin/env node",
