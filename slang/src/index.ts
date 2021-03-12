@@ -1,5 +1,5 @@
 import "modern-normalize";
-import "./global.css";
+import "./index.css";
 export { default as BoxComponent, BoxProps } from "./Box/Box";
 export { default as TypeComponent, TypeProps } from "./Type/Type";
 export { SlangConfig, defaultConfig, mergeDefault } from "./config";
