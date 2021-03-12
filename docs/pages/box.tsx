@@ -4,7 +4,7 @@ import { Type, Box } from "slang";
 
 export default function BoxPage() {
   return (
-    <Box place="start stretch">
+    <Box content="start stretch">
       <Type as="h1" size={3}>
         Box
       </Type>
