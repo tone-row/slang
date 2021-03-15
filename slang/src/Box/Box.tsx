@@ -3,17 +3,17 @@ import {
   ResponsifyComponentProps,
   PropsWithAs,
   produceComponentClassesPropsGetter,
+  separateComponentProps,
 } from "../utils";
 import "./Box.css";
-import { boxConfig, ResponsiveProps } from "./props";
+import { boxConfig, propKeys, ResponsiveProps } from "./props";
 
-export interface BaseBoxProps<
+export type BaseBoxProps<
   Breakpoint extends string = "tablet" | "desktop",
   Colors extends string = "foreground" | "background"
-> extends ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint> {
-  // Stretch
-  stretch?: boolean;
-}
+> = ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint>;
+
+const componentKeys = [...propKeys, "at"];
 
 const getCssClasses = produceComponentClassesPropsGetter<
   BaseBoxProps,
@@ -21,22 +21,23 @@ const getCssClasses = produceComponentClassesPropsGetter<
 >(boxConfig);
 
 export default function BoxComponent<Breakpoint extends string>(
-  { as, ...props }: PropsWithAs<BaseBoxProps<Breakpoint>>,
+  props: PropsWithAs<BaseBoxProps<Breakpoint>>,
   ref: Ref<HTMLDivElement>,
 ) {
+  const { as, ...otherProps } = props;
   const Component = as || "div";
-  const [css, classes] = getCssClasses<Breakpoint>(props);
+
+  const [componentProps, elementProps] = separateComponentProps(
+    otherProps,
+    componentKeys,
+  );
+  const [css, classes] = getCssClasses<Breakpoint>(componentProps);
 
   return (
     <Component
-      {...props}
+      {...elementProps}
       ref={ref}
-      className={[
-        props.className,
-        "slang-box",
-        ...classes,
-        props.stretch ? "stretch" : "",
-      ]
+      className={[props.className, "slang-box", ...classes]
         .filter(Boolean)
         .join(" ")
         .trim()}

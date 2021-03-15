@@ -5,12 +5,22 @@
   padding: 0;
 }
 
+/* Cascade heights for Next.js and Create-React-App */
 html,
 body,
 #__next,
 #root {
   height: 100%;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+}
+
+@supports (-webkit-touch-callout: none) {
+  html,
+  body,
+  #__next,
+  #root {
+    height: -webkit-fill-available;
+  }
 }
 
 html {

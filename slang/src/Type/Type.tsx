@@ -1,19 +1,21 @@
-import React, { ReactNode, Ref } from "react";
+import React, { Ref } from "react";
 import "./Type.scss";
 import {
   produceComponentClassesPropsGetter,
   PropsWithAs,
   ResponsifyComponentProps,
+  separateComponentProps,
 } from "../utils";
-import { typeConfig, ResponsiveProps } from "./props";
+import { typeConfig, ResponsiveProps, propKeys } from "./props";
 
 export interface BaseTypeProps<
   Breakpoint extends string = "tablet" | "desktop",
   Colors extends string = "foreground" | "background"
 > extends ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint> {
   size?: number;
-  children?: ReactNode;
 }
+
+const componentKeys = [...propKeys, "at", "size"];
 
 const getCssClasses = produceComponentClassesPropsGetter<
   BaseTypeProps,
@@ -21,15 +23,20 @@ const getCssClasses = produceComponentClassesPropsGetter<
 >(typeConfig);
 
 export default function TypeComponent<Breakpoint extends string>(
-  { as, ...props }: PropsWithAs<BaseTypeProps<Breakpoint>, "p">,
+  props: PropsWithAs<BaseTypeProps<Breakpoint>, "p">,
   ref: Ref<HTMLParagraphElement>,
 ) {
+  const { as, ...otherProps } = props;
   const Component = as || "p";
-  const [css, classes] = getCssClasses<Breakpoint>(props);
+  const [componentProps, elementProps] = separateComponentProps(
+    otherProps,
+    componentKeys,
+  );
+  const [css, classes] = getCssClasses<Breakpoint>(componentProps);
 
   return (
     <Component
-      {...props}
+      {...elementProps}
       ref={ref}
       className={[
         props.className,

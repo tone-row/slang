@@ -51,7 +51,12 @@ export interface ResponsiveProps<
 
   // Size
   h?: boolean | string;
-  hmin?: boolean;
+
+  /**
+   * Ensures the app is 100% of the screen height
+   * Best applied to root element
+   */
+  root?: boolean;
 
   // Shape
   /**
@@ -62,6 +67,30 @@ export interface ResponsiveProps<
   // Colors
   background?: Colors;
 }
+
+// Must include all Keys!!
+export const propKeys = [
+  "p",
+  "py",
+  "px",
+  "pt",
+  "pr",
+  "pb",
+  "pl",
+  "template",
+  "content",
+  "items",
+  "self",
+  "gap",
+  "flow",
+  "display",
+  "contain",
+  "overflow",
+  "h",
+  "root",
+  "rad",
+  "background",
+];
 
 export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
   {
@@ -126,7 +155,7 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     key: "display",
     defaultValue: "grid",
     cssFromVariable: (v) => `display: ${v};`,
-    propValueToCssValue: (n: string | boolean) => {
+    propValueToCssValue: (n) => {
       if (typeof n === "boolean") {
         return n ? "grid" : "none";
       }
@@ -143,6 +172,7 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     defaultValue: "100%",
     cssFromVariable: (v) => `height: ${v};`,
     propValueToCssValue: (height) => {
+      if (typeof height === "undefined") return height;
       if (typeof height === "boolean") {
         return height ? "100%" : "auto";
       }
@@ -150,7 +180,7 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     },
   },
   {
-    key: "hmin",
+    key: "root",
     defaultValue: "100%",
     cssFromVariable: (v) => `min-height: ${v};`,
     propValueToCssValue: (min) => {
@@ -159,6 +189,16 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
         return min ? "100%" : "none";
       }
       return min ?? "none";
+    },
+    iosSafariPatch: {
+      cssFromVariable: (v) => `min-height: ${v};`,
+      propValueToCssValue: (min) => {
+        if (typeof min === "undefined") return min;
+        if (typeof min === "boolean") {
+          return min ? "-webkit-fill-available" : "none";
+        }
+        return min ?? "none";
+      },
     },
   },
   {
