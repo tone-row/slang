@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { CSSProperties } from "react";
+import { SAFARI_PATCH_KEY } from "./constants";
 
 export type As<Props = any> = React.ElementType<Props>;
 
@@ -50,6 +51,19 @@ type ResponsiveComponentProperty<X> = {
    * into the component, into the value that will be assed to the custom property
    */
   propValueToCssValue?: (x: keyof X) => string | undefined;
+
+  /**
+   * Declares that a patch needs to be made to make ios safari behavior consistent
+   *
+   * Adds custom property in the form {key}-{breakpoint}-safari: value
+   *
+   * The presence of this key causes the classes and custom prop to be rendered
+   * This variable takes an object expecting {cssFromVariable, propValueToCssValue}
+   */
+  iosSafariPatch?: {
+    cssFromVariable: (customProperty: string) => string;
+    propValueToCssValue?: (x: keyof X) => string | undefined;
+  };
 };
 
 export type ComponentConfig<X> = {
@@ -83,14 +97,16 @@ export function produceComponentClassesPropsGetter<ComponentProps, X>(
   ): [CSSProperties, string[]] {
     const [props, classes] = toReduce.reduce<[CSSProperties, string[]]>(
       (acc, prop) => {
-        const [p, c] = getIndividualChildCssProp<ComponentProps, Breakpoint, X>(
-          {
-            ...prop,
-            node,
-          },
-        );
-        acc[0] = { ...acc[0], ...p };
-        acc[1] = acc[1].concat(c);
+        const [properties, classes] = getIndividualChildCssProp<
+          ComponentProps,
+          Breakpoint,
+          X
+        >({
+          ...prop,
+          node,
+        });
+        acc[0] = { ...acc[0], ...properties };
+        acc[1] = acc[1].concat(classes);
         return acc;
       },
       [{}, []],
@@ -111,6 +127,7 @@ function getIndividualChildCssProp<
   propValueToCssValue = (z: any) => z,
 
   node,
+  iosSafariPatch,
 }: ComponentConfig<X> & {
   node: ResponsifyComponentProps<ComponentProps, Breakpoint>;
 }): [Record<string, string>, string[]] {
@@ -129,7 +146,16 @@ function getIndividualChildCssProp<
     properties[`--${key}`] = last;
   }
 
-  // ~~need all breakpoints~~
+  if (iosSafariPatch && iosSafariPatch.propValueToCssValue) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const safariValue = iosSafariPatch.propValueToCssValue(node?.[key] as any);
+    if (safariValue) {
+      classes.push(`${key.toString()}-${SAFARI_PATCH_KEY}`);
+      properties[`--${key.toString()}-${SAFARI_PATCH_KEY}`] = safariValue;
+    }
+  }
+
   // no longer should need all breakpoints, because
   // going to use compiled classes, to make the breakpoints
   // take effect
@@ -151,4 +177,14 @@ function getIndividualChildCssProp<
     }
   }
   return [properties, classes];
+}
+
+export function separateComponentProps<T>(obj: T, componentKeys: string[]) {
+  return Object.keys(obj).reduce(
+    (acc, key) =>
+      componentKeys.includes(key)
+        ? [{ ...acc[0], [key]: obj[key] }, acc[1]]
+        : [acc[0], { ...acc[1], [key]: obj[key] }],
+    [{}, {}],
+  );
 }

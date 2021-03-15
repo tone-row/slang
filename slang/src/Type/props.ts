@@ -7,6 +7,8 @@ export interface ResponsiveProps<
   color?: Colors;
 }
 
+export const propKeys = ["weight", "color"];
+
 export const typeConfig: ComponentConfig<ResponsiveProps>[] = [
   {
     key: "weight",
