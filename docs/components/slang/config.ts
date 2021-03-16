@@ -26,7 +26,7 @@ const config: Partial<SlangConfig> = {
     black: ["#000000"],
   },
   colors: {
-    background: "var(--palette-white-0)",
+    background: "var(--palette-white-1)",
     foreground: "var(--palette-black-0)",
   },
 };

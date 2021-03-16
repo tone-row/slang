@@ -1,0 +1,9 @@
+.Warning {
+  width: 85vw;
+  height: 45vh;
+  object-fit: contain;
+  filter: drop-shadow(0 1.1px 2.6px rgba(0, 0, 0, 0.02))
+    drop-shadow(0 3.1px 6.3px rgba(0, 0, 0, 0.028))
+    drop-shadow(0 6.2px 12.9px rgba(0, 0, 0, 0.035));
+  transform: translateY(-20px);
+}
