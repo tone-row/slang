@@ -304,12 +304,22 @@ summary {
   padding: 0;
 }
 
+/* Cascade heights for Next.js and Create-React-App */
 html,
 body,
 #__next,
 #root {
   height: 100%;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
+}
+
+@supports (-webkit-touch-callout: none) {
+  html,
+  body,
+  #__next,
+  #root {
+    height: -webkit-fill-available;
+  }
 }
 
 html {
@@ -593,7 +603,7 @@ body {
 	--palette-white-2:#dadada;
 	--palette-white-3:#e7ebec;
 	--palette-black-0:#000000;
-	--color-background:var(--palette-white-0);
+	--color-background:var(--palette-white-1);
 	--color-foreground:var(--palette-black-0);
  }
 
@@ -645,8 +655,13 @@ overflow: var(--overflow);
 .slang-box.h {
 height: var(--h);
 }
-.slang-box.hmin {
-min-height: var(--hmin);
+.slang-box.root {
+min-height: var(--root);
+}
+@supports (-webkit-touch-callout: none) {
+.slang-box.root-safari {
+min-height: var(--root-safari);
+}
 }
 .slang-box.background {
 background-color: var(--background);
@@ -706,8 +721,8 @@ overflow: var(--overflow-tablet);
 .slang-box.h-tablet {
 height: var(--h-tablet);
 }
-.slang-box.hmin-tablet {
-min-height: var(--hmin-tablet);
+.slang-box.root-tablet {
+min-height: var(--root-tablet);
 }
 .slang-box.background-tablet {
 background-color: var(--background-tablet);
@@ -768,8 +783,8 @@ overflow: var(--overflow-desktop);
 .slang-box.h-desktop {
 height: var(--h-desktop);
 }
-.slang-box.hmin-desktop {
-min-height: var(--hmin-desktop);
+.slang-box.root-desktop {
+min-height: var(--root-desktop);
 }
 .slang-box.background-desktop {
 background-color: var(--background-desktop);

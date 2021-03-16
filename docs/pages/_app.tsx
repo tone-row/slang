@@ -14,9 +14,10 @@ function MyApp({ Component, pageProps }) {
           src="https://plausible.io/js/plausible.js"
         />
       </Head>
-      <DocsLayout>
+      <Component {...pageProps} />
+      {/* <DocsLayout>
         <Component {...pageProps} />
-      </DocsLayout>
+      </DocsLayout> */}
     </>
   );
 }
