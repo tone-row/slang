@@ -1,9 +1,10 @@
 import React, { Ref } from "react";
 import "./Type.scss";
 import {
+  Hoverify,
   produceComponentClassesPropsGetter,
   PropsWithAs,
-  ResponsifyComponentProps,
+  Responsify,
   separateComponentProps,
 } from "../utils";
 import { typeConfig, ResponsiveProps, propKeys } from "./props";
@@ -11,7 +12,7 @@ import { typeConfig, ResponsiveProps, propKeys } from "./props";
 export interface BaseTypeProps<
   Breakpoint extends string = "tablet" | "desktop",
   Colors extends string = "foreground" | "background"
-> extends ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint> {
+> extends Responsify<Hoverify<ResponsiveProps<Colors>>, Breakpoint> {
   size?: number;
 }
 

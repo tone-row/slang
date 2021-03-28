@@ -38,6 +38,8 @@ export interface ResponsiveProps<
   items?: string;
   self?: string;
   gap?: number;
+  columnGap?: number;
+  rowGap?: number;
   flow?: "column" | "row";
 
   display?: boolean | string;
@@ -66,6 +68,7 @@ export interface ResponsiveProps<
 
   // Colors
   background?: Colors;
+  color?: Colors;
 }
 
 // Must include all Keys!!
@@ -90,6 +93,9 @@ export const propKeys = [
   "root",
   "rad",
   "background",
+  "color",
+  "columnGap",
+  "rowGap",
 ];
 
 export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
@@ -145,6 +151,16 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     key: "gap",
     defaultValue: "0",
     cssFromVariable: (v) => `gap: calc(var(--spacer-px) * ${v});`,
+  },
+  {
+    key: "columnGap",
+    defaultValue: "0",
+    cssFromVariable: (v) => `column-gap: calc(var(--spacer-px) * ${v});`,
+  },
+  {
+    key: "rowGap",
+    defaultValue: "0",
+    cssFromVariable: (v) => `row-gap: calc(var(--spacer-px) * ${v});`,
   },
   {
     key: "template",
@@ -205,6 +221,12 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     key: "background",
     defaultValue: "var(--color-background)",
     cssFromVariable: (v) => `background-color: ${v};`,
+    propValueToCssValue: (s) => s && `var(--${s})`,
+  },
+  {
+    key: "color",
+    defaultValue: "var(--color)",
+    cssFromVariable: (v) => `color: ${v};`,
     propValueToCssValue: (s) => s && `var(--${s})`,
   },
   {

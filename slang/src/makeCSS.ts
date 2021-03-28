@@ -1,11 +1,11 @@
-import { createResponsiveCss } from "./createResponsiveCss";
+import { createComponentCss } from "./createComponentCss";
 import { defaultConfig, SlangConfig } from "./config";
 
 export function makeCSS(config?: Partial<SlangConfig>) {
   const cssProperties = createProperties(config);
   const derivedProperties = createDerivedProperties(config);
   const colorProperties = createColorProperties(config);
-  const responsiveCss = createResponsiveCss(config);
+  const responsiveCss = createComponentCss(config);
   return [":root {"]
     .concat(
       Object.entries({

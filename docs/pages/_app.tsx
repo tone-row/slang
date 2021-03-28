@@ -2,8 +2,11 @@ import "../styles/globals.css";
 import "../components/slang/slang.css";
 import DocsLayout from "../components/DocsLayout";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
+  const { pathname } = useRouter();
+  const withLayout = !(pathname === "/");
   return (
     <>
       <Head>
@@ -14,10 +17,13 @@ function MyApp({ Component, pageProps }) {
           src="https://plausible.io/js/plausible.js"
         />
       </Head>
-      <Component {...pageProps} />
-      {/* <DocsLayout>
+      {withLayout ? (
+        <DocsLayout>
+          <Component {...pageProps} />
+        </DocsLayout>
+      ) : (
         <Component {...pageProps} />
-      </DocsLayout> */}
+      )}
     </>
   );
 }

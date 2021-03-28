@@ -16,7 +16,9 @@ type Colors =
   | "palette-white-1"
   | "palette-white-2"
   | "palette-white-3"
-  | "palette-black-0";
+  | "palette-black-0"
+  | "palette-black-1"
+  | "palette-black-2";
 export type BoxProps = PropsWithAs<BaseBoxProps<Breakpoints, Colors>>;
 export type TypeProps = PropsWithAs<BaseTypeProps<Breakpoints, Colors>>;
 const Box = forwardRefWithAs<BoxProps, "div">(BoxComponent);

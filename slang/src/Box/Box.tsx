@@ -1,9 +1,10 @@
 import React, { Ref } from "react";
 import {
-  ResponsifyComponentProps,
+  Responsify,
   PropsWithAs,
   produceComponentClassesPropsGetter,
   separateComponentProps,
+  Hoverify,
 } from "../utils";
 import "./Box.css";
 import { boxConfig, propKeys, ResponsiveProps } from "./props";
@@ -11,9 +12,9 @@ import { boxConfig, propKeys, ResponsiveProps } from "./props";
 export type BaseBoxProps<
   Breakpoint extends string = "tablet" | "desktop",
   Colors extends string = "foreground" | "background"
-> = ResponsifyComponentProps<ResponsiveProps<Colors>, Breakpoint>;
+> = Responsify<Hoverify<ResponsiveProps<Colors>>, Breakpoint>;
 
-const componentKeys = [...propKeys, "at"];
+const componentKeys = [...propKeys, "at", "hover"];
 
 const getCssClasses = produceComponentClassesPropsGetter<
   BaseBoxProps,

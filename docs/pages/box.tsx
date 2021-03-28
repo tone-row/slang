@@ -1,4 +1,11 @@
-import { Code, InlineCode, Page, Section } from "components/theme";
+import {
+  Code,
+  InlineCode,
+  Page,
+  Section,
+  Subtitle,
+  Title,
+} from "components/theme";
 import React from "react";
 import { Type, Box } from "slang";
 
@@ -6,9 +13,7 @@ export default function BoxPage() {
   return (
     <Page>
       <Section>
-        <Type as="h1" size={3}>
-          Box
-        </Type>
+        <Title>Box</Title>
         <Type>
           The box is the swiss-army-knife of layout in Slang. Because it does so
           much, I thought instead of organizing this page around what the box
@@ -18,9 +23,7 @@ export default function BoxPage() {
         </Type>
       </Section>
       <Section>
-        <Type size={2} as="h2">
-          The Right Height
-        </Type>
+        <Subtitle>The Right Height</Subtitle>
         <Type>
           It can be difficult to get your app to be the right height. As best we
           can tell, it's beneficial for every site to be <em>at least</em> the
@@ -51,6 +54,7 @@ export default function BoxPage() {
           content (blogs), and <strong>h</strong> for SPA's.
         </Type>
       </Section>
+      <Box as="button">Test</Box>
     </Page>
   );
 }
