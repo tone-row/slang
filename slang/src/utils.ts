@@ -26,11 +26,11 @@ export function forwardRefWithAs<Props, DefaultType extends As>(
   >;
 }
 
-type ResponsiveComponentProperty<X> = {
+type ResponsiveComponentProperty<ResponsiveProperties> = {
   /**
    * CSS Custom Property Name
    */
-  key: keyof X;
+  key: keyof ResponsiveProperties;
 
   /**
    * Initial value, if prop is passed to component
@@ -50,7 +50,7 @@ type ResponsiveComponentProperty<X> = {
    * Custom logic in converting what the user passes
    * into the component, into the value that will be assed to the custom property
    */
-  propValueToCssValue?: (x: keyof X) => string | undefined;
+  propValueToCssValue?: (x: keyof ResponsiveProperties) => string | undefined;
 
   /**
    * Declares that a patch needs to be made to make ios safari behavior consistent
@@ -62,7 +62,7 @@ type ResponsiveComponentProperty<X> = {
    */
   iosSafariPatch?: {
     cssFromVariable: (customProperty: string) => string;
-    propValueToCssValue?: (x: keyof X) => string | undefined;
+    propValueToCssValue?: (x: keyof ResponsiveProperties) => string | undefined;
   };
 };
 
@@ -70,9 +70,16 @@ export type ComponentConfig<X> = {
   [T in keyof X]-?: ResponsiveComponentProperty<X>;
 }[keyof X];
 
-export type ResponsifyComponentProps<CProps, Breakpoint extends string> = {
+export type Hoverify<CProps> = {
+  hover?: Partial<CProps>;
+} & CProps;
+
+export type Responsify<CProps, Breakpoint extends string> = {
   at?: Partial<Record<Breakpoint, CProps>>;
 } & CProps;
+
+// A prop accepts an object with pseudo states as well...
+export type AllowPseudo<T> = T | { default?: T; hover?: T };
 
 /**
  * Returns a function, which takes the component's props
@@ -83,7 +90,7 @@ export type ResponsifyComponentProps<CProps, Breakpoint extends string> = {
  * `const [cssProperties, dynamicClasses] = getComponentClassesProps(props);`
  */
 export function produceComponentClassesPropsGetter<ComponentProps, X>(
-  toReduce: any[],
+  configArray: any[],
 ) {
   /*
   function getComponentClassesProps(node: PropsWithAs<BoxProps<"tablet" | "desktop">, "div">): [React.CSSProperties, string[]]
@@ -95,7 +102,7 @@ export function produceComponentClassesPropsGetter<ComponentProps, X>(
   return function getComponentClassesProps<Breakpoint extends string>(
     node: ComponentProps,
   ): [CSSProperties, string[]] {
-    const [props, classes] = toReduce.reduce<[CSSProperties, string[]]>(
+    const [props, classes] = configArray.reduce<[CSSProperties, string[]]>(
       (acc, prop) => {
         const [properties, classes] = getIndividualChildCssProp<
           ComponentProps,
@@ -129,12 +136,31 @@ function getIndividualChildCssProp<
   node,
   iosSafariPatch,
 }: ComponentConfig<X> & {
-  node: ResponsifyComponentProps<ComponentProps, Breakpoint>;
+  node: Responsify<Hoverify<ComponentProps>, Breakpoint>;
 }): [Record<string, string>, string[]] {
   // Setup
   const classes: string[] = [];
   const properties = {} as Record<string, string>;
   let last = defaultValue;
+
+  // hover classes/properties need to be added at root & breakpoint sizes
+  function handleHover(
+    cProps: Partial<Hoverify<ComponentProps>>,
+    key: string | number | symbol,
+    breakpoint?: string,
+  ) {
+    // add return hover classes/properties or nothing
+    if ("hover" in cProps) {
+      const value = propValueToCssValue(cProps.hover?.[key]);
+      if (value) {
+        const thisKey = [key, breakpoint].filter(Boolean).join("-");
+        // add the class
+        classes.push(`${thisKey}_hover`);
+        // which activates the property value
+        properties[`--${thisKey}_hover`] = value;
+      }
+    }
+  }
 
   // Setup default
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -142,9 +168,13 @@ function getIndividualChildCssProp<
   const v = propValueToCssValue(node?.[key]);
   if (v) {
     last = v;
+    // add the class
     classes.push(key.toString());
+    // which activates the property value
     properties[`--${key}`] = last;
   }
+
+  handleHover(node, key);
 
   if (iosSafariPatch && iosSafariPatch.propValueToCssValue) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -174,6 +204,8 @@ function getIndividualChildCssProp<
         last = value;
       }
       properties[`--${key}-${breakpoint}`] = v;
+
+      handleHover(node.at[breakpoint], key, breakpoint);
     }
   }
   return [properties, classes];

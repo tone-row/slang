@@ -3,16 +3,17 @@ import { Box, BoxProps, Type, TypeProps } from "slang";
 import styles from "./theme.module.scss";
 
 const sharedCodeStyle: Partial<BoxProps> = {
-  rad: 1,
-  background: "palette-white-3",
+  rad: 2,
+  background: "palette-black-1",
+  color: "palette-white-1",
 };
 
 export function Code(props: BoxProps) {
   return (
     <Box
+      p={3}
       as="code"
       className={styles.Code}
-      p={2}
       {...sharedCodeStyle}
       {...props}
     />
@@ -33,7 +34,7 @@ export function InlineCode(props: BoxProps) {
 }
 
 export function Section(props: BoxProps) {
-  return <Box as="section" gap={3} content="start normal" {...props} />;
+  return <Box as="section" gap={5} content="start normal" {...props} />;
 }
 
 export function Page(props: BoxProps) {
@@ -41,9 +42,9 @@ export function Page(props: BoxProps) {
 }
 
 export function Title(props: TypeProps) {
-  return <Type as="h1" size={3} weight="700" {...props} />;
+  return <Type as="h1" size={3} weight="400" {...props} />;
 }
 
 export function Subtitle(props: TypeProps) {
-  return <Type as="h2" size={1} weight="700" {...props} />;
+  return <Type as="h2" size={1} weight="400" {...props} />;
 }

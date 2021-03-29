@@ -1,22 +1,23 @@
-import { Code, InlineCode, Page, Section, Title } from "../components/theme";
-import { Type, Box } from "slang";
+import {
+  InlineCode,
+  Page,
+  Section,
+  Subtitle,
+  Title,
+} from "../components/theme";
+import { Type } from "slang";
 import React from "react";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <Page>
       <Section>
         <Title>Slang</Title>
-        <Type size={1}>
-          Welcome! This the documentation for the open source UI component
-          library called Slang. It's not quite ready to use but it will be soon.
-        </Type>
-        <Type size={1}>Stay tuned, there's more to come! 🍿</Type>
-      </Section>
-      <Section>
-        <Type as="h2" size={2}>
-          Why?
+        <Type size={1}>Open-source UI framework for rapid development.</Type>
+        <Type>
+          Slang is a component library with a small set of swiss-army-knife-like
+          components coupled with a CSS generation pipeline. Slang is mainly
+          built with DX in mind.
         </Type>
         <Type>
           The idea driving Slang is that we can do a large part of what's needed
@@ -26,9 +27,7 @@ export default function Home() {
         <Type>In additon to that, Slang is:</Type>
       </Section>
       <Section>
-        <Type as="h4" size={1}>
-          ✅ &nbsp; CSS First
-        </Type>
+        <Subtitle>✅ &nbsp; CSS First</Subtitle>
         <Type>
           The internet has a had a zero-runtime approach to styling since 1996.
         </Type>
@@ -41,9 +40,7 @@ export default function Home() {
         </Type>
       </Section>
       <Section>
-        <Type as="h4" size={1}>
-          ✅ &nbsp; Continuous By Design
-        </Type>
+        <Subtitle>✅ &nbsp; Continuous By Design</Subtitle>
         <Type>
           Although there are plenty of reasons we still need media queries,
           there is a lot to be gained by making our designs more fluid at the
@@ -52,9 +49,6 @@ export default function Home() {
           better use of screen-space over a broader range of devices.
         </Type>
       </Section>
-      <Box as="button" background="palette-black-0" p={3}>
-        <Type color="palette-white-0">Cool Button!</Type>
-      </Box>
     </Page>
   );
 }

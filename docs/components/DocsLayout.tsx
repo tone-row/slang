@@ -5,7 +5,7 @@ import styles from "./DocsLayout.module.scss";
 import { useRouter } from "next/router";
 
 const links = [
-  { href: "/", text: "Home" },
+  { href: "/test-index", text: "Home" },
   { href: "/getting-started", text: "Getting Started" },
   { href: "/box", text: "Box" },
   { href: "/type", text: "Type" },
@@ -17,7 +17,8 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
     <Box
       className={styles.DocsLayout}
       at={{ tablet: { template: "none / auto minmax(0, 1fr)" } }}
-      h
+      root
+      background="palette-white-0"
     >
       <Box
         as="aside"
@@ -42,7 +43,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
           ))}
         </Box>
       </Box>
-      <Box px={6} py={6} contain={256} at={{ tablet: { py: 10 } }}>
+      <Box px={6} py={6} contain={230} at={{ tablet: { py: 10 } }}>
         {children}
       </Box>
     </Box>
@@ -67,6 +68,7 @@ function SidebarLink({
         pl={4}
         pr={8}
         {...(active ? { "aria-current": "page" } : {})}
+        hover={{ background: "palette-white-2" }}
       >
         <Type as="span">{text}</Type>
       </Box>
