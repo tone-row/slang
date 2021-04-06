@@ -166,7 +166,7 @@ function getIndividualChildCssProp<
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const v = propValueToCssValue(node?.[key]);
-  if (v) {
+  if (typeof v === "number" || typeof v === "string") {
     last = v;
     // add the class
     classes.push(key.toString());
@@ -197,7 +197,7 @@ function getIndividualChildCssProp<
       // Don't put classes or properties on the element if not defined at a size
       if (typeof rawValue === "undefined") continue;
       const value = propValueToCssValue(rawValue);
-      if (value) {
+      if (typeof value === "number" || typeof value === "string") {
         classes.push(breakpoint);
         classes.push(`${key}-${breakpoint}`);
         v = value;
