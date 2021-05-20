@@ -37,6 +37,7 @@ export interface ResponsiveProps<
   content?: string;
   items?: string;
   self?: string;
+  area?: string;
   gap?: number;
   columnGap?: number;
   rowGap?: number;
@@ -244,5 +245,9 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     defaultValue: "0",
     cssFromVariable: (v) =>
       `border-radius: calc(var(--smallest-border-radius-px) * ${v});`,
+  },
+  {
+    key: "area",
+    cssFromVariable: (v) => `grid-area: ${v};`,
   },
 ];
