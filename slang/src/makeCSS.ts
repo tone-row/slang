@@ -6,7 +6,7 @@ export function makeCSS(config?: Partial<SlangConfig>) {
   const derivedProperties = createDerivedProperties(config);
   const colorProperties = createColorProperties(config);
   const responsiveCss = createComponentCss(config);
-  return [":root {"]
+  return [":where(:root) {"]
     .concat(
       Object.entries({
         ...cssProperties,
