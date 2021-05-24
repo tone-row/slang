@@ -55,6 +55,10 @@ export default function BoxPage() {
         </Type>
       </Section>
       <Box as="button">Test</Box>
+      <Box template="none / repeat(4, 1fr)">
+        <Box area="auto / span 3">long</Box>
+        <Box>short</Box>
+      </Box>
     </Page>
   );
 }

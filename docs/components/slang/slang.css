@@ -494,7 +494,7 @@ body {
     --errorTopMultiplier: var(--error-top-multiplier-7);
     --errorBottomMultiplier: var(--error-bottom-multiplier-7); }
 
-:root {
+:where(:root) {
 	--base-font-family:Neue Montreal;
 	--base-font-size-px:20px;
 	--base-font-size:20;
@@ -752,6 +752,12 @@ border-radius: calc(var(--smallest-border-radius-px) * var(--rad));
 .slang-box.rad_hover:hover {
 border-radius: calc(var(--smallest-border-radius-px) * var(--rad_hover));
 }
+.slang-box.area {
+grid-area: var(--area);
+}
+.slang-box.area_hover:hover {
+grid-area: var(--area_hover);
+}
 @media(min-width: 768px) {
 .slang-box.flow-tablet {
 grid-auto-flow: var(--flow-tablet);
@@ -890,6 +896,12 @@ border-radius: calc(var(--smallest-border-radius-px) * var(--rad-tablet));
 }
 .slang-box.rad-tablet_hover:hover {
 border-radius: calc(var(--smallest-border-radius-px) * var(--rad-tablet_hover));
+}
+.slang-box.area-tablet {
+grid-area: var(--area-tablet);
+}
+.slang-box.area-tablet_hover:hover {
+grid-area: var(--area-tablet_hover);
 }
 }
 @media(min-width: 1024px) {
@@ -1030,6 +1042,12 @@ border-radius: calc(var(--smallest-border-radius-px) * var(--rad-desktop));
 }
 .slang-box.rad-desktop_hover:hover {
 border-radius: calc(var(--smallest-border-radius-px) * var(--rad-desktop_hover));
+}
+.slang-box.area-desktop {
+grid-area: var(--area-desktop);
+}
+.slang-box.area-desktop_hover:hover {
+grid-area: var(--area-desktop_hover);
 }
 }
 .slang-type.weight {

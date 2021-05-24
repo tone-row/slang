@@ -83,6 +83,7 @@ export const propKeys = [
   "pl",
   "template",
   "content",
+  "area",
   "items",
   "self",
   "gap",
@@ -111,6 +112,10 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
   },
   { key: "items", cssFromVariable: (v) => `place-items: ${v};` },
   { key: "self", cssFromVariable: (v) => `place-self: ${v};` },
+  {
+    key: "area",
+    cssFromVariable: (v) => `grid-area: ${v};`,
+  },
   {
     key: "p",
     defaultValue: "0",
@@ -245,9 +250,5 @@ export const boxConfig: ComponentConfig<ResponsiveProps>[] = [
     defaultValue: "0",
     cssFromVariable: (v) =>
       `border-radius: calc(var(--smallest-border-radius-px) * ${v});`,
-  },
-  {
-    key: "area",
-    cssFromVariable: (v) => `grid-area: ${v};`,
   },
 ];
